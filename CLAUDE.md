@@ -55,6 +55,7 @@ Whenever a heading is added, removed, or renamed, update the Index section in th
 
 - Prefer Mermaid diagrams (fenced ```mermaid blocks) over static images for flowcharts, sequence diagrams, class diagrams, etc.
 - Use the `assets/` folder only for images that can't reasonably be expressed as a Mermaid diagram.
+- Reference images from `assets/` using a relative path (e.g. `![Load balancer architecture](../assets/load-balancer-architecture.png)`), never an absolute path.
 
 ## Working with these files (context management)
 
