@@ -1,3 +1,39 @@
+# Index
+
+- [Intro](#intro)
+  - [Input/ output](#input-output)
+  - [Operators](#operators)
+  - [Data types](#data-types)
+- [Functions](#functions)
+  - [range()](#range)
+  - [Generators](#generators)
+  - [\*args](#args)
+  - [\\kwargs](#kwargs)
+  - [Lambda](#lambda)
+  - [map()](#map)
+  - [reduce()](#reduce)
+  - [filter()](#filter)
+- [Decorators](#decorators)
+  - [@staticmethod](#staticmethod)
+  - [@classmethod](#classmethod)
+  - [@property](#property)
+- [Data Structures](#data-structures)
+  - [String](#string)
+  - [List](#list)
+  - [Tuple](#tuple)
+  - [Dictionary](#dictionary)
+  - [Set](#set)
+  - [Array](#array)
+  - [List Comprehension](#list-comprehension)
+- [OOP](#oop)
+  - [Encapsulation](#encapsulation)
+  - [Abstraction](#abstraction)
+  - [Inheritance](#inheritance)
+  - [Polymorphism](#polymorphism)
+- [Exception Handling](#exception-handling)
+- [File Handling](#file-handling)
+
+
 # Intro
 
 

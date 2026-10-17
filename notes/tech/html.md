@@ -1,3 +1,8 @@
+# Index
+
+- [Intro](#intro)
+
+
 # Intro
 
 HTML (HyperText Markup Language)- markup language that tells the web browser how to display text, images, videos, and other content on a webpage.

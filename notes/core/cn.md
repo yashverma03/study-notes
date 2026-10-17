@@ -1,3 +1,28 @@
+# Index
+
+- [Intro](#intro)
+  - [Network Devices](#network-devices)
+  - [VPN (Virtual Private Network)](#vpn-virtual-private-network)
+  - [TCP/IP Model](#tcpip-model)
+- [OSI Model (Open Systems Interconnection)](#osi-model-open-systems-interconnection)
+- [Data Link Layer](#data-link-layer)
+  - [Internetworking](#internetworking)
+    - [Types](#types)
+  - [MAC Address](#mac-address)
+- [Network Layer](#network-layer)
+- [Transport Layer](#transport-layer)
+  - [TCP (Transmission Control Protocol)](#tcp-transmission-control-protocol)
+  - [User Datagram Protocol (UDP)](#user-datagram-protocol-udp)
+  - [SSL and TLS](#ssl-and-tls)
+  - [P2P (Peer To Peer) File Sharing](#p2p-peer-to-peer-file-sharing)
+  - [Congestion Control](#congestion-control)
+    - [Congestion Control Algorithm](#congestion-control-algorithm)
+  - [Server](#server)
+- [Application Layer](#application-layer)
+  - [Protocols](#protocols)
+  - [Domain Name System (DNS)](#domain-name-system-dns)
+
+
 # Intro
 
 A computer network is a collection of interconnected devices that share resources and information

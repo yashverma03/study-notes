@@ -1,3 +1,10 @@
+# Index
+
+- [Intro](#intro)
+  - [Common actions](#common-actions)
+- [Example](#example)
+
+
 # Intro
 
 CI/CD platform to automate build, test and deployment pipelines

@@ -1,3 +1,29 @@
+# Index
+
+- [Intro](#intro)
+- [Process Management](#process-management)
+  - [Process Operations](#process-operations)
+  - [Process Schedulers](#process-schedulers)
+    - [Categories](#categories)
+    - [Types](#types)
+  - [CPU Scheduling](#cpu-scheduling)
+    - [Algorithms](#algorithms)
+  - [Process Synchronization](#process-synchronization)
+  - [Semaphores](#semaphores)
+    - [Operations](#operations)
+  - [Mutex](#mutex)
+  - [Deadlock](#deadlock)
+- [Memory Management](#memory-management)
+  - [Cache Memory](#cache-memory)
+    - [Types](#types-1)
+  - [Partitioning](#partitioning)
+  - [Partition Allocation Methods](#partition-allocation-methods)
+  - [Virtual Memory](#virtual-memory)
+  - [Page Replacement Algorithms](#page-replacement-algorithms)
+- [Disk Management](#disk-management)
+  - [Disk Scheduling Algorithms](#disk-scheduling-algorithms)
+
+
 # Intro
 
 OS- software that manages computer hardware and software

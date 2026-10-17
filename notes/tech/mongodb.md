@@ -1,3 +1,8 @@
+# Index
+
+- [Intro](#intro)
+
+
 # Intro
 
 NoSQL database that stores data in flexible, JSON-like documents

@@ -1,3 +1,8 @@
+# Index
+
+- [Intro](#intro)
+
+
 # Intro
 
 - Redis (Remote Dictionary Server) is an open-source, in-memory data structure store

@@ -1,3 +1,23 @@
+# Index
+
+- [Intro](#intro)
+- [Hooks](#hooks)
+  - [useState](#usestate)
+  - [useEffect](#useeffect)
+  - [useContext](#usecontext)
+  - [useRef](#useref)
+  - [useReducer](#usereducer)
+  - [useCallback](#usecallback)
+  - [useMemo](#usememo)
+  - [useNavigate](#usenavigate)
+  - [useParams](#useparams)
+  - [Custom Hooks](#custom-hooks)
+  - [Virtual DOM](#virtual-dom)
+  - [React Lifecycle](#react-lifecycle)
+  - [Misc](#misc)
+  - [Rendering strategies](#rendering-strategies)
+
+
 # Intro
 
 - front-end JavaScript library

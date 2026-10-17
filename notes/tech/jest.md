@@ -1,3 +1,8 @@
+# Index
+
+- [Intro](#intro)
+
+
 # Intro
 
 ```typescript

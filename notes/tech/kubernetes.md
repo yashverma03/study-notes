@@ -1,3 +1,13 @@
+# Index
+
+- [Intro](#intro)
+  - [Architecture](#architecture)
+    - [Control Plane Components](#control-plane-components)
+    - [Node Components](#node-components)
+  - [Helm Chart](#helm-chart)
+  - [Example Code](#example-code)
+
+
 # Intro
 
 K8- container orchestration platform designed to automate deployment, scaling, and management of containerized applications

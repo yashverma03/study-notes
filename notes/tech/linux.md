@@ -1,3 +1,11 @@
+# Index
+
+- [Intro](#intro)
+  - [File permissions](#file-permissions)
+  - [Commands](#commands)
+- [Shell Scripting](#shell-scripting)
+
+
 # Intro
 
 Linux- OS built upon the Linux Kernel. based on the UNIX operating system

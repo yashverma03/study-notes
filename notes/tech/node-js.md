@@ -1,3 +1,13 @@
+# Index
+
+- [Intro](#intro)
+  - [Cross-Origin Resource Sharing (CORS)](#cross-origin-resource-sharing-cors)
+  - [API (Application Programming Interface)](#api-application-programming-interface)
+    - [Types](#types)
+  - [Middleware](#middleware)
+  - [Authentication](#authentication)
+
+
 # Intro
 
 - Node.js is an open-source, cross-platform, server-side runtime environment that lets you run JavaScript outside the browser — typically on a server

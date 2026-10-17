@@ -1,3 +1,8 @@
+# Index
+
+- [Intro](#intro)
+
+
 # Intro
 
 ORM (Object Relational Mapper) for TypeScript and JavaScript, allowing you to interact with relational databases (like PostgreSQL, MySQL, SQLite) using classes and decorators instead of raw SQL

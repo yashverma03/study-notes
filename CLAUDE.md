@@ -19,17 +19,16 @@ Personal technical study notes for interview preparation.
 
 ## Required structure for every note
 
-1. `# Title` — a single H1 matching the file's topic.
-2. `## Index` — immediately after the title. A bulleted list of links to every `##`, `###`, and `####` heading in the file, nested to mirror the heading hierarchy (`###` under its parent `##`, `####` under its parent `###`), each heading as its own separate index entry.
-3. Content sections using `##`, `###`, and `####` (three heading levels below the title), followed by normal paragraph text under each heading.
+1. `# Index` — always an H1, and always the very first thing in the file, before the title, the intro, or anything else. A bulleted list of links to every other heading in the file (the title, further H1s, `##`, `###`, ...), nested to mirror the actual heading hierarchy as it appears in the file (a heading nests under the nearest preceding heading of a shallower level), each heading as its own separate index entry, each linking to that heading's section.
+2. `# Title` — the first H1 after the Index, matching the file's topic (e.g. `# Intro`, or the topic name). A file can have more than one H1: additional H1s are used as major top-level sections (e.g. `# Array`, `# String` in a DSA note), siblings to the title — not sub-sections nested under it.
+3. Content sections using H1 (for major top-level sections), `##`, and `###` — the heading levels actually in use across these notes — followed by normal paragraph text under each heading.
 
 Whenever a heading is added, removed, or renamed, update the Index section in the same edit.
 
 ### Formatting rules
 
-- One H1 per file (the title only).
-- Headings follow strict hierarchy: `#` → `##` → `###` → `####` (don't skip levels).
-- Two blank lines before a new `##` section; one blank line before `###`/`####` headings and after every heading, so sections are visually well separated.
+- Headings nest by level as they actually appear (H1 → H2 → H3); don't skip levels within a section, but a new top-level H1 section can follow another H1 directly (it doesn't need to "close" through H2/H3 first).
+- Two blank lines before a new H1 or `##` section; one blank line before `###` headings and after every heading, so sections are visually well separated.
 - Each heading is followed by normal paragraph text (not immediately another heading or just a list).
 - One blank line between paragraphs and between a paragraph and the next list/code block/table.
 - Lists use `-` for bullets, consistently indented with 2 spaces per nesting level; use nested bullets for sub-points instead of flattening them into one list.
