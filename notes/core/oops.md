@@ -40,14 +40,16 @@ which holds its own data members and member functions that can be accessed and u
 
 Classes do not use memory. They merely serve as a template from which items are made
 
-```cpp
+```java
 class className {
-access_specifier:
 
     // data member
+    access_specifier dataType memberName;
 
     // member method
-};
+    access_specifier returnType memberMethod() {
+    }
+}
 ```
 
 Size of a class:
@@ -62,17 +64,17 @@ instance of a class
 
 Memory is allocated when an object is created.
 
-```cpp
-className objectName;
+```java
+className objectName = new className();
 ```
 
-```cpp
-Car my_car;
+```java
+Car myCar = new Car();
 ```
 
 Member access
 
-```cpp
+```java
 obj.member1 // For data members
 obj.member2(..) // For functions
 ```
@@ -109,39 +111,40 @@ pass arguments to constructors
 
 using namespace std;
 
-```cpp
+```java
 class A {
-public:
-    int val;
-  
-          // Parameterized Constructor
-    A(int x) {
+    public int val;
+
+    // Parameterized Constructor
+    public A(int x) {
         val = x;
     }
-};
+}
 
-int main() {
-  
-          // Creating object with a parameter
-    A a(10);
-    cout << a.val;
-    return 0;
+public class Main {
+    public static void main(String[] args) {
+
+        // Creating object with a parameter
+        A a = new A(10);
+        System.out.print(a.val);
+    }
 }
 ```
 
 Using initialization list
 
-```cpp
+```java
 class Demo {
-    int a;
-    int b;
+    private int a;
+    private int b;
 
-public:
-    // constructor using initialization list
-    Demo(int x, int y) : a(x), b(y) {
-        cout << "a = " << a << ", b = " << b << endl;
+    // constructor initializing the fields
+    public Demo(int x, int y) {
+        a = x;
+        b = y;
+        System.out.println("a = " + a + ", b = " + b);
     }
-};
+}
 ```
 
 ### 3. Copy Constructor
@@ -336,13 +339,13 @@ Can be called directly through the class without creating any objects
 
 Can be accessed using Scope Resolution Operator or through objects
 
-```cpp
-Class_Name :: var_name
-A::x;
+```java
+ClassName.varName
+A.x;
 ```
 
-```cpp
-object_name . var_name
+```java
+objectName.varName
 obj.x;
 ```
 
@@ -353,13 +356,14 @@ pointer that points to the current instance of a class
 
 used within the member functions of a class to refer to the object of that class
 
-```cpp
+```java
 class A {
-    int n;
+    private int n;
+
     A(int n) {
-        this->n = n;
+        this.n = n;
     }
-};
+}
 ```
 
 
@@ -476,44 +480,42 @@ restricts direct access to some of the object's components, which is a means of 
 
 ![](../../assets/core/oops/encapsulation-methods-variables-class.png)
 
-```cpp
-#include <iostream>
-
-using namespace std;
-
+```java
 class Car {
-private:
-    int speed;
-    double fuelLevel;
+    private int speed;
+    private double fuelLevel;
 
-public:
-    Car() : speed(0), fuelLevel(100.0) {}
+    public Car() {
+        speed = 0;
+        fuelLevel = 100.0;
+    }
 
-    void accelerate(int amount) {
+    public void accelerate(int amount) {
         speed += amount;
         fuelLevel -= amount * 0.1;
     }
 
-    void brake() {
+    public void brake() {
         speed = 0;
     }
 
-    void refuel(double amount) {
+    public void refuel(double amount) {
         fuelLevel += amount;
     }
 
-    void display() {
-        cout << "Speed: " << speed << ", Fuel Level: " << fuelLevel << endl;
+    public void display() {
+        System.out.println("Speed: " + speed + ", Fuel Level: " + fuelLevel);
     }
-};
+}
 
-int main() {
-    Car myCar;
-    myCar.accelerate(10);
-    myCar.brake();
-    myCar.refuel(20);
-    myCar.display();
-    return 0;
+public class Main {
+    public static void main(String[] args) {
+        Car myCar = new Car();
+        myCar.accelerate(10);
+        myCar.brake();
+        myCar.refuel(20);
+        myCar.display();
+    }
 }
 ```
 
@@ -526,41 +528,33 @@ Achieved using abstract classes (with pure virtual functions)
 
 ![](../../assets/core/oops/abstraction-input-output-black-box.png)
 
-```cpp
-#include <iostream>
-#include <string>
+```java
+abstract class Animal {
+    public abstract String makeSound(); // Abstract method
+}
 
-using namespace std;
-
-class Animal {
-public:
-    virtual string makeSound() const = 0; // Pure virtual function
-};
-
-class Dog : public Animal {
-public:
-    string makeSound() const override {
+class Dog extends Animal {
+    @Override
+    public String makeSound() {
         return "Bark";
     }
-};
+}
 
-class Cat : public Animal {
-public:
-    string makeSound() const override {
+class Cat extends Animal {
+    @Override
+    public String makeSound() {
         return "Meow";
     }
-};
+}
 
-int main() {
-    Animal* dog = new Dog();
-    Animal* cat = new Cat();
+public class Main {
+    public static void main(String[] args) {
+        Animal dog = new Dog();
+        Animal cat = new Cat();
 
-    cout << dog->makeSound() << endl;
-    cout << cat->makeSound() << endl;
-
-    delete dog;
-    delete cat;
-    return 0;
+        System.out.println(dog.makeSound());
+        System.out.println(cat.makeSound());
+    }
 }
 ```
 
@@ -569,8 +563,8 @@ int main() {
 
 new class inherits properties and behaviors (methods) from an existing class
 
-```cpp
-class DerivedClass : mode_of_inheritance BaseClass {
+```java
+class DerivedClass extends BaseClass {
     // Body of the Derived Class
 }
 ```
@@ -581,29 +575,25 @@ Mode of inheritance
 - Protected- Both public and protected members of the base class will become protected in the derived class
 - Private- Both public members and protected members of the base class will become private in the derived class
 
-```cpp
-#include <iostream>
-using namespace std;
-
+```java
 class Animal {
-public:
-    void eat() {
-        cout << "This animal eats food." << endl;
+    public void eat() {
+        System.out.println("This animal eats food.");
     }
-};
+}
 
-class Dog : public Animal {
-public:
-    void bark() {
-        cout << "Dog barks!" << endl;
+class Dog extends Animal {
+    public void bark() {
+        System.out.println("Dog barks!");
     }
-};
+}
 
-int main() {
-    Dog d;
-    d.eat();  // inherited
-    d.bark(); // own method
-    return 0;
+public class Main {
+    public static void main(String[] args) {
+        Dog d = new Dog();
+        d.eat();  // inherited
+        d.bark(); // own method
+    }
 }
 ```
 
@@ -641,22 +631,19 @@ compiler determines how the function or operator will work depending on the cont
 
 two or more functions can have the same name but behave differently for different parameters
 
-```cpp
+```java
 class Geeks {
-public:
-    
+
     // Function to add two integers
-    void add(int a, int b) {
-        cout << "Integer Sum = " << a + b
-        << endl;
+    public void add(int a, int b) {
+        System.out.println("Integer Sum = " + (a + b));
     }
-    
+
     // Function to add two floating point values
-    void add(double a, double b) {
-        cout << "Float Sum = " << a + b
-        << endl ;
+    public void add(double a, double b) {
+        System.out.println("Float Sum = " + (a + b));
     }
-};
+}
 ```
 
 ### B. Operator Overloading
@@ -695,44 +682,41 @@ the function call in runtime polymorphism is resolved at runtime
 
 Function Overriding occurs when a derived class defines one or more member functions of the base class. That base function is said to be overridden. The base class function must be declared as virtual function for runtime polymorphism to happen
 
-```cpp
-#include <bits/stdc++.h>
-using namespace std;
-
+```java
 class Base {
-public:
 
-    // Virtual function
-    virtual void display() {
-        cout << "Base class function";
+    // Overridable method - dispatched at runtime
+    public void display() {
+        System.out.print("Base class function");
     }
-};
+}
 
-class Derived : public Base {
-public:
+class Derived extends Base {
 
     // Overriding the base class function
-    void display() override {
-        cout << "Derived class function";
+    @Override
+    public void display() {
+        System.out.print("Derived class function");
     }
-};
+}
 
-int main() {
-    
-    // Creating a pointer of type Base
-    Base* basePtr;
-    
-    // Creating an object of Derived class
-    Derived derivedObj;
+public class Main {
+    public static void main(String[] args) {
 
-    // Pointing base class pointer to 
-    // derived class object
-    basePtr = &derivedObj;
-    
-    // Calling the display function 
-    // using base class pointer
-    basePtr->display();
-    return 0;
+        // Creating a reference of type Base
+        Base baseRef;
+
+        // Creating an object of Derived class
+        Derived derivedObj = new Derived();
+
+        // Pointing base class reference to
+        // derived class object
+        baseRef = derivedObj;
+
+        // Calling the display function
+        // using base class reference
+        baseRef.display();
+    }
 }
 ```
 
@@ -760,40 +744,37 @@ Working of virtual function
 - For every class with virtual functions, the compiler creates a vtable (virtual table) — a table of pointers to virtual functions. Each class has its own vtable.
 - Each object of a class with virtual functions contains a hidden pointer, called vptr (virtual pointer), which points to that class’s vtable
 
-```cpp
-#include <iostream>
-using namespace std;
-
+```java
 class Base {
-public:
 
-    // Virtual function
-    virtual void display() {
-        cout << "Base class display" << endl;
+    // Overridable method - dispatched at runtime
+    public void display() {
+        System.out.println("Base class display");
     }
-};
+}
 
-class Derived : public Base {
-public:
+class Derived extends Base {
 
-    // Overriding the virtual 
-    // function in the derived class
-    void display() {
-        cout << "Derived class display" << endl;
+    // Overriding the method
+    // in the derived class
+    @Override
+    public void display() {
+        System.out.println("Derived class display");
     }
-};
+}
 
-int main() {
-    Base* basePtr;
-    Derived derivedObj;
-    
-    // Base class pointer pointing 
-    // to derived class object
-    basePtr = &derivedObj;
-    
-    // Calling the virtual function
-    basePtr->display(); 
-    return 0;
+public class Main {
+    public static void main(String[] args) {
+        Base baseRef;
+        Derived derivedObj = new Derived();
+
+        // Base class reference pointing
+        // to derived class object
+        baseRef = derivedObj;
+
+        // Calling the overridden method
+        baseRef.display();
+    }
 }
 ```
 
@@ -801,28 +782,34 @@ Virtual Destructor- Deleting a derived class object using a pointer of base clas
 
 Virtual Constructor- C++ constructors cannot be declared virtual. Use factory pattern
 
-```cpp
-class Shape {
-public:
-    virtual Shape* create() const = 0;  // acts like a "virtual constructor"
-    virtual void draw() = 0;
-    virtual ~Shape() {}
-};
+```java
+abstract class Shape {
+    public abstract Shape create();  // acts like a "virtual constructor"
+    public abstract void draw();
+}
 
-class Circle : public Shape {
-public:
-    Circle* create() const override {
-        return new Circle(*this);  // calls copy constructor
+class Circle extends Shape {
+
+    Circle() {
     }
 
-    void draw() override {
-        cout << "Drawing Circle" << endl;
+    Circle(Circle other) {
     }
-};
 
-Shape* s = new Circle();       // create one object
-Shape* copy = s->create();     // virtual constructor!
-copy->draw();                  // Output: Drawing Circle
+    @Override
+    public Circle create() {
+        return new Circle(this);  // calls copy constructor
+    }
+
+    @Override
+    public void draw() {
+        System.out.println("Drawing Circle");
+    }
+}
+
+Shape s = new Circle();        // create one object
+Shape copy = s.create();       // virtual constructor!
+copy.draw();                   // Output: Drawing Circle
 ```
 
 
@@ -840,31 +827,28 @@ An interface does not have an implementation of any of its methods, it can be co
 | An abstract class can have final, non-final, static and non-static variables. | The interface has only static and final variables. |
 | Abstract class doesn't support multiple inheritance | An interface supports multiple inheritance. |
 
-```cpp
-#include <iostream>
-using namespace std;
+```java
+abstract class Base {
 
-class Base {
-public:
+    // Abstract method
+    public abstract void display();
+}
 
-    // Pure virtual function
-    virtual void display() = 0;
-};
+class Derived extends Base {
 
-class Derived : public Base {
-public:
-
-    void display() override {
-        cout << "Derived class display" << endl;
+    @Override
+    public void display() {
+        System.out.println("Derived class display");
     }
-};
+}
 
-int main() {
-    Base* basePtr;
-    Derived derivedObj;
-    basePtr = &derivedObj;
-    basePtr->display(); 
-    return 0;
+public class Main {
+    public static void main(String[] args) {
+        Base baseRef;
+        Derived derivedObj = new Derived();
+        baseRef = derivedObj;
+        baseRef.display();
+    }
 }
 ```
 

@@ -1,20 +1,20 @@
 # Index
 
 - [Intro](#intro)
-  - [C++ STL](#c-stl)
+  - [Java Collections Framework](#java-collections-framework)
   - [Pair](#pair)
   - [Tuple](#tuple)
-  - [set and unordered_set](#set-and-unordered_set)
-  - [map and unordered_map](#map-and-unordered_map)
+  - [TreeSet and HashSet](#treeset-and-hashset)
+  - [TreeMap and HashMap](#treemap-and-hashmap)
   - [Time complexity](#time-complexity)
   - [Modular Arithmetic](#modular-arithmetic)
   - [GCD (Greatest Common Divisor)](#gcd-greatest-common-divisor)
   - [Decimal Precision](#decimal-precision)
   - [Prime Numbers](#prime-numbers)
   - [Sieve of Eratosthenes](#sieve-of-eratosthenes)
-  - [Internal Data Structures and Time Complexity Table of All the C++ STL Containers](#internal-data-structures-and-time-complexity-table-of-all-the-c-stl-containers)
+  - [Internal Data Structures and Time Complexity Table of All the Java Collections](#internal-data-structures-and-time-complexity-table-of-all-the-java-collections)
 - [Array](#array)
-  - [Vector](#vector)
+  - [ArrayList](#arraylist)
   - [Subarray](#subarray)
   - [Subsequence](#subsequence)
   - [Two Pointer Technique](#two-pointer-technique)
@@ -105,86 +105,88 @@
 # Intro
 
 
-## C++ STL
+## Java Collections Framework
 
 | Operation | Syntax |
 | --- | --- |
-| Find the first element which satisfies a specific criterion. | `find()` |
-| Counts the number of occurrences of a specific value within a range. | `count()` |
-| Find max/min | `max_element()`<br>`min_element()` |
-| Find the sum of all elements present inside the container. | `accumulate()` |
-| This function is used to reverse the container. | `reverse()` |
-| This function is used to sort the container by default in ascending order. | `sort()` |
+| Find the first element which satisfies a specific criterion. | `c.stream().filter(x -> ...).findFirst()` |
+| Counts the number of occurrences of a specific value within a collection. | `Collections.frequency(c, val)` |
+| Find max/min | `Collections.max(c)`<br>`Collections.min(c)` |
+| Find the sum of all elements present inside the container. | `c.stream().mapToInt(Integer::intValue).sum()` |
+| This function is used to reverse the container. | `Collections.reverse(list)` |
+| This function is used to sort the container by default in ascending order. | `Collections.sort(list)` |
 
 
 ## Pair
 
-```cpp
-pair<int, string> p = {1, "Geeks"};
+```java
+Map.Entry<Integer, String> p = Map.entry(1, "Geeks");
 ```
 
-```cpp
-cout << p.first << " " << p.second;
+```java
+System.out.print(p.getKey() + " " + p.getValue());
 ```
 
 
 ## Tuple
 
-```cpp
-tuple<int, string, float> t = {42, "banana", 6.28};
+```java
+record Triple(int first, String second, float third) {}
+
+Triple t = new Triple(42, "banana", 6.28f);
 ```
 
-```cpp
-cout << get<0>(t) << "\n";
-cout << get<1>(t) << "\n";
-cout << get<2>(t) << "\n";
+```java
+System.out.println(t.first());
+System.out.println(t.second());
+System.out.println(t.third());
 ```
 
 
-## set and unordered_set
+## TreeSet and HashSet
 
-STL
+Java
 
 | Operation | Syntax |
 | --- | --- |
-| Insert an element | `insert(val)` |
-| Remove element (by value) | `erase(val)` |
-| Returns iterator to element or end() | `find(val)` |
-| Returns 1 if present, 0 otherwise | `count(val)` |
+| Insert an element | `add(val)` |
+| Remove element (by value) | `remove(val)` |
+| Returns true if the element is present | `contains(val)` |
+| Returns 1 if present, 0 otherwise | `contains(val) ? 1 : 0` |
 | Removes all elements | `clear()` |
 | Returns number of elements | `size()` |
-| Iterators for traversal | `begin()`<br>`end()` |
+| Iteration | `iterator()`<br>`for (int x : set)` |
 
 TC
 
-| Operation | Set | Unordered set |
+| Operation | TreeSet | HashSet |
 | --- | --- | --- |
-| Insert | O(log n) | Average: O(1)<br>Worst: O(n) |
-| Delete | O(log n) | Average: O(1)<br>Worst: O(n) |
-| Find/ count | O(log n) | Average: O(1)<br>Worst: O(n) |
+| Insert | O(log n) | Average: O(1)<br>Worst: O(log n) |
+| Delete | O(log n) | Average: O(1)<br>Worst: O(log n) |
+| Find/ contains | O(log n) | Average: O(1)<br>Worst: O(log n) |
 
 
-## map and unordered_map
+## TreeMap and HashMap
 
-STL
+Java
 
 | Operation | Syntax |
 | --- | --- |
-| Inserts a key-value pair | `insert({key, val})`<br>`m[key] = val` |
-| Removes element by key | `erase(key)` |
-| Returns iterator to key, or end() if not found | `find(key)` |
-| Returns 1 if key exists, otherwise 0 | `count(key)` |
+| Inserts a key-value pair | `putIfAbsent(key, val)`<br>`put(key, val)` |
+| Removes element by key | `remove(key)` |
+| Returns the value for the key, or null if not found | `get(key)` |
+| Returns true if the key exists, otherwise false | `containsKey(key)` |
 | Removes all elements | `clear()` |
 | Returns number of elements | `size()` |
-| Iterators for traversal | `begin()`<br>`end()` |
+| Iteration | `entrySet()`<br>`keySet()` |
 
 TC
 
-| Operation | Map | Unordered Map |
+| Operation | TreeMap | HashMap |
 | --- | --- | --- |
-| Insert | O(log n) | Average: O(1)<br>Worst: O(n) |
-| Delete | O(log n) | Average: O(1)<br>Worst: O(n) |
-| Find/ count | O(log n) | Average: O(1)<br>Worst: O(n) |
+| Insert | O(log n) | Average: O(1)<br>Worst: O(log n) |
+| Delete | O(log n) | Average: O(1)<br>Worst: O(log n) |
+| Find/ containsKey | O(log n) | Average: O(1)<br>Worst: O(log n) |
 
 
 ## Time complexity
@@ -237,8 +239,8 @@ Modular Exponentiation
 
 ## GCD (Greatest Common Divisor)
 
-```cpp
-__gcd(m, n)
+```java
+BigInteger.valueOf(m).gcd(BigInteger.valueOf(n)).intValue()
 ```
 
 returns 0, if both m and n are zero, else gcd of m and n
@@ -246,14 +248,12 @@ returns 0, if both m and n are zero, else gcd of m and n
 
 ## Decimal Precision
 
-```cpp
-setprecision(int n)
+```java
+String.format("%." + n + "f", num)
 ```
 
-```cpp
-cout << setprecision(5);
-
-cout << num << endl;
+```java
+System.out.printf("%.5f%n", num);
 ```
 
 
@@ -268,8 +268,8 @@ To check prime number:
 - Brute force O(n)- Check for each number from 1 to n and check if some number divides it
 - Optimised O(√n)- Check from 1 to √n
 
-```cpp
-bool isPrime(int n) {
+```java
+static boolean isPrime(int n) {
     if (n <= 1) return false;
     for (int i = 2; i * i <= n; i++) {
         if (n % i == 0)
@@ -284,9 +284,10 @@ bool isPrime(int n) {
 
 Marking the multiples of each prime starting from 2, marking them as non-prime, and continuing this process up to sqrt(n), leaving only the prime numbers unmarked
 
-```cpp
-void sieveOfEratosthenes(int n) {
-    vector<bool> isPrime(n + 1, true);
+```java
+static void sieveOfEratosthenes(int n) {
+    boolean[] isPrime = new boolean[n + 1];
+    Arrays.fill(isPrime, true);
     isPrime[0] = isPrime[1] = false;
 
     for (int i = 2; i * i <= n; i++) {
@@ -296,12 +297,12 @@ void sieveOfEratosthenes(int n) {
         }
     }
 
-    cout << "Primes up to " << n << ":\n";
+    System.out.println("Primes up to " + n + ":");
     for (int i = 2; i <= n; i++) {
         if (isPrime[i])
-            cout << i << " ";
+            System.out.print(i + " ");
     }
-    cout << endl;
+    System.out.println();
 }
 ```
 
@@ -312,19 +313,19 @@ O(N * log (log(N)))
 ```
 
 
-## Internal Data Structures and Time Complexity Table of All the C++ STL Containers
+## Internal Data Structures and Time Complexity Table of All the Java Collections
 
-| STL Container Name | Internal Data-Structure | Time Complexity |
+| Java Class Name | Internal Data-Structure | Time Complexity |
 | --- | --- | --- |
-| Unordered Set | Hash Table<br>(A hash table uses a hash function to compute an index) | For Insert, Search, Delete:<br>Best: O(1)<br>Avg: O(1)<br>Worst: O(N) |
-| Set | Red Black Tree<br>(self-balancing binary search tree - maintains the height of tree log N) | For Insert, Search, Delete:<br>Best: O(log N)<br>Avg: O(log N)<br>Worst: O(log N) |
-| MultiSet | Threaded Red Black Tree<br>(self-balancing binary search tree - maintains the height of tree log N) | For Insert, Search, Delete:<br>Best: O(log N)<br>Avg: O(log N)<br>Worst: O(log N) |
-| Unordered Map | Hash Table<br>(A hash table uses a hash function to compute an index) | For Insert, Search, Delete:<br>Best: O(1)<br>Avg: O(1)<br>Worst: O(N) |
-| Map | Red Black Tree<br>(self-balancing binary search tree - maintains the height of tree log N) | For Insert, Search, Delete:<br>Best: O(log N)<br>Avg: O(log N)<br>Worst: O(log N) |
-| MultiMap | Threaded Red Black Tree<br>(self-balancing binary search tree - maintains the height of tree log N) | For Insert, Search, Delete:<br>Best: O(log N)<br>Avg: O(log N)<br>Worst: O(log N) |
-| Priority_queue | Max Heap | Insert/Push: O(log N)<br>Delete/Pop: O(log N)<br>Peek/Top: O(1) |
-| Stack | Linked List | Push: O(1)<br>Pop: O(1)<br>Top: O(1) |
-| Queue | Linked List | Push: O(1)<br>Pop: O(1)<br>Front: O(1)<br>Back: O(1) |
+| HashSet | Hash Table<br>(backed by a HashMap - a hash function computes the bucket index, and a large bucket is treeified into a red-black tree) | For Insert, Search, Delete:<br>Best: O(1)<br>Avg: O(1)<br>Worst: O(log N) |
+| TreeSet | Red Black Tree<br>(backed by a TreeMap - self-balancing binary search tree, maintains the height of tree log N) | For Insert, Search, Delete:<br>Best: O(log N)<br>Avg: O(log N)<br>Worst: O(log N) |
+| MultiSet (no JDK class - use a `Map<E, Integer>` of counts, or Guava's `Multiset`) | Red Black Tree<br>(e.g. `TreeMap<E, Integer>` of element counts - self-balancing binary search tree, maintains the height of tree log N) | For Insert, Search, Delete:<br>Best: O(log N)<br>Avg: O(log N)<br>Worst: O(log N) |
+| HashMap | Hash Table<br>(a hash function computes the bucket index, and a large bucket is treeified into a red-black tree) | For Insert, Search, Delete:<br>Best: O(1)<br>Avg: O(1)<br>Worst: O(log N) |
+| TreeMap | Red Black Tree<br>(self-balancing binary search tree - maintains the height of tree log N) | For Insert, Search, Delete:<br>Best: O(log N)<br>Avg: O(log N)<br>Worst: O(log N) |
+| MultiMap (no JDK class - use a `Map<K, List<V>>`, or Guava's `Multimap`) | Red Black Tree<br>(e.g. `TreeMap<K, List<V>>` - self-balancing binary search tree, maintains the height of tree log N) | For Insert, Search, Delete:<br>Best: O(log N)<br>Avg: O(log N)<br>Worst: O(log N) |
+| PriorityQueue | Min Heap (binary heap in an array - a MIN-heap by default, not a max-heap; pass a `Comparator` for a max-heap) | Insert/offer: O(log N)<br>Delete/poll: O(log N)<br>Peek: O(1) |
+| ArrayDeque (used as a Stack) | Resizable Circular Array | push: O(1) amortized<br>pop: O(1)<br>peek: O(1) |
+| ArrayDeque (used as a Queue) | Resizable Circular Array | offer/addLast: O(1) amortized<br>poll/pollFirst: O(1)<br>peekFirst: O(1)<br>peekLast: O(1) |
 
 Implementing Sets Without C++ STL Containers- [https://www.geeksforgeeks.org/implementing-sets-without-c-stl-containers/](https://www.geeksforgeeks.org/implementing-sets-without-c-stl-containers/)
 
@@ -337,69 +338,69 @@ What is PseudoCode: A Complete Tutorial- [https://www.geeksforgeeks.org/what-is-
 
 Declaration
 
-```cpp
-int arr[5];
+```java
+int[] arr = new int[5];
 ```
 
 Initialization
 
-```cpp
-int arr[] = { 1, 2, 3, 4, 5 };
+```java
+int[] arr = { 1, 2, 3, 4, 5 };
 ```
 
 Size
 
-```cpp
-int size = sizeof(arr) / sizeof(arr[0]);
+```java
+int size = arr.length;
 ```
 
 
-## Vector
+## ArrayList
 
 Declaration
 
-```cpp
-vector<int> v1;
+```java
+List<Integer> v1 = new ArrayList<>();
 ```
 
 Initialization
 
-```cpp
-vector<int> v1 = {1, 4, 2, 3, 5};
+```java
+List<Integer> v1 = new ArrayList<>(List.of(1, 4, 2, 3, 5));
 ```
 
-```cpp
+```java
 // size 5 with default value of -1
-vector<int> v1(5, -1);
+List<Integer> v1 = new ArrayList<>(Collections.nCopies(5, -1));
 ```
 
-STL
+Java
 
 | Operation | Syntax |
 | --- | --- |
 | Size | `v.size()` |
-| Insert at end | `v.push_back(x)` |
-| Remove last element | `v.pop_back()` |
-| Resize to n | `v.resize()` |
-| First element | `v.front()` |
-| Last element | `v.back()` |
-| Iterator to first element | `v.begin()` |
-| Iterator to last element | `v.end()` |
-| reverse iterator pointing to the last element of the vector | `v.rbegin()` |
-| reverse iterator pointing to the element preceding the first element | `v.rend()` |
+| Insert at end | `v.add(x)` |
+| Remove last element | `v.remove(v.size() - 1)` |
+| Resize to n (no resize in Java - build a list of n defaults) | `new ArrayList<>(Collections.nCopies(n, 0))` |
+| First element | `v.get(0)` |
+| Last element | `v.get(v.size() - 1)` |
+| Iterator to first element | `v.iterator()` |
+| Iterator positioned past the last element | `v.listIterator(v.size())` |
+| backward iteration starting at the last element (Java has no reverse iterator) | `v.listIterator(v.size())`, then `previous()` |
+| end of backward iteration, i.e. before the first element | `!it.hasPrevious()` |
 | Remove all elements | `v.clear()` |
-| Insert at index i | `v.insert(v.begin() + i, x)` |
-| Remove element at index i | `v.erase(v.begin() + i)` |
-| Remove range \[i, j) | `v.erase(v.begin() + i, v.begin() + j)` |
+| Insert at index i | `v.add(i, x)` |
+| Remove element at index i | `v.remove(i)` |
+| Remove range \[i, j) | `v.subList(i, j).clear()` |
 | Remove all elements | `v.clear()` |
-| Sort ascending | `sort(v.begin(), v.end())` |
-| Sort descending | `sort(v.begin(), v.end(), greater<>())` |
-| Reverse vector | `reverse(v.begin(), v.end())` |
-| First occurrence of x | `find(v.begin(), v.end(), x)` |
-| Count occurrences of x | `count(v.begin(), v.end(), x)` |
-| Sum of elements | `accumulate(v.begin(), v.end(), 0)` |
-| Distance between 2 iterations | `distance(v.begin(), it)` |
-| removes consecutive duplicate elements, by rearranging the elements and returning an iterator to the new logical end of the range | `unique(v.begin(), v.end())` |
+| Sort ascending | `Collections.sort(v)` |
+| Sort descending | `v.sort(Comparator.reverseOrder())` |
+| Reverse list | `Collections.reverse(v)` |
+| Index of first occurrence of x, -1 if absent | `v.indexOf(x)` |
+| Count occurrences of x | `Collections.frequency(v, x)` |
+| Sum of elements | `v.stream().mapToInt(Integer::intValue).sum()` |
+| Distance between 2 positions (Java indexes instead of iterating) | `j - i` |
+| no in-place equivalent - build a new list keeping only the first occurrence of each element, in order | `new ArrayList<>(new LinkedHashSet<>(v))` |
 
 If a vector is passed by reference (&), then it can be modified and this is faster.
 
@@ -412,16 +413,16 @@ Total = n × (n + 1) / 2
 
 T.C = O(n<sup>2</sup>)
 
-```cpp
-vector<vector<int>> generateSubarrays(const vector<int>& arr) {
-    int n = arr.size();
-    vector<vector<int>> result;
+```java
+static List<List<Integer>> generateSubarrays(int[] arr) {
+    int n = arr.length;
+    List<List<Integer>> result = new ArrayList<>();
 
     for (int start = 0; start < n; ++start) {
-        vector<int> temp; 
+        List<Integer> temp = new ArrayList<>();
         for (int end = start; end < n; ++end) {
-            temp.push_back(arr[end]);
-            result.push_back(temp);
+            temp.add(arr[end]);
+            result.add(new ArrayList<>(temp));
         }
     }
 
@@ -434,22 +435,22 @@ vector<vector<int>> generateSubarrays(const vector<int>& arr) {
 
 Total = 2<sup>n</sup>
 
-```cpp
-vector<vector<int>> generateSubsequences(const vector<int>& arr) {
-    int n = arr.size();
+```java
+static List<List<Integer>> generateSubsequences(int[] arr) {
+    int n = arr.length;
     int total = 1 << n;  // 2^n subsequences
-    vector<vector<int>> result;
+    List<List<Integer>> result = new ArrayList<>();
 
     for (int mask = 0; mask < total; ++mask) {
-        vector<int> subseq;
+        List<Integer> subseq = new ArrayList<>();
 
         for (int i = 0; i < n; ++i) {
-            if (mask & (1 << i)) {
-                subseq.push_back(arr[i]);
+            if ((mask & (1 << i)) != 0) {
+                subseq.add(arr[i]);
             }
         }
 
-        result.push_back(subseq);
+        result.add(subseq);
     }
 
     return result;
@@ -458,25 +459,25 @@ vector<vector<int>> generateSubsequences(const vector<int>& arr) {
 
 TC = O(n \* 2<sup>n</sup>)
 
-```cpp
-void buildSubsequences(int index, const vector<int>& arr, vector<int>& current, vector<vector<int>>& result) {
-    if (index == arr.size()) {
-        result.push_back(current);
+```java
+static void buildSubsequences(int index, int[] arr, List<Integer> current, List<List<Integer>> result) {
+    if (index == arr.length) {
+        result.add(new ArrayList<>(current));
         return;
     }
 
     // Include arr[index] in the current subsequence
-    current.push_back(arr[index]);
+    current.add(arr[index]);
     buildSubsequences(index + 1, arr, current, result);
 
     // Exclude arr[index] from the current subsequence
-    current.pop_back();
+    current.remove(current.size() - 1);
     buildSubsequences(index + 1, arr, current, result);
 }
 
-vector<vector<int>> generateSubsequences(const vector<int>& arr) {
-    vector<vector<int>> result;
-    vector<int> current;
+static List<List<Integer>> generateSubsequences(int[] arr) {
+    List<List<Integer>> result = new ArrayList<>();
+    List<Integer> current = new ArrayList<>();
     buildSubsequences(0, arr, current, result);
     return result;
 }
@@ -503,19 +504,19 @@ TC = O(2<sup>n</sup>)
 
 Maximum sum of a contiguous subarray
 
-```cpp
-int maxSubarraySum(vector<int> &arr) {
+```java
+static int maxSubarraySum(int[] arr) {
     int res = arr[0];
     int maxEnding = arr[0];
 
-    for (int i = 1; i < arr.size(); i++) {      
-        // Find the maximum sum ending at index i by either extending 
+    for (int i = 1; i < arr.length; i++) {
+        // Find the maximum sum ending at index i by either extending
         // the maximum sum subarray ending at index i - 1 or by
         // starting a new subarray from index i
-        maxEnding = max(maxEnding + arr[i], arr[i]);
-      
+        maxEnding = Math.max(maxEnding + arr[i], arr[i]);
+
         // Update res if maximum subarray sum ending at index i > res
-        res = max(res, maxEnding);
+        res = Math.max(res, maxEnding);
     }
     return res;
 }
@@ -531,50 +532,50 @@ For a range update "add `v` to `[l, r]`":
 - Something increases by `v` at position `l`
 - Something decreases by `v` right after position `r`, i.e. at `r+1`
 
-```cpp
+```java
 diff[l]   += v
 diff[r+1] -= v
 ```
 
 After all queries, a single prefix sum over `diff` gives you the actual value at each position.
 
-```cpp
-#include <bits/stdc++.h>
-using namespace std;
+```java
+public class Main {
+    public static void main(String[] args) {
+        int n = 8;
+        // Original array (can also start as all zeros)
+        int[] arr = {1, 2, 3, 4, 5, 6, 7, 8};
 
-int main() {
-    int n = 8;
-    // Original array (can also start as all zeros)
-    vector<int> arr = {1, 2, 3, 4, 5, 6, 7, 8};
+        // Difference array, size n+1 to safely handle diff[r+1] at r=n-1
+        int[] diff = new int[n + 1];
 
-    // Difference array, size n+1 to safely handle diff[r+1] at r=n-1
-    vector<int> diff(n + 1, 0);
+        // Range update queries: {l, r, v} → add v to arr[l..r]
+        int[][] queries = {
+            {1, 4, 3},   // add 3 to indices [1,4]
+            {2, 6, -2},  // add -2 to indices [2,6]
+            {0, 7, 1},   // add 1 to all
+        };
 
-    // Range update queries: {l, r, v} → add v to arr[l..r]
-    vector<tuple<int,int,int>> queries = {
-        {1, 4, 3},   // add 3 to indices [1,4]
-        {2, 6, -2},  // add -2 to indices [2,6]
-        {0, 7, 1},   // add 1 to all
-    };
+        // Step 1: Mark boundaries -- O(q)
+        for (int[] query : queries) {
+            int l = query[0], r = query[1], v = query[2];
+            diff[l]     += v;
+            diff[r + 1] -= v;
+        }
 
-    // Step 1: Mark boundaries -- O(q)
-    for (auto [l, r, v] : queries) {
-        diff[l]     += v;
-        diff[r + 1] -= v;
+        // Step 2: Prefix sum over diff to get total change at each index -- O(n)
+        for (int i = 1; i <= n; i++) {
+            diff[i] += diff[i - 1];
+        }
+
+        // Step 3: Apply changes to original array -- O(n)
+        for (int i = 0; i < n; i++) {
+            arr[i] += diff[i];
+        }
+
+        for (int x : arr) System.out.print(x + " ");
+        // Output: 2 6 7 8 9 7 6 9
     }
-
-    // Step 2: Prefix sum over diff to get total change at each index -- O(n)
-    for (int i = 1; i <= n; i++) {
-        diff[i] += diff[i - 1];
-    }
-
-    // Step 3: Apply changes to original array -- O(n)
-    for (int i = 0; i < n; i++) {
-        arr[i] += diff[i];
-    }
-
-    for (int x : arr) cout << x << " ";
-    // Output: 2 6 7 8 9 7 6 9
 }
 ```
 
@@ -586,39 +587,39 @@ int main() {
 | A string is a class that defines objects that are represented as a stream of characters. | A character array is simply an array of characters that can be terminated by a null character. |
 | memory is allocated dynamically | memory is allocated statically |
 
-STL
+Java
 
 | Operation | Syntax |
 | --- | --- |
-| Size | `s.length() or s.size()` |
-| Append a string | `s += "world"` |
-| Insert substring | `s.insert(pos, "text")` |
-| Erase part of string | `s.erase(pos, len)` |
-| Replace part of string | `s.replace(pos, len, "new")` |
-| Substring | `s.substr(pos, len)` |
-| Find substring (first occurrence) | `s.find(substr)`<br>`s.find(substr, pos)` |
-| Compare strings | `s1.compare(s2)` |
-| Clear the string | `s.clear()` |
-| Swap two strings | `s1.swap(s2)` |
-| Push back a character | `s.push_back('a')` |
-| Pop last character | `s.pop_back()` |
-| Convert int to string | `to_string(num)` |
-| Convert string to int | `stoi(s)` |
-| Convert string to long | `stol(s)` |
-| Convert string to long long | `stoll(s)` |
-| Copy contents of str1 into str2 | `strcpy(str2, str1);` |
+| Size | `s.length()` |
+| Append a string | `s += "world"` (or `sb.append("world")`) |
+| Insert substring (String is immutable, use a `StringBuilder`) | `sb.insert(pos, "text")` |
+| Erase part of string (use a `StringBuilder`) | `sb.delete(pos, pos + len)` |
+| Replace part of string (use a `StringBuilder`) | `sb.replace(pos, pos + len, "new")` |
+| Substring (2nd argument is the end index, not a length) | `s.substring(pos, pos + len)` |
+| Find substring (first occurrence) | `s.indexOf(substr)`<br>`s.indexOf(substr, pos)` |
+| Compare strings | `s1.compareTo(s2)` |
+| Clear the string | `s = ""` (or `sb.setLength(0)`) |
+| Swap two strings (no swap - Strings are immutable, so reassign) | `String t = s1; s1 = s2; s2 = t;` |
+| Push back a character (use a `StringBuilder`) | `sb.append('a')` |
+| Pop last character (use a `StringBuilder`) | `sb.deleteCharAt(sb.length() - 1)` |
+| Convert int to string | `String.valueOf(num)` |
+| Convert string to int | `Integer.parseInt(s)` |
+| Convert string to long | `Long.parseLong(s)` |
+| Convert string to an integer wider than long (Java has no long long) | `new BigInteger(s)` |
+| Copy contents of str1 into str2 (Strings are immutable, so assigning is enough) | `str2 = str1;` |
 
 string::npos- until the end of the string
 
 
 ## Palindrome string
 
-```cpp
-bool isPalindrome(const string& s) {
+```java
+static boolean isPalindrome(String s) {
     int left = 0, right = s.length() - 1;
 
     while (left < right) {
-        if (s[left] != s[right])
+        if (s.charAt(left) != s.charAt(right))
             return false;
         left++;
         right--;
@@ -638,8 +639,8 @@ Whenever we detect a mismatch (after some matches), we already know some of the 
 lps[i] = the longest proper prefix of pat[0..i] which is also a suffix of pat[0..i]
 ```
 
-```cpp
-void constructLps(string &pat, vector<int> &lps) {
+```java
+static void constructLps(String pat, int[] lps) {
     // len stores the length of longest prefix which
     // is also a suffix for the previous index
     int len = 0;
@@ -651,7 +652,7 @@ void constructLps(string &pat, vector<int> &lps) {
     while (i < pat.length()) {
 
         // If characters match, increment the size of lps
-        if (pat[i] == pat[len]) {
+        if (pat.charAt(i) == pat.charAt(len)) {
             len++;
             lps[i] = len;
             i++;
@@ -675,12 +676,12 @@ void constructLps(string &pat, vector<int> &lps) {
     }
 }
 
-vector<int> search(string &pat, string &txt) {
+static List<Integer> search(String pat, String txt) {
     int n = txt.length();
     int m = pat.length();
 
-    vector<int> lps(m);
-    vector<int> res;
+    int[] lps = new int[m];
+    List<Integer> res = new ArrayList<>();
 
     constructLps(pat, lps);
 
@@ -692,14 +693,14 @@ vector<int> search(string &pat, string &txt) {
     while (i < n) {
 
         // If characters match, move both pointers forward
-        if (txt[i] == pat[j]) {
+        if (txt.charAt(i) == pat.charAt(j)) {
             i++;
             j++;
 
             // If the entire pattern is matched
             // store the start index in result
             if (j == m) {
-                res.push_back(i - j);
+                res.add(i - j);
 
                 // Use LPS of previous index to
                 // skip unnecessary comparisons
@@ -729,42 +730,44 @@ Ref- [https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/](https:
 
 Declaration
 
-```cpp
-vector<vector<int>> arr(rows, vector<int>(cols));
+```java
+int[][] arr = new int[rows][cols];
 ```
 
 Initialization
 
-```cpp
-vector<vector<int>> arr = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+```java
+int[][] arr = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 ```
 
 Row size
 
-```cpp
-vec.size();
+```java
+vec.length
 ```
 
 Column size
 
-```cpp
-vec[0].size();
+```java
+vec[0].length
 ```
 
 Sort row wise
 
-```cpp
-sort(mat.begin(), mat.end());
+```java
+Arrays.sort(mat, (a, b) -> Arrays.compare(a, b));
 ```
 
 Transpose of matrix
 
-```cpp
-void transpose(vector<vector<int>>& mat) {
-    int n = mat.size(); 
+```java
+void transpose(int[][] mat) {
+    int n = mat.length;
     for (int i = 0; i < n; i++) {
         for (int j = i + 1; j < n; j++) {
-            swap(mat[i][j], mat[j][i]); 
+            int temp = mat[i][j];
+            mat[i][j] = mat[j][i];
+            mat[j][i] = temp;
         }
     }
 }
@@ -780,8 +783,8 @@ Sorted array
 
 TC = O(log n)
 
-```cpp
-int binarySearch(int arr[], int low, int high, int x)
+```java
+int binarySearch(int[] arr, int low, int high, int x)
 {
     while (low <= high) {
         int mid = low + (high - low) / 2;
@@ -804,13 +807,13 @@ int binarySearch(int arr[], int low, int high, int x)
 }
 ```
 
-STL
+Java
 
 | Operation | Syntax |
 | --- | --- |
-| Return true, if value exists | `binary_search(start, end, value);` |
-| First iterator where the element is ≥ value | `lower_bound(start, end, value);` |
-| First iterator where the element is > value | `upper_bound(start, end, value);` |
+| Return true, if value exists (list must be sorted) | `Collections.binarySearch(list, value) >= 0` |
+| First element which is ≥ value (no `lower_bound` - nearest built-in) | `TreeSet.ceiling(value)` / `TreeMap.ceilingKey(key)` |
+| First element which is > value (no `upper_bound` - nearest built-in) | `TreeSet.higher(value)` / `TreeMap.higherKey(key)` |
 
 
 ## Sorting
@@ -822,29 +825,31 @@ Stable sorting- If two objects with equal keys appear in the same order in sorte
 
 Sorts an array by repeatedly selecting the smallest (or largest) element from the unsorted portion and swapping it with the first unsorted element
 
-```cpp
-void selectionSort(vector<int> &arr) {
-    int n = arr.size();
+```java
+void selectionSort(int[] arr) {
+    int n = arr.length;
 
     for (int i = 0; i < n - 1; ++i) {
         // Assume the current position holds
         // the minimum element
-        int min_idx = i;
+        int minIdx = i;
 
         // Iterate through the unsorted portion
         // to find the actual minimum
         for (int j = i + 1; j < n; ++j) {
-            if (arr[j] < arr[min_idx]) {
+            if (arr[j] < arr[minIdx]) {
 
-                // Update min_idx if a smaller
+                // Update minIdx if a smaller
                 // element is found
-                min_idx = j; 
+                minIdx = j;
             }
         }
 
         // Move minimum element to its
         // correct position
-        swap(arr[i], arr[min_idx]);
+        int temp = arr[i];
+        arr[i] = arr[minIdx];
+        arr[minIdx] = temp;
     }
 }
 ```
@@ -854,20 +859,22 @@ void selectionSort(vector<int> &arr) {
 
 Repeatedly swapping the adjacent elements if they are in the wrong order
 
-```cpp
-void bubbleSort(vector<int>& arr) {
-    int n = arr.size();
-    bool swapped;
-  
+```java
+void bubbleSort(int[] arr) {
+    int n = arr.length;
+    boolean swapped;
+
     for (int i = 0; i < n - 1; i++) {
         swapped = false;
         for (int j = 0; j < n - i - 1; j++) {
             if (arr[j] > arr[j + 1]) {
-                swap(arr[j], arr[j + 1]);
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
                 swapped = true;
             }
         }
-      
+
         // If no two elements were swapped, then break
         if (!swapped)
             break;
@@ -880,8 +887,8 @@ void bubbleSort(vector<int>& arr) {
 
 inserting each element of an unsorted list into its correct position in a sorted portion of the list
 
-```cpp
-void insertionSort(int arr[], int n)
+```java
+void insertionSort(int[] arr, int n)
 {
     for (int i = 1; i < n; ++i) {
         int key = arr[i];
@@ -906,20 +913,20 @@ dividing the input array into two halves, recursively sorting the two halves and
 
 TC = O(n log n)
 
-```cpp
+```java
 // Merges two subarrays of arr[].
 // First subarray is arr[left..mid]
 // Second subarray is arr[mid+1..right]
-void merge(vector<int>& arr, int left, 
+void merge(int[] arr, int left,
                      int mid, int right)
 {
     int n1 = mid - left + 1;
     int n2 = right - mid;
 
-    // Create temp vectors
-    vector<int> L(n1), R(n2);
+    // Create temp arrays
+    int[] L = new int[n1], R = new int[n2];
 
-    // Copy data to temp vectors L[] and R[]
+    // Copy data to temp arrays L[] and R[]
     for (int i = 0; i < n1; i++)
         L[i] = arr[left + i];
     for (int j = 0; j < n2; j++)
@@ -928,7 +935,7 @@ void merge(vector<int>& arr, int left,
     int i = 0, j = 0;
     int k = left;
 
-    // Merge the temp vectors back 
+    // Merge the temp arrays back
     // into arr[left..right]
     while (i < n1 && j < n2) {
         if (L[i] <= R[j]) {
@@ -942,7 +949,7 @@ void merge(vector<int>& arr, int left,
         k++;
     }
 
-    // Copy the remaining elements of L[], 
+    // Copy the remaining elements of L[],
     // if there are any
     while (i < n1) {
         arr[k] = L[i];
@@ -950,7 +957,7 @@ void merge(vector<int>& arr, int left,
         k++;
     }
 
-    // Copy the remaining elements of R[], 
+    // Copy the remaining elements of R[],
     // if there are any
     while (j < n2) {
         arr[k] = R[j];
@@ -961,7 +968,7 @@ void merge(vector<int>& arr, int left,
 
 // begin is for left index and end is right index
 // of the sub-array of arr to be sorted
-void mergeSort(vector<int>& arr, int left, int right)
+void mergeSort(int[] arr, int left, int right)
 {
     if (left >= right)
         return;
@@ -980,37 +987,41 @@ picks an element as a pivot and partitions the given array around the picked piv
 
 TC = O(n^2)
 
-```cpp
-int partition(vector<int>& arr, int low, int high) {
-  
+```java
+int partition(int[] arr, int low, int high) {
+
     // Choose the pivot
     int pivot = arr[high];
-  
-    // Index of smaller element and indicates 
+
+    // Index of smaller element and indicates
     // the right position of pivot found so far
     int i = low - 1;
 
     // Traverse arr[low..high] and move all smaller
-    // elements on the left side. Elements from low to 
+    // elements on the left side. Elements from low to
     // i are smaller after every iteration
     for (int j = low; j <= high - 1; j++) {
         if (arr[j] < pivot) {
             i++;
-            swap(arr[i], arr[j]);
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
         }
     }
-    
+
     // Move pivot after smaller elements and
     // return its position
-    swap(arr[i + 1], arr[high]);  
+    int temp = arr[i + 1];
+    arr[i + 1] = arr[high];
+    arr[high] = temp;
     return i + 1;
 }
 
 // The QuickSort function implementation
-void quickSort(vector<int>& arr, int low, int high) {
-  
+void quickSort(int[] arr, int low, int high) {
+
     if (low < high) {
-      
+
         // pi is the partition return index of pivot
         int pi = partition(arr, low, high);
 
@@ -1062,29 +1073,30 @@ Types
 
 ## Structure
 
-```cpp
+```java
 class Node {
-public:
     int data;
-    Node* next;
+    Node next;
 
     // Constructor
     Node(int value) {
         data = value;
-        next = nullptr;
+        next = null;
     }
-};
+}
 
-Node* newNode = new Node(value);
+Node newNode = new Node(value);
 ```
 
-```cpp
-struct Node {
+```java
+class Node {
     int data;
-    Node* next;
-};
+    Node next;
+}
 
-Node* newNode = new Node{value, nullptr};
+Node newNode = new Node();
+newNode.data = value;
+newNode.next = null;
 ```
 
 
@@ -1092,16 +1104,16 @@ Node* newNode = new Node{value, nullptr};
 
 Insertion
 
-```cpp
-Node* insertAfterNode(Node* head, Node* prevNode, int val) {
-    if (!prevNode) {
-        cout << "Previous node cannot be NULL\n";
+```java
+Node insertAfterNode(Node head, Node prevNode, int val) {
+    if (prevNode == null) {
+        System.out.println("Previous node cannot be null");
         return head;
     }
 
-    Node* newNode = new Node(val);
-    newNode->next = prevNode->next;
-    prevNode->next = newNode;
+    Node newNode = new Node(val);
+    newNode.next = prevNode.next;
+    prevNode.next = newNode;
 
     return head;
 }
@@ -1109,16 +1121,16 @@ Node* insertAfterNode(Node* head, Node* prevNode, int val) {
 
 Deletion
 
-```cpp
-Node* deleteAfterNode(Node* head, Node* prevNode) {
-    if (!prevNode || !prevNode->next) {
-        cout << "No node to delete after the given node\n";
+```java
+Node deleteAfterNode(Node head, Node prevNode) {
+    if (prevNode == null || prevNode.next == null) {
+        System.out.println("No node to delete after the given node");
         return head;
     }
 
-    Node* temp = prevNode->next;
-    prevNode->next = temp->next;
-    delete temp;
+    Node temp = prevNode.next;
+    prevNode.next = temp.next;
+    temp.next = null;
 
     return head;
 }
@@ -1127,26 +1139,26 @@ Node* deleteAfterNode(Node* head, Node* prevNode) {
 
 ## Length of Linked List
 
-```cpp
+```java
 // Counts number of nodes in linked list
-int countNodes(Node* head) {
-          
+int countNodes(Node head) {
+
     // Initialize count with 0
     int count = 0;
 
     // Initialize curr with head of Linked List
-    Node* curr = head;
+    Node curr = head;
 
-    // Traverse till we reach nullptr
-    while (curr != nullptr) {
-        
+    // Traverse till we reach null
+    while (curr != null) {
+
               // Increment count by 1
         count++;
-        
+
               // Move pointer to next node
-        curr = curr->next;
+        curr = curr.next;
     }
-          
+
           // Return the count of nodes
     return count;
 }
@@ -1155,18 +1167,18 @@ int countNodes(Node* head) {
 
 ## Reverse a Linked List
 
-```cpp
-Node *reverseList(Node *head) {
+```java
+Node reverseList(Node head) {
     // Initialize three pointers: curr, prev and next
-    Node *curr = head, *prev = nullptr, *next;
+    Node curr = head, prev = null, next;
 
     // Traverse all the nodes of Linked List
-    while (curr != nullptr) {
+    while (curr != null) {
         // Store next
-        next = curr->next;
+        next = curr.next;
 
         // Reverse current node's next pointer
-        curr->next = prev;
+        curr.next = prev;
 
         // Move pointers one position ahead
         prev = curr;
@@ -1186,14 +1198,14 @@ Node *reverseList(Node *head) {
   - fast moves two steps at a time.
 - Used for cycle detection (loop) and finding middle of the LL
 
-```cpp
-bool hasCycle(Node* head) {
-    Node* slow = head;
-    Node* fast = head;
+```java
+boolean hasCycle(Node head) {
+    Node slow = head;
+    Node fast = head;
 
-    while (fast && fast->next) {
-        slow = slow->next;
-        fast = fast->next->next;
+    while (fast != null && fast.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
 
         if (slow == fast)
             return true;  // Cycle exists
@@ -1202,14 +1214,14 @@ bool hasCycle(Node* head) {
 }
 ```
 
-```cpp
-Node* findMiddle(Node* head) {
-    Node* slow = head;
-    Node* fast = head;
+```java
+Node findMiddle(Node head) {
+    Node slow = head;
+    Node fast = head;
 
-    while (fast && fast->next) {
-        slow = slow->next;
-        fast = fast->next->next;
+    while (fast != null && fast.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
     }
 
     return slow; // Middle node
@@ -1221,64 +1233,64 @@ Node* findMiddle(Node* head) {
 
 TC = O(n \* log(n))
 
-```cpp
+```java
 // Function to split the singly linked list into two halves
-Node *split(Node *head) {
-    Node *fast = head;
-    Node *slow = head;
+Node split(Node head) {
+    Node fast = head;
+    Node slow = head;
 
     // Move fast pointer two steps and slow pointer
     // one step until fast reaches the end
-    while (fast != nullptr && fast->next != nullptr) {
-        fast = fast->next->next;
-        if (fast != nullptr) {
-            slow = slow->next;
+    while (fast != null && fast.next != null) {
+        fast = fast.next.next;
+        if (fast != null) {
+            slow = slow.next;
         }
     }
 
     // Split the list into two halves
-    Node *temp = slow->next;
-    slow->next = nullptr;
+    Node temp = slow.next;
+    slow.next = null;
     return temp;
 }
 
 // Function to merge two sorted singly linked lists
-Node *merge(Node *first, Node *second) {
-  
+Node merge(Node first, Node second) {
+
     // If either list is empty, return the other list
-    if (first == nullptr) return second;
-    if (second == nullptr) return first;
+    if (first == null) return second;
+    if (second == null) return first;
 
     // Pick the smaller value between first and second nodes
-    if (first->data < second->data) {
+    if (first.data < second.data) {
 
         // Recursively merge the rest of the lists and
         // link the result to the current node
-        first->next = merge(first->next, second);
+        first.next = merge(first.next, second);
         return first;
     }
     else {
         // Recursively merge the rest of the lists
         // and link the result to the current node
-        second->next = merge(first, second->next);
+        second.next = merge(first, second.next);
         return second;
     }
 }
 
 // Function to perform merge sort on a singly linked list
-Node *MergeSort(Node *head) {
-  
-    // Base case: if the list is empty or has only one node, 
+Node mergeSort(Node head) {
+
+    // Base case: if the list is empty or has only one node,
     // it's already sorted
-    if (head == nullptr || head->next == nullptr)
+    if (head == null || head.next == null)
         return head;
 
     // Split the list into two halves
-    Node *second = split(head);
+    Node second = split(head);
 
     // Recursively sort each half
-    head = MergeSort(head);
-    second = MergeSort(second);
+    head = mergeSort(head);
+    second = mergeSort(second);
 
     // Merge the two sorted halves
     return merge(head, second);
@@ -1295,17 +1307,17 @@ Node *MergeSort(Node *head) {
 - All operations are O(1) in TC and SC
 - Infix, Postfix, and Prefix Conversion- [https://www.naukri.com/code360/library/infix-postfix-and-prefix-conversion](https://www.naukri.com/code360/library/infix-postfix-and-prefix-conversion)
 
-STL
+Java
 
 | Operation | Syntax |
 | --- | --- |
-| Create | `stack<int> s;` |
+| Create | `Deque<Integer> s = new ArrayDeque<>();` |
 | Push element | `s.push(x);` |
 | Pop element | `s.pop();` |
-| Access top element | `s.top();` |
+| Access top element | `s.peek();` |
 | Check size | `s.size();` |
-| Check if empty | `s.empty();` |
-| Swap contents | `s1.swap(s2);` |
+| Check if empty | `s.isEmpty();` |
+| Swap contents (no swap - swap the references) | `Deque<Integer> t = s1; s1 = s2; s2 = t;` |
 
 
 ## Monotonic Stack
@@ -1313,19 +1325,19 @@ STL
 - maintaining elements in either increasing or decreasing order
 - useful for Next Greater Element (NGE) and Next Smaller Element (NSE)
 
-```cpp
-vector<int> monotonicIncreasing(vector<int>& nums)
+```java
+List<Integer> monotonicIncreasing(int[] nums)
 {
-    int n = nums.size();
-    stack<int> st;
-    vector<int> result;
+    int n = nums.length;
+    Deque<Integer> st = new ArrayDeque<>();
+    List<Integer> result = new ArrayList<>();
 
     // Traverse the array
     for (int i = 0; i < n; ++i) {
         // While stack is not empty AND top of stack is more
         // than the current element
         // For Monotonic Decreasing Stack, change sign to “<”
-        while (!st.empty() && st.top() > nums[i]) {
+        while (!st.isEmpty() && st.peek() > nums[i]) {
 
             // Pop the top element from the
             // stack
@@ -1337,8 +1349,8 @@ vector<int> monotonicIncreasing(vector<int>& nums)
     }
 
     // Construct the result array from the stack
-    while (!st.empty()) {
-        result.insert(result.begin(), st.top());
+    while (!st.isEmpty()) {
+        result.add(0, st.peek());
         st.pop();
     }
 
@@ -1366,45 +1378,45 @@ Queue STL
 
 | Operation | Syntax |
 | --- | --- |
-| Create | `queue<int> q;` |
-| Add element (enqueue) | `q.push(x);` |
-| Remove element | `q.pop();` |
-| Access front element | `q.front();` |
-| Access back element | `q.back();` |
+| Create | `Queue<Integer> q = new ArrayDeque<>();` |
+| Add element (enqueue) | `q.offer(x);` |
+| Remove element | `q.poll();` |
+| Access front element | `q.peek();` |
+| Access back element (declare it as a `Deque` - `Queue` has no back access) | `dq.peekLast();` |
 | Check size | `q.size();` |
-| Check if empty | `q.empty();` |
-| Swap contents | `q1.swap(q2);` |
+| Check if empty | `q.isEmpty();` |
+| Swap contents (no swap - swap the references) | `Queue<Integer> t = q1; q1 = q2; q2 = t;` |
 
 Dequeue STL
 
 | Operation | Syntax |
 | --- | --- |
-| Create | `deque<int> dq;` |
-| Insert at back | `dq.push_back(x);` |
-| Insert at front | `dq.push_front(x);` |
-| Remove from back | `dq.pop_back();` |
-| Remove from front | `dq.pop_front();` |
-| Access front element | `dq.front();` |
-| Access back element | `dq.back();` |
+| Create | `Deque<Integer> dq = new ArrayDeque<>();` |
+| Insert at back | `dq.addLast(x);` |
+| Insert at front | `dq.addFirst(x);` |
+| Remove from back | `dq.pollLast();` |
+| Remove from front | `dq.pollFirst();` |
+| Access front element | `dq.peekFirst();` |
+| Access back element | `dq.peekLast();` |
 
 
 ## Monotonic Queues
 
 maintaining elements in either increasing or decreasing order
 
-```cpp
-deque<int> increasing_monotonic_queue(int arr[], int n)
+```java
+Deque<Integer> increasingMonotonicQueue(int[] arr, int n)
 {
-    deque<int> q;
+    Deque<Integer> q = new ArrayDeque<>();
     for (int i = 0; i < n; i++) {
         // If recently added element is
         // greater current element
-        while (!q.empty() && q.back() > arr[i]) {
+        while (!q.isEmpty() && q.peekLast() > arr[i]) {
 
-            q.pop_back();
+            q.pollLast();
         }
 
-        q.push_back(arr[i]);
+        q.addLast(arr[i]);
     }
 
     return q;
@@ -1426,105 +1438,102 @@ Implementations
 - Removes the least recently used item when the cache reaches its capacity
 - Implemented using doubly linked list (DLL) and unordered_map
 
-```cpp
-struct Node {
+```java
+class Node {
     int key;
     int value;
-    Node *next;
-    Node *prev;
+    Node next;
+    Node prev;
 
     Node(int k, int v) {
         key = k;
         value = v;
-        next = nullptr;
-        prev = nullptr;
+        next = null;
+        prev = null;
     }
-};
+}
 
 // LRU Cache class
 class LRUCache
 {
-  public:  
     // Constructor to initialize the cache with a given capacity
     int capacity;
-    unordered_map<int, Node *> cacheMap;
-    Node *head;
-    Node *tail;
+    Map<Integer, Node> cacheMap = new HashMap<>();
+    Node head;
+    Node tail;
     LRUCache(int capacity) {
-        this->capacity = capacity;
+        this.capacity = capacity;
         head = new Node(-1, -1);
         tail = new Node(-1, -1);
-        head->next = tail;
-        tail->prev = head;
+        head.next = tail;
+        tail.prev = head;
     }
 
     // Function to get the value for a given key
-    int get(int key) {      
-        if (cacheMap.find(key) == cacheMap.end())
+    int get(int key) {
+        if (!cacheMap.containsKey(key))
             return -1;
-  
 
-        Node *node = cacheMap[key];
+
+        Node node = cacheMap.get(key);
         remove(node);
         add(node);
-        return node->value;
+        return node.value;
     }
 
     // Function to put a key-value pair into the cache
     void put(int key, int value) {
-        if (cacheMap.find(key) != cacheMap.end()) {
-            Node *oldNode = cacheMap[key];
+        if (cacheMap.containsKey(key)) {
+            Node oldNode = cacheMap.get(key);
             remove(oldNode);
-                  delete oldNode;
-          
+
         }
 
-        Node *node = new Node(key, value);
-        cacheMap[key] = node;
+        Node node = new Node(key, value);
+        cacheMap.put(key, node);
         add(node);
-       
-       
+
+
         if (cacheMap.size() > capacity) {
-            Node *nodeToDelete = tail->prev;
+            Node nodeToDelete = tail.prev;
             remove(nodeToDelete);
-            cacheMap.erase(nodeToDelete->key);
-                  delete nodeToDelete;
+            cacheMap.remove(nodeToDelete.key);
         }
     }
 
-    // Add a node right after the head 
+    // Add a node right after the head
     // (most recently used position)
-    void add(Node *node) {
-        Node *nextNode = head->next;
-        head->next = node;
-        node->prev = head;
-        node->next = nextNode;
-        nextNode->prev = node;
+    void add(Node node) {
+        Node nextNode = head.next;
+        head.next = node;
+        node.prev = head;
+        node.next = nextNode;
+        nextNode.prev = node;
     }
 
     // Remove a node from the list
-    void remove(Node *node) {
-        Node *prevNode = node->prev;
-        Node *nextNode = node->next;
-        prevNode->next = nextNode;
-        nextNode->prev = prevNode;
+    void remove(Node node) {
+        Node prevNode = node.prev;
+        Node nextNode = node.next;
+        prevNode.next = nextNode;
+        nextNode.prev = prevNode;
     }
-};
+}
 
-int main(){
-    LRUCache cache(2);
-  
-    cache.put(1, 1); 
-    cache.put(2, 2);
-    cout << cache.get(1) << endl;
-    cache.put(3, 3);
-    cout  << cache.get(2) << endl;
-    cache.put(4, 4);
-    cout << cache.get(1) << endl;
-    cout << cache.get(3) << endl;
-    cout << cache.get(4) << endl;
+public class Main {
+    public static void main(String[] args) {
+        LRUCache cache = new LRUCache(2);
 
-    return 0;
+        cache.put(1, 1);
+        cache.put(2, 2);
+        System.out.println(cache.get(1));
+        cache.put(3, 3);
+        System.out.println(cache.get(2));
+        cache.put(4, 4);
+        System.out.println(cache.get(1));
+        System.out.println(cache.get(3));
+        System.out.println(cache.get(4));
+    }
 }
 ```
 
@@ -1537,18 +1546,17 @@ int main(){
 
 # Binary Tree
 
-```cpp
+```java
 class Node {
-public:
     int data;
-    Node* left, * right;
+    Node left, right;
 
     Node(int key) {
         data = key;
-        left = nullptr;
-        right = nullptr;
+        left = null;
+        right = null;
     }
-};
+}
 ```
 
 Properties
@@ -1591,53 +1599,52 @@ N-ary Tree- each node can have at most N children
 
 Inorder Traversal- Left -> Root -> Right
 
-```cpp
-void inorderTraversal(Node* root, vector<int>& result) {
-    if (!root) return;
-    inorderTraversal(root->left, result);
-    result.push_back(root->val);
-    inorderTraversal(root->right, result);
+```java
+void inorderTraversal(Node root, List<Integer> result) {
+    if (root == null) return;
+    inorderTraversal(root.left, result);
+    result.add(root.data);
+    inorderTraversal(root.right, result);
 }
 ```
 
 Preorder Traversal- Root -> Left -> Right
 
-```cpp
-void preorderTraversal(Node* root, vector<int>& result) {
-    if (!root) return;
-    result.push_back(root->val);
-    preorderTraversal(root->left, result);
-    preorderTraversal(root->right, result);
+```java
+void preorderTraversal(Node root, List<Integer> result) {
+    if (root == null) return;
+    result.add(root.data);
+    preorderTraversal(root.left, result);
+    preorderTraversal(root.right, result);
 }
 ```
 
 Postorder Traversal- Left -> Right -> Root
 
-```cpp
-void postorderTraversal(Node* root, vector<int>& result) {
-    if (!root) return;
-    postorderTraversal(root->left, result);
-    postorderTraversal(root->right, result);
-    result.push_back(root->val);
+```java
+void postorderTraversal(Node root, List<Integer> result) {
+    if (root == null) return;
+    postorderTraversal(root.left, result);
+    postorderTraversal(root.right, result);
+    result.add(root.data);
 }
 ```
 
 Level Order Traversal (BFS)
 
-```cpp
-vector<int> levelOrderTraversal(Node* root) {
-    vector<int> result;
-    if (!root) return result;
+```java
+List<Integer> levelOrderTraversal(Node root) {
+    List<Integer> result = new ArrayList<>();
+    if (root == null) return result;
 
-    queue<Node*> q;
-    q.push(root);
+    Queue<Node> q = new ArrayDeque<>();
+    q.add(root);
 
-    while (!q.empty()) {
-        Node* curr = q.front(); 
-        q.pop();
-        result.push_back(curr->val);
-        if (curr->left) q.push(curr->left);
-        if (curr->right) q.push(curr->right);
+    while (!q.isEmpty()) {
+        Node curr = q.poll();
+        result.add(curr.data);
+        if (curr.left != null) q.add(curr.left);
+        if (curr.right != null) q.add(curr.right);
     }
 
     return result;
@@ -1646,28 +1653,26 @@ vector<int> levelOrderTraversal(Node* root) {
 
 Reverse Level Order Traversal
 
-```cpp
-vector<int> reverseLevelOrderTraversal(Node* root) {
-    vector<int> result;
-    if (!root) return result;
+```java
+List<Integer> reverseLevelOrderTraversal(Node root) {
+    List<Integer> result = new ArrayList<>();
+    if (root == null) return result;
 
-    queue<Node*> q;
-    stack<int> s;
-    q.push(root);
+    Queue<Node> q = new ArrayDeque<>();
+    Deque<Integer> s = new ArrayDeque<>();
+    q.add(root);
 
-    while (!q.empty()) {
-        Node* curr = q.front(); 
-        q.pop();
-        s.push(curr->val);
+    while (!q.isEmpty()) {
+        Node curr = q.poll();
+        s.push(curr.data);
 
         // Push right first so left is processed first when reversed
-        if (curr->right) q.push(curr->right);
-        if (curr->left) q.push(curr->left);
+        if (curr.right != null) q.add(curr.right);
+        if (curr.left != null) q.add(curr.left);
     }
 
-    while (!s.empty()) {
-        result.push_back(s.top());
-        s.pop();
+    while (!s.isEmpty()) {
+        result.add(s.pop());
     }
 
     return result;
@@ -1683,16 +1688,16 @@ Boundary Traversal- [https://www.geeksforgeeks.org/boundary-traversal-of-binary-
 
 Can use level order traversal also
 
-```cpp
-int height(Node *root) {
-    if (root == nullptr)
+```java
+int height(Node root) {
+    if (root == null)
         return -1;
 
     // compute the height of left and right subtrees
-    int lHeight = height(root->left);
-    int rHeight = height(root->right);
+    int lHeight = height(root.left);
+    int rHeight = height(root.right);
 
-    return max(lHeight, rHeight) + 1;
+    return Math.max(lHeight, rHeight) + 1;
 }
 ```
 
@@ -1701,16 +1706,16 @@ int height(Node *root) {
 
 Total number of nodes
 
-```cpp
-int getSize(Node* root) {
-    if (root == nullptr)
+```java
+int getSize(Node root) {
+    if (root == null)
         return 0;
-    
-    // Find the size of left and right 
+
+    // Find the size of left and right
     // subtree.
-    int left = getSize(root->left);
-    int right = getSize(root->right);
-    
+    int left = getSize(root.left);
+    int right = getSize(root.right);
+
     // return the size of curr subtree.
     return left + right + 1;
 }
@@ -1721,63 +1726,63 @@ int getSize(Node* root) {
 
 Can use level order traversal also
 
-```cpp
-int getLevel(Node* root, int target, int level) {
-    if (root == nullptr) {
+```java
+int getLevel(Node root, int target, int level) {
+    if (root == null) {
         return -1;
     }
 
-    // If the target key matches the current node's 
+    // If the target key matches the current node's
           // data, return the level
-    if (root->data == target) {
+    if (root.data == target) {
         return level;
     }
 
     // Recursively call for left and right subtrees
-    int leftLevel = getLevel(root->left, target, level + 1);
+    int leftLevel = getLevel(root.left, target, level + 1);
     if (leftLevel != -1) {
         return leftLevel;
     }
-    
-    return getLevel(root->right, target, level + 1);
+
+    return getLevel(root.right, target, level + 1);
 }
 ```
 
 
 ## Print path from root to a given node in a binary tree
 
-```cpp
+```java
 // Returns true if there is a path from root
-// to the given node. It also populates 
+// to the given node. It also populates
 // 'arr' with the given path
-bool hasPath(Node *root, vector<int>& arr, int x)
+boolean hasPath(Node root, List<Integer> arr, int x)
 {
-    // if root is NULL
+    // if root is null
     // there is no path
-    if (!root)
+    if (root == null)
         return false;
-    
+
     // push the node's value in 'arr'
-    arr.push_back(root->data);    
-    
+    arr.add(root.data);
+
     // if it is the required node
     // return true
-    if (root->data == x)    
+    if (root.data == x)
         return true;
-    
+
     // else check whether the required node lies
-    // in the left subtree or right subtree of 
+    // in the left subtree or right subtree of
     // the current node
-    if (hasPath(root->left, arr, x) ||
-        hasPath(root->right, arr, x))
+    if (hasPath(root.left, arr, x) ||
+        hasPath(root.right, arr, x))
         return true;
-    
-    // required node does not lie either in the 
+
+    // required node does not lie either in the
     // left or right subtree of the current node
-    // Thus, remove current node's value from 
-    // 'arr'and then return false    
-    arr.pop_back();
-    return false;            
+    // Thus, remove current node's value from
+    // 'arr'and then return false
+    arr.remove(arr.size() - 1);
+    return false;
 }
 ```
 
@@ -1806,37 +1811,37 @@ Deletion- [https://www.geeksforgeeks.org/deletion-in-an-avl-tree/](https://www.g
 
 ## Insertion
 
-```cpp
-Node* insert(Node* root, int x)
+```java
+Node insert(Node root, int x)
 {
 
-    Node* temp = new Node(x);
+    Node temp = new Node(x);
 
     // If tree is empty
-    if (root == NULL)
+    if (root == null)
         return temp;
 
     // Find the node who is going
     // to have the new node temp as
     // it child. The parent node is
     // mainly going to be a leaf node
-    Node *parent = NULL, *curr = root;
-    while (curr != NULL) {
+    Node parent = null, curr = root;
+    while (curr != null) {
         parent = curr;
-        if (curr->key > x)
-            curr = curr->left;
-        else if (curr->key < x)
-            curr = curr->right;
+        if (curr.data > x)
+            curr = curr.left;
+        else if (curr.data < x)
+            curr = curr.right;
         else
             return root;
     }
 
     // If x is smaller, make it
     // left child, else right child
-    if (parent->key > x)
-        parent->left = temp;
+    if (parent.data > x)
+        parent.left = temp;
     else
-        parent->right = temp;
+        parent.right = temp;
     return root;
 }
 ```
@@ -1844,27 +1849,27 @@ Node* insert(Node* root, int x)
 
 ## Searching
 
-```cpp
+```java
 // Function to search in a bst.
-bool search(struct Node* root, int x) {
-    
-    Node* curr = root;
-    
-    while (curr != nullptr) {
-        
+boolean search(Node root, int x) {
+
+    Node curr = root;
+
+    while (curr != null) {
+
         // If curr node is x
-        if (curr->data == x)
+        if (curr.data == x)
             return true;
-            
+
         // Search in right subtree
-        else if (curr->data < x) 
-            curr = curr->right;
-            
+        else if (curr.data < x)
+            curr = curr.right;
+
         // Search in right subtree
         else
-            curr = curr->left;
+            curr = curr.left;
     }
-    
+
     // If x is not found.
     return false;
 }
@@ -1879,55 +1884,53 @@ bool search(struct Node* root, int x) {
 2. Delete a Node with Single Child in BST
 3. Delete a Node with Both Children in BST
 
-```cpp
+```java
 // Note that it is not a generic inorder
 // successor function. It mainly works
-// when right child is not empty which is 
+// when right child is not empty which is
 // the case we need in BST delete
-Node* getSuccessor(Node* curr){
-    curr = curr->right;
-    while (curr != nullptr && curr->left != nullptr)
-        curr = curr->left;
+Node getSuccessor(Node curr){
+    curr = curr.right;
+    while (curr != null && curr.left != null)
+        curr = curr.left;
     return curr;
 }
 
 // This function deletes a given key x from
 // the give BST and returns modified root of
 // the BST (if it is modified)
-Node* delNode(Node* root, int x){
+Node delNode(Node root, int x){
 
     // Base case
-    if (root == nullptr)
+    if (root == null)
         return root;
 
     // If key to be searched is in a subtree
-    if (root->key > x)
-        root->left = delNode(root->left, x);
-    else if (root->key < x)
-        root->right = delNode(root->right, x);
+    if (root.data > x)
+        root.left = delNode(root.left, x);
+    else if (root.data < x)
+        root.right = delNode(root.right, x);
 
     // If root matches with the given key
     else {
 
         // Cases when root has 0 children
         // or only right child
-        if (root->left == nullptr) {
-            Node* temp = root->right;
-            delete root;
+        if (root.left == null) {
+            Node temp = root.right;
             return temp;
         }
 
         // When root has only left child
-        if (root->right == nullptr) {
-            Node* temp = root->left;
-            delete root;
+        if (root.right == null) {
+            Node temp = root.left;
             return temp;
         }
 
         // When both children are present
-        Node* succ = getSuccessor(root);
-        root->key = succ->key;
-        root->right = delNode(root->right, succ->key);
+        Node succ = getSuccessor(root);
+        root.data = succ.data;
+        root.right = delNode(root.right, succ.data);
     }
     return root;
 }
@@ -1936,74 +1939,74 @@ Node* delNode(Node* root, int x){
 
 ## Inorder predecessor and successor in BST
 
-```cpp
-Node* rightMost(Node* node) {
-    while (node->right != nullptr) {
-        node = node->right;
+```java
+Node rightMost(Node node) {
+    while (node.right != null) {
+        node = node.right;
     }
     return node;
 }
 
-Node* leftMost(Node* node) {
-    while (node->left != nullptr) {
-        node = node->left;
+Node leftMost(Node node) {
+    while (node.left != null) {
+        node = node.left;
     }
     return node;
 }
 
-// Return predecessor and successor as a vector<Node*>
-vector<Node*> findPreSuc(Node* root, int key) {
-    Node* pre = nullptr;
-    Node* suc = nullptr;
-    Node* curr = root;
+// Return predecessor and successor as a List<Node>
+List<Node> findPreSuc(Node root, int key) {
+    Node pre = null;
+    Node suc = null;
+    Node curr = root;
 
-    while (curr != nullptr) {
-        if (curr->data < key) {
+    while (curr != null) {
+        if (curr.data < key) {
             pre = curr;
-            curr = curr->right;
-        } else if (curr->data > key) {
+            curr = curr.right;
+        } else if (curr.data > key) {
             suc = curr;
-            curr = curr->left;
+            curr = curr.left;
         } else {
-            if (curr->left != nullptr)
-                pre = rightMost(curr->left);
-            if (curr->right != nullptr)
-                suc = leftMost(curr->right);
+            if (curr.left != null)
+                pre = rightMost(curr.left);
+            if (curr.right != null)
+                suc = leftMost(curr.right);
             break;
         }
     }
 
-    return {pre, suc};  
+    return Arrays.asList(pre, suc);
 }
 ```
 
 
 ## Sorted Array to Balanced BST
 
-```cpp
+```java
 // Recursive function to construct BST
-Node* sortedArrayToBSTRecur(vector<int>& arr, int start, int end) {
-    if(start > end) return nullptr;
-    
+Node sortedArrayToBSTRecur(int[] arr, int start, int end) {
+    if (start > end) return null;
+
     // Find the middle element
     int mid = start + (end - start) / 2;
-    
+
     // Create root node
-    Node* root = new Node(arr[mid]);
-    
+    Node root = new Node(arr[mid]);
+
     // Create left subtree
-    root->left = sortedArrayToBSTRecur(arr, start, 
+    root.left = sortedArrayToBSTRecur(arr, start,
                                       mid - 1);
-                                      
+
     // Create right subtree
-    root->right = sortedArrayToBSTRecur(arr, mid + 1,
+    root.right = sortedArrayToBSTRecur(arr, mid + 1,
                                        end);
     return root;
 }
 
-Node* sortedArrayToBST(vector<int> &arr) {
-    int n = arr.size();
-    return sortedArrayToBSTRecur(arr, 0, n-1);
+Node sortedArrayToBST(int[] arr) {
+    int n = arr.length;
+    return sortedArrayToBSTRecur(arr, 0, n - 1);
 }
 ```
 
@@ -2022,172 +2025,165 @@ Node* sortedArrayToBST(vector<int> &arr) {
   - Left child = arr\[(2\*i)+1\]
   - Right child = arr\[(2\*i)+2\]
 
-```cpp
+```java
 class MaxHeap {
-    // A pointer pointing to the elements
+    // A reference pointing to the elements
     // in the array in the heap.
-    int* arr;
+    private int[] arr;
 
     // Maximum possible size of
     // the Max Heap.
-    int maxSize;
+    private int maxSize;
 
     // Number of elements in the
     // Max heap currently.
-    int heapSize;
+    private int heapSize;
 
-public:
     // Constructor function.
-    MaxHeap(int maxSize);
+    // Constructor function builds a heap
+    // from a given array a[]
+    // of the specified size.
+    public MaxHeap(int totSize)
+    {
+        heapSize = 0;
+        maxSize = totSize;
+        arr = new int[totSize];
+    }
 
     // Heapifies a subtree taking the
     // given index as the root.
-    void MaxHeapify(int);
+    // To heapify the subtree this method
+    // is called recursively
+    public void MaxHeapify(int i)
+    {
+        int l = lChild(i);
+        int r = rChild(i);
+        int largest = i;
+        if (l < heapSize && arr[l] > arr[i])
+            largest = l;
+        if (r < heapSize && arr[r] > arr[largest])
+            largest = r;
+        if (largest != i) {
+            int temp = arr[i];
+            arr[i] = arr[largest];
+            arr[largest] = temp;
+            MaxHeapify(largest);
+        }
+    }
 
     // Returns the index of the parent
     // of the element at ith index.
-    int parent(int i)
+    public int parent(int i)
     {
         return (i - 1) / 2;
     }
 
     // Returns the index of the left child.
-    int lChild(int i)
+    public int lChild(int i)
     {
         return (2 * i + 1);
     }
 
     // Returns the index of the
     // right child.
-    int rChild(int i)
+    public int rChild(int i)
     {
         return (2 * i + 2);
     }
 
     // Removes the root which in this
     // case contains the maximum element.
-    int removeMax();
+    // To remove the root node which contains
+    // the maximum element of the Max Heap.
+    public int removeMax()
+    {
+        // Checking whether the heap array
+        // is empty or not.
+        if (heapSize <= 0)
+            return Integer.MIN_VALUE;
+        if (heapSize == 1) {
+            heapSize--;
+            return arr[0];
+        }
+
+        // Storing the maximum element
+        // to remove it.
+        int root = arr[0];
+        arr[0] = arr[heapSize - 1];
+        heapSize--;
+
+        // To restore the property
+        // of the Max heap.
+        MaxHeapify(0);
+
+        return root;
+    }
 
     // Increases the value of the key
     // given by index i to some new value.
-    void increaseKey(int i, int newVal);
+    // Increases value of key at
+    // index 'i' to new_val.
+    public void increaseKey(int i, int newVal)
+    {
+        arr[i] = newVal;
+        while (i != 0 && arr[parent(i)] < arr[i]) {
+            int temp = arr[i];
+            arr[i] = arr[parent(i)];
+            arr[parent(i)] = temp;
+            i = parent(i);
+        }
+    }
 
     // Returns the maximum key
     // (key at root) from max heap.
-    int getMax()
+    public int getMax()
     {
         return arr[0];
     }
 
-    int curSize()
+    public int curSize()
     {
         return heapSize;
     }
 
     // Deletes a key at given index i.
-    void deleteKey(int i);
+    // In order to delete a key
+    // at a given index i.
+    public void deleteKey(int i)
+    {
+        // It increases the value of the key
+        // to infinity and then removes
+        // the maximum value.
+        increaseKey(i, Integer.MAX_VALUE);
+        removeMax();
+    }
 
     // Inserts a new key 'x' in the Max Heap.
-    void insertKey(int x);
-};
+    // Inserting a new key 'x'.
+    public void insertKey(int x)
+    {
+        // To check whether the key
+        // can be inserted or not.
+        if (heapSize == maxSize) {
+            System.out.println("\nOverflow: Could not insertKey");
+            return;
+        }
 
-// Constructor function builds a heap
-// from a given array a[]
-// of the specified size.
-MaxHeap::MaxHeap(int totSize)
-{
-    heapSize = 0;
-    maxSize = totSize;
-    arr = new int[totSize];
-}
+        // The new key is initially
+        // inserted at the end.
+        heapSize++;
+        int i = heapSize - 1;
+        arr[i] = x;
 
-// Inserting a new key 'x'.
-void MaxHeap::insertKey(int x)
-{
-    // To check whether the key
-    // can be inserted or not.
-    if (heapSize == maxSize) {
-        cout << "\nOverflow: Could not insertKey\n";
-        return;
-    }
-
-    // The new key is initially
-    // inserted at the end.
-    heapSize++;
-    int i = heapSize - 1;
-    arr[i] = x;
-
-    // The max heap property is checked
-    // and if violation occurs,
-    // it is restored.
-    while (i != 0 && arr[parent(i)] < arr[i]) {
-        swap(arr[i], arr[parent(i)]);
-        i = parent(i);
-    }
-}
-
-// Increases value of key at
-// index 'i' to new_val.
-void MaxHeap::increaseKey(int i, int newVal)
-{
-    arr[i] = newVal;
-    while (i != 0 && arr[parent(i)] < arr[i]) {
-        swap(arr[i], arr[parent(i)]);
-        i = parent(i);
-    }
-}
-
-// To remove the root node which contains
-// the maximum element of the Max Heap.
-int MaxHeap::removeMax()
-{
-    // Checking whether the heap array
-    // is empty or not.
-    if (heapSize <= 0)
-        return INT_MIN;
-    if (heapSize == 1) {
-        heapSize--;
-        return arr[0];
-    }
-
-    // Storing the maximum element
-    // to remove it.
-    int root = arr[0];
-    arr[0] = arr[heapSize - 1];
-    heapSize--;
-
-    // To restore the property
-    // of the Max heap.
-    MaxHeapify(0);
-
-    return root;
-}
-
-// In order to delete a key
-// at a given index i.
-void MaxHeap::deleteKey(int i)
-{
-    // It increases the value of the key
-    // to infinity and then removes
-    // the maximum value.
-    increaseKey(i, INT_MAX);
-    removeMax();
-}
-
-// To heapify the subtree this method
-// is called recursively
-void MaxHeap::MaxHeapify(int i)
-{
-    int l = lChild(i);
-    int r = rChild(i);
-    int largest = i;
-    if (l < heapSize && arr[l] > arr[i])
-        largest = l;
-    if (r < heapSize && arr[r] > arr[largest])
-        largest = r;
-    if (largest != i) {
-        swap(arr[i], arr[largest]);
-        MaxHeapify(largest);
+        // The max heap property is checked
+        // and if violation occurs,
+        // it is restored.
+        while (i != 0 && arr[parent(i)] < arr[i]) {
+            int temp = arr[i];
+            arr[i] = arr[parent(i)];
+            arr[parent(i)] = temp;
+            i = parent(i);
+        }
     }
 }
 ```
@@ -2206,10 +2202,10 @@ TC of heap sort = O (n log n)
 
 TC of building a heap = O (n)
 
-```cpp
+```java
 // To heapify a subtree rooted with node i
 // which is an index in arr[].
-void heapify(vector<int>& arr, int n, int i){
+void heapify(int[] arr, int n, int i){
 
     // Initialize largest as root
     int largest = i;
@@ -2230,7 +2226,9 @@ void heapify(vector<int>& arr, int n, int i){
 
     // If largest is not root
     if (largest != i) {
-        swap(arr[i], arr[largest]);
+        int temp = arr[i];
+        arr[i] = arr[largest];
+        arr[largest] = temp;
 
         // Recursively heapify the affected sub-tree
         heapify(arr, n, largest);
@@ -2238,10 +2236,10 @@ void heapify(vector<int>& arr, int n, int i){
 }
 
 // Main function to do heap sort
-void heapSort(vector<int>& arr){
-    int n = arr.size();
+void heapSort(int[] arr){
+    int n = arr.length;
 
-    // Build heap (rearrange vector)
+    // Build heap (rearrange array)
     for (int i = n / 2 - 1; i >= 0; i--)
         heapify(arr, n, i);
 
@@ -2249,7 +2247,9 @@ void heapSort(vector<int>& arr){
     for (int i = n - 1; i > 0; i--) {
 
         // Move current root to end
-        swap(arr[0], arr[i]);
+        int temp = arr[0];
+        arr[0] = arr[i];
+        arr[i] = temp;
 
         // Call max heapify on the reduced heap
         heapify(arr, i, 0);
@@ -2260,35 +2260,34 @@ void heapSort(vector<int>& arr){
 
 ## Priority Queue
 
-STL
+Java
 
 | Operation | Syntax |
 | --- | --- |
-| Create (max heap) | `priority_queue<int> pq;` |
-| Create (min heap) | `priority_queue<int, vector<int>, greater<int>> pq;` |
-| Insertion | `pq.push(value)` |
-| Top Element | `pq.top()` |
-| Removal | `pq.pop()` |
+| Create (max heap - needs an explicit comparator) | `PriorityQueue<Integer> pq = new PriorityQueue<>(Comparator.reverseOrder());` |
+| Create (min heap - the Java default) | `PriorityQueue<Integer> pq = new PriorityQueue<>();` |
+| Insertion | `pq.offer(value)` |
+| Top Element | `pq.peek()` |
+| Removal | `pq.poll()` |
 | Size | `pq.size()` |
-| Check Empty | `pq.empty()` |
+| Check Empty | `pq.isEmpty()` |
 
 
 ## Custom Comparator
 
-```cpp
-class Compare {
-public:
-        bool operator()(data_type a, data_type b) {
-                if(cond) {
-                        return true;
+```java
+class Compare implements Comparator<DataType> {
+        public int compare(DataType a, DataType b) {
+                if (cond) {
+                        return 1;
                 }
-                return false;
+                return -1;
         }
-};
+}
 ```
 
-```cpp
-priority_queue<PII, vector<PII>, Compare> pq;
+```java
+PriorityQueue<PII> pq = new PriorityQueue<>(new Compare());
 ```
 
 - Operator overloading of () operator
@@ -2401,21 +2400,21 @@ Adjacency Matrix
 
 ![](../../assets/dsa/dsa/graph-adjacency-matrix-representation.png)
 
-```cpp
-void addEdge(vector<vector<int>> &mat, int i, int j)
+```java
+void addEdge(int[][] mat, int i, int j)
 {
     mat[i][j] = 1;
     mat[j][i] = 1; // Since the graph is undirected
 }
 
-void displayMatrix(vector<vector<int>> &mat)
+void displayMatrix(int[][] mat)
 {
-    int V = mat.size();
+    int V = mat.length;
     for (int i = 0; i < V; i++)
     {
         for (int j = 0; j < V; j++)
-            cout << mat[i][j] << " ";
-        cout << endl;
+            System.out.print(mat[i][j] + " ");
+        System.out.println();
     }
 }
 ```
@@ -2424,39 +2423,42 @@ Adjacency List
 
 ![](../../assets/dsa/dsa/graph-adjacency-list-representation.png)
 
-```cpp
+```java
 // Function to add an edge between two vertices
-void addEdge(vector<vector<int>>& adj, int i, int j) {
-    adj[i].push_back(j);
-    adj[j].push_back(i); // Undirected
+void addEdge(List<List<Integer>> adj, int i, int j) {
+    adj.get(i).add(j);
+    adj.get(j).add(i); // Undirected
 }
 
 // Function to display the adjacency list
-void displayAdjList(const vector<vector<int>>& adj) {
+void displayAdjList(List<List<Integer>> adj) {
     for (int i = 0; i < adj.size(); i++) {
-        cout << i << ": "; // Print the vertex
-        for (int j : adj[i]) {
-            cout << j << " "; // Print its adjacent
+        System.out.print(i + ": "); // Print the vertex
+        for (int j : adj.get(i)) {
+            System.out.print(j + " "); // Print its adjacent
         }
-        cout << endl; 
+        System.out.println();
     }
 }
 ```
 
 Convert Adjacency Matrix to Adjacency List
 
-```cpp
-vector<vector<int>> convert( vector<vector<int>> a)
+```java
+List<List<Integer>> convert(int[][] a)
 {
-    vector<vector<int>> adjList(a.size());
-    for (int i = 0; i < a.size(); i++)
+    List<List<Integer>> adjList = new ArrayList<>();
+    for (int i = 0; i < a.length; i++)
+        adjList.add(new ArrayList<>());
+
+    for (int i = 0; i < a.length; i++)
     {
-        
-        for (int j = 0; j < a[i].size(); j++)
+
+        for (int j = 0; j < a[i].length; j++)
         {
             if (a[i][j] != 0)
             {
-                adjList[i].push_back(j);
+                adjList.get(i).add(j);
             }
         }
     }
@@ -2466,15 +2468,14 @@ vector<vector<int>> convert( vector<vector<int>> a)
 
 Convert Adjacency List to Adjacency Matrix
 
-```cpp
-vector<vector<int> > convert(vector<int> adj[], int V)
+```java
+int[][] convert(List<List<Integer>> adj, int V)
 {
     // Initialize a matrix
-    vector<vector<int> > matrix(V,
-                                vector<int>(V, 0));
+    int[][] matrix = new int[V][V];
 
     for (int i = 0; i < V; i++) {
-        for (auto j : adj[i])
+        for (int j : adj.get(i))
             matrix[i][j] = 1;
     }
     return matrix;
@@ -2483,21 +2484,21 @@ vector<vector<int> > convert(vector<int> adj[], int V)
 
 In and out degree
 
-```cpp
-void findInOutDegrees(const vector<vector<int>>& adj, int V) {
-    vector<int> inDegree(V, 0);
-    vector<int> outDegree(V, 0);
+```java
+void findInOutDegrees(List<List<Integer>> adj, int V) {
+    int[] inDegree = new int[V];
+    int[] outDegree = new int[V];
 
     for (int u = 0; u < V; ++u) {
-        outDegree[u] = adj[u].size(); // out-degree = number of edges from u
-        for (int v : adj[u]) {
+        outDegree[u] = adj.get(u).size(); // out-degree = number of edges from u
+        for (int v : adj.get(u)) {
             inDegree[v]++;            // in-degree of v increases for each edge (u -> v)
         }
     }
 
-    cout << "Vertex\tIn-Degree\tOut-Degree\n";
+    System.out.println("Vertex\tIn-Degree\tOut-Degree");
     for (int i = 0; i < V; ++i) {
-        cout << i << "\t" << inDegree[i] << "\t\t" << outDegree[i] << "\n";
+        System.out.println(i + "\t" + inDegree[i] + "\t\t" + outDegree[i]);
     }
 }
 ```
@@ -2518,45 +2519,44 @@ TC = O(V + E)
 
 SC = O(V)
 
-```cpp
+```java
 // BFS from given source s
-void bfs(vector<vector<int>>& adj, int s, vector<bool>& visited, vector<int> &res) {
+void bfs(List<List<Integer>> adj, int s, boolean[] visited, List<Integer> res) {
     // Create a queue for BFS
-    queue<int> q; 
+    Queue<Integer> q = new ArrayDeque<>();
 
     // Mark source node as visited and enqueue it
     visited[s] = true;
-    q.push(s);
+    q.add(s);
 
     // Iterate over the queue
-    while (!q.empty()) {
+    while (!q.isEmpty()) {
         // Dequeue a vertex and store it
-        int curr = q.front(); 
-        q.pop();
-        res.push_back(curr);
+        int curr = q.poll();
+        res.add(curr);
 
-        // Get all adjacent vertices of the dequeued 
-        // vertex curr If an adjacent has not been 
+        // Get all adjacent vertices of the dequeued
+        // vertex curr If an adjacent has not been
         // visited, mark it visited and enqueue it
-        for (int x : adj[curr]) {
+        for (int x : adj.get(curr)) {
             if (!visited[x]) {
                 visited[x] = true;
-                q.push(x);
+                q.add(x);
             }
         }
     }
 }
-                      
+
 // Perform BFS for the entire graph which maybe
 // disconnected
-vector<int> bfsDisconnected(vector<vector<int>>& adj) {
+List<Integer> bfsDisconnected(List<List<Integer>> adj) {
     int V = adj.size();
 
     // create an array to store the traversal
-    vector<int> res;
+    List<Integer> res = new ArrayList<>();
 
     // Initially mark all the vertices as not visited
-    vector<bool> visited(V, false); 
+    boolean[] visited = new boolean[V];
 
     // perform BFS for each node
     for (int i = 0; i < adj.size(); ++i) {
@@ -2576,26 +2576,26 @@ TC = O(V + E)
 
 SC = O(V)
 
-```cpp
+```java
 // Recursive function for DFS traversal
-void dfsRec(vector<vector<int>> &adj, vector<bool> &visited, int s, vector<int> &res)
+void dfsRec(List<List<Integer>> adj, boolean[] visited, int s, List<Integer> res)
 {
     // Mark the current vertex as visited
     visited[s] = true;
 
-    res.push_back(s);
+    res.add(s);
 
     // Recursively visit all adjacent vertices that are not visited yet
-    for (int i : adj[s])
+    for (int i : adj.get(s))
         if (visited[i] == false)
             dfsRec(adj, visited, i, res);
 }
 
 // Main DFS function to perform DFS for the entire graph
-vector<int> DFS(vector<vector<int>> &adj)
+List<Integer> DFS(List<List<Integer>> adj)
 {
-    vector<bool> visited(adj.size(), false);
-    vector<int> res;
+    boolean[] visited = new boolean[adj.size()];
+    List<Integer> res = new ArrayList<>();
     // Loop through all vertices to handle disconnected graph
     for (int i = 0; i < adj.size(); i++)
     {
@@ -2616,9 +2616,9 @@ vector<int> DFS(vector<vector<int>> &adj)
 
 Use DFS and find a back edge (a node points to one of its ancestors in a DFS tree)
 
-```cpp
+```java
 // Utility function for DFS to detect a cycle in a directed graph
-bool isCyclicUtil(vector<vector<int>> &adj, int u, vector<bool> &visited, vector<bool> &recStack)
+boolean isCyclicUtil(List<List<Integer>> adj, int u, boolean[] visited, boolean[] recStack)
 {
     // If the node is already in the recursion stack, a cycle is detected
     if (recStack[u])
@@ -2633,7 +2633,7 @@ bool isCyclicUtil(vector<vector<int>> &adj, int u, vector<bool> &visited, vector
     recStack[u] = true;
 
     // Recur for all neighbors
-    for (int x : adj[u])
+    for (int x : adj.get(u))
     {
         if (isCyclicUtil(adj, x, visited, recStack))
             return true;
@@ -2645,15 +2645,15 @@ bool isCyclicUtil(vector<vector<int>> &adj, int u, vector<bool> &visited, vector
 }
 
 // Function to detect cycle in a directed graph
-bool isCyclic(int V, vector<vector<int>> &edges)
+boolean isCyclic(int V, int[][] edges)
 {
     // Construct the adjacency list
-    vector<vector<int>> adj = constructadj(V, edges);
+    List<List<Integer>> adj = constructadj(V, edges);
 
     // visited[] keeps track of visited nodes
     // recStack[] keeps track of nodes in the current recursion stack
-    vector<bool> visited(V, false);
-    vector<bool> recStack(V, false);
+    boolean[] visited = new boolean[V];
+    boolean[] recStack = new boolean[V];
 
     // Check for cycles starting from every unvisited node
     for (int i = 0; i < V; i++)
@@ -2672,24 +2672,24 @@ bool isCyclic(int V, vector<vector<int>> &edges)
 - do BFS and check if a node has been visited earlier, ensuring that we do not consider the parent node of the current node while making this check.
 - If we encounter a visited node that is not the parent, a cycle exists in the graph
 
-```cpp
+```java
 // Function to perform BFS from node start
-bool bfs(int start, vector<vector<int>>& adj, vector<bool>& visited) {
-    queue<pair<int, int>> q;
-    q.push({start, -1});
+boolean bfs(int start, List<List<Integer>> adj, boolean[] visited) {
+    Queue<int[]> q = new ArrayDeque<>();
+    q.add(new int[]{start, -1});
     visited[start] = true;
 
-    while (!q.empty()) {
-        int node = q.front().first;
-        int parent = q.front().second;
-        q.pop();
+    while (!q.isEmpty()) {
+        int[] curr = q.poll();
+        int node = curr[0];
+        int parent = curr[1];
 
-        for (int neighbor : adj[node]) {
+        for (int neighbor : adj.get(node)) {
 
             if (!visited[neighbor]) {
                 visited[neighbor] = true;
-                q.push({neighbor, node});
-            } 
+                q.add(new int[]{neighbor, node});
+            }
             else if (neighbor != parent) {
                 return true;
             }
@@ -2698,19 +2698,19 @@ bool bfs(int start, vector<vector<int>>& adj, vector<bool>& visited) {
     return false;
 }
 
-bool isCycle(int V, vector<vector<int>>& edges) {    
-    vector<vector<int>> adj = constructadj(V, edges);
-    vector<bool> visited(V, false);
+boolean isCycle(int V, int[][] edges) {
+    List<List<Integer>> adj = constructadj(V, edges);
+    boolean[] visited = new boolean[V];
 
     for (int i = 0; i < V; i++) {
-        
+
         if (!visited[i]) {
             if (bfs(i, adj, visited)) {
                 return true;
             }
         }
     }
-    
+
     // If no cycle is found
     return false;
 }
@@ -2735,36 +2735,35 @@ TC = O(E \* logV)
 
 SC = O(V)
 
-```cpp
+```java
 // Returns shortest distances from src to all other vertices
-vector<int> dijkstra(int V, vector<vector<int>> &edges, int src){    
+int[] dijkstra(int V, int[][] edges, int src) {
     // Create adjacency list
-    vector<vector<vector<int>>> adj = constructAdj(edges, V);
+    List<List<int[]>> adj = constructAdj(edges, V);
 
     // Create a priority queue to store vertices that
     // are being preprocessed.
-    priority_queue<vector<int>, vector<vector<int>>, 
-                   greater<vector<int>>> pq;
+    PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));
 
-    // Create a vector for distances and initialize all
+    // Create an array for distances and initialize all
     // distances as infinite
-    vector<int> dist(V, INT_MAX);
+    int[] dist = new int[V];
+    Arrays.fill(dist, Integer.MAX_VALUE);
 
     // Insert source itself in priority queue and initialize
     // its distance as 0.
-    pq.push({0, src});
+    pq.add(new int[]{0, src});
     dist[src] = 0;
 
     // Looping till priority queue becomes empty (or all
-    // distances are not finalized) 
-    while (!pq.empty()){        
+    // distances are not finalized)
+    while (!pq.isEmpty()) {
         // The first vertex in pair is the minimum distance
         // vertex, extract it from priority queue.
-        int u = pq.top()[1];
-        pq.pop();
+        int u = pq.poll()[1];
 
         // Get all adjacent of u.
-        for (auto x : adj[u]){            
+        for (int[] x : adj.get(u)) {
             // Get vertex label and weight of current
             // adjacent of u.
             int v = x[0];
@@ -2776,7 +2775,7 @@ vector<int> dijkstra(int V, vector<vector<int>> &edges, int src){
             {
                 // Updating distance of v
                 dist[v] = dist[u] + weight;
-                pq.push({dist[v], v});
+                pq.add(new int[]{dist[v], v});
             }
         }
     }
@@ -2795,32 +2794,33 @@ TC = O(V \* E)
 
 SC = O(V)
 
-```cpp
-vector<int> bellmanFord(int V, vector<vector<int>>& edges, int src) {    
-    // Initially distance from source to all 
+```java
+int[] bellmanFord(int V, int[][] edges, int src) {
+    // Initially distance from source to all
     // other vertices are not known(Infinite).
-        vector<int> dist(V, 1e8);
-        dist[src] = 0;
-  
-        // Relaxation of all the edges V times, not (V - 1) as we
-      // need one additional relaxation to detect negative cycle
-        for (int i = 0; i < V; i++) {
-            
-                for (vector<int> edge : edges) {
-                        int u = edge[0];
-                        int v = edge[1];
-                        int wt = edge[2];
-                        if (dist[u] != 1e8 && dist[u] + wt < dist[v]) {                    
-                     // If this is the Vth relaxation, then there is
-                     // a negative cycle
-                     if(i == V - 1)
-                        return {-1};
-               
-                     // Update shortest distance to node v
-                     dist[v] = dist[u] + wt;
-                  }
-                }
+    int[] dist = new int[V];
+    Arrays.fill(dist, (int) 1e8);
+    dist[src] = 0;
+
+    // Relaxation of all the edges V times, not (V - 1) as we
+    // need one additional relaxation to detect negative cycle
+    for (int i = 0; i < V; i++) {
+
+        for (int[] edge : edges) {
+            int u = edge[0];
+            int v = edge[1];
+            int wt = edge[2];
+            if (dist[u] != (int) 1e8 && dist[u] + wt < dist[v]) {
+                // If this is the Vth relaxation, then there is
+                // a negative cycle
+                if (i == V - 1)
+                    return new int[]{-1};
+
+                // Update shortest distance to node v
+                dist[v] = dist[u] + wt;
+            }
         }
+    }
 
     return dist;
 }
@@ -2831,20 +2831,20 @@ vector<int> bellmanFord(int V, vector<vector<int>>& edges, int src) {
 
 use Bellman Ford algorithm
 
-```cpp
+```java
 // The main function that finds shortest distances
 // from src to all other vertices using Bellman-
 // Ford algorithm. The function also detects
 // negative weight cycle
-bool isNegCycleBellmanFord(struct Graph* graph, int src, int dist[])
+boolean isNegCycleBellmanFord(Graph graph, int src, int[] dist)
 {
-    int V = graph->V;
-    int E = graph->E;
+    int V = graph.V;
+    int E = graph.E;
 
     // Step 1: Initialize distances from src
     // to all other vertices as INFINITE
     for (int i = 0; i < V; i++)
-        dist[i] = INT_MAX;
+        dist[i] = Integer.MAX_VALUE;
     dist[src] = 0;
 
     // Step 2: Relax all edges |V| - 1 times.
@@ -2853,10 +2853,10 @@ bool isNegCycleBellmanFord(struct Graph* graph, int src, int dist[])
     // edges
     for (int i = 1; i <= V - 1; i++) {
         for (int j = 0; j < E; j++) {
-            int u = graph->edge[j].src;
-            int v = graph->edge[j].dest;
-            int weight = graph->edge[j].weight;
-            if (dist[u] != INT_MAX
+            int u = graph.edge[j].src;
+            int v = graph.edge[j].dest;
+            int weight = graph.edge[j].weight;
+            if (dist[u] != Integer.MAX_VALUE
                 && dist[u] + weight < dist[v])
                 dist[v] = dist[u] + weight;
         }
@@ -2867,10 +2867,10 @@ bool isNegCycleBellmanFord(struct Graph* graph, int src, int dist[])
     // if the graph doesn't contain a negative weight cycle.
     // If we get a shorter path, then there is a cycle.
     for (int i = 0; i < E; i++) {
-        int u = graph->edge[i].src;
-        int v = graph->edge[i].dest;
-        int weight = graph->edge[i].weight;
-        if (dist[u] != INT_MAX
+        int u = graph.edge[i].src;
+        int v = graph.edge[i].dest;
+        int weight = graph.edge[i].weight;
+        if (dist[u] != Integer.MAX_VALUE
             && dist[u] + weight < dist[v])
             return true;
     }
@@ -2879,17 +2879,16 @@ bool isNegCycleBellmanFord(struct Graph* graph, int src, int dist[])
 }
 
 // Returns true if the given graph has a negative weight cycle.
-bool isNegCycleDisconnected(struct Graph* graph)
+boolean isNegCycleDisconnected(Graph graph)
 {
-    int V = graph->V;
+    int V = graph.V;
 
     // To keep track of visited vertices to avoid
     // recomputations.
-    bool visited[V];
-    memset(visited, 0, sizeof(visited));
+    boolean[] visited = new boolean[V];
 
     // This array is filled by Bellman-Ford
-    int dist[V];
+    int[] dist = new int[V];
 
     // Call Bellman-Ford for all those vertices
     // that are not visited
@@ -2901,9 +2900,9 @@ bool isNegCycleDisconnected(struct Graph* graph)
 
             // Mark all vertices that are visited
             // in the above call.
-            for (int i = 0; i < V; i++)
-                if (dist[i] != INT_MAX)
-                    visited[i] = true;
+            for (int j = 0; j < V; j++)
+                if (dist[j] != Integer.MAX_VALUE)
+                    visited[j] = true;
         }
     }
 
@@ -2917,9 +2916,9 @@ bool isNegCycleDisconnected(struct Graph* graph)
 - Works for negative weights, but should not have negative weight cycle
 - TC = O(V<sup>3</sup>)
 
-```cpp
-void floydWarshall(vector<vector<int>> &dist) {
-    int V = dist.size();
+```java
+void floydWarshall(int[][] dist) {
+    int V = dist.length;
 
     // Add all vertices one by one to
     // the set of intermediate vertices.
@@ -2933,9 +2932,9 @@ void floydWarshall(vector<vector<int>> &dist) {
             for (int j = 0; j < V; j++) {
 
                 // shortest path from
-                // i to j 
-                if(dist[i][k] != 1e8 && dist[k][j]!= 1e8)
-                dist[i][j] = min(dist[i][j],dist[i][k] + dist[k][j]);
+                // i to j
+                if (dist[i][k] != (int) 1e8 && dist[k][j] != (int) 1e8)
+                    dist[i][j] = Math.min(dist[i][j], dist[i][k] + dist[k][j]);
             }
         }
     }
@@ -2963,22 +2962,22 @@ Steps
 - The idea is to maintain two sets of vertices. The first set contains the vertices already included in the MST, and the other set contains the vertices not yet included.
 - At every step, it considers all the edges that connect the two sets and picks the minimum weight edge from these edges. After picking the edge, it moves the other endpoint of the edge to the set containing MST.
 
-```cpp
+```java
 // Returns {totalWeight, mstEdges} where each edge is {u, v, weight}
-int primMST(vector<vector<int>> adj[], int V) {    
+int primMST(List<List<int[]>> adj, int V) {
     // Min-heap: {weight, node, parent}
-    priority_queue<vector<int,3>, vector<vector<int,3>>, greater<vector<int,3>>> pq;
-    
-    vector<bool> visited(V, false);
-    vector<vector<int,3>> mstEdges; // {u, v, weight}
+    PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));
+
+    boolean[] visited = new boolean[V];
+    List<int[]> mstEdges = new ArrayList<>(); // {u, v, weight}
     int totalWeight = 0;
 
     // Start from node 0, no parent (-1)
-    pq.push({0, 0, -1});
+    pq.add(new int[]{0, 0, -1});
 
-    while (!pq.empty()) {
-        auto [wt, u, parent] = pq.top();
-        pq.pop();
+    while (!pq.isEmpty()) {
+        int[] top = pq.poll();
+        int wt = top[0], u = top[1], parent = top[2];
 
         // Skip if already in MST
         if (visited[u]) continue;
@@ -2987,13 +2986,13 @@ int primMST(vector<vector<int>> adj[], int V) {
 
         // Record edge (skip the starting node which has no parent)
         if (parent != -1)
-            mstEdges.push_back({parent, u, wt});
+            mstEdges.add(new int[]{parent, u, wt});
 
         // Explore neighbors
-        for (auto& v : adj[u]) {
+        for (int[] v : adj.get(u)) {
             // adj[u] = {neighbor, weight}
             if (!visited[v[0]])
-                pq.push({v[1], v[0], u});
+                pq.add(new int[]{v[1], v[0], u});
         }
     }
 
@@ -3009,41 +3008,40 @@ int primMST(vector<vector<int>> adj[], int V) {
 - use Kahn's algorithm
 - TC = O(V+E)
 
-```cpp
-vector<int> topologicalSort(int V, vector<vector<int> >& edges)
+```java
+List<Integer> topologicalSort(int V, int[][] edges)
 {
-    vector<vector<int>> adj = constructadj(V,edges);
-    
-    // Vector to store indegree of each vertex
-    vector<int> indegree(V);
+    List<List<Integer>> adj = constructadj(V, edges);
+
+    // Array to store indegree of each vertex
+    int[] indegree = new int[V];
     for (int i = 0; i < V; i++) {
-        for (auto it : adj[i]) {
+        for (int it : adj.get(i)) {
             indegree[it]++;
         }
     }
 
     // Queue to store vertices with indegree 0
-    queue<int> q;
+    Queue<Integer> q = new ArrayDeque<>();
     for (int i = 0; i < V; i++) {
         if (indegree[i] == 0) {
-            q.push(i);
+            q.add(i);
         }
     }
 
-    vector<int> result;
-    while (!q.empty()) {
-        int node = q.front();
-        q.pop();
-        result.push_back(node);
-        
+    List<Integer> result = new ArrayList<>();
+    while (!q.isEmpty()) {
+        int node = q.poll();
+        result.add(node);
+
         // Decrease indegree of adjacent vertices as the
         // current node is in topological order
-        for (auto it : adj[node]) {
+        for (int it : adj.get(node)) {
             indegree[it]--;
 
             // If indegree becomes 0, push it to the queue
             if (indegree[it] == 0)
-                q.push(it);
+                q.add(it);
         }
     }
 
@@ -3056,51 +3054,51 @@ vector<int> topologicalSort(int V, vector<vector<int> >& edges)
 
 TC = O(V + E)
 
-```cpp
+```java
 // Function to perform DFS and collect all
 // nodes in the current connected component
-void dfs(int node, vector<vector<int>>& adj,
-         vector<bool>& vis, vector<int>& component) {
-    
+void dfs(int node, List<List<Integer>> adj,
+         boolean[] vis, List<Integer> component) {
+
     // Mark the current node as visited
     vis[node] = true;
 
     // Add the node to the current component
-    component.push_back(node);
+    component.add(node);
 
     // Traverse all unvisited neighbors
-    for (int neighbor : adj[node]) {
+    for (int neighbor : adj.get(node)) {
         if (!vis[neighbor]) {
             dfs(neighbor, adj, vis, component);
         }
     }
 }
 
-// Function to find all connected components 
+// Function to find all connected components
 // in an undirected graph
-vector<vector<int>> getComponents(int V, vector<vector<int>>& edges) {
-    
+List<List<Integer>> getComponents(int V, int[][] edges) {
+
     // Create the graph using the adjacency list
-    vector<vector<int>> adj = buildGraph(V, edges);
+    List<List<Integer>> adj = buildGraph(V, edges);
 
     // Initialize a visited array to keep track of visited nodes
-    vector<bool> vis(V, false);
+    boolean[] vis = new boolean[V];
 
     // This will store all the connected components
-    vector<vector<int>> res;
+    List<List<Integer>> res = new ArrayList<>();
 
     // Iterate through all nodes
     for (int i = 0; i < V; ++i) {
         // If the node has not been visited, it's a new component
         if (!vis[i]) {
-            
-            vector<int> component;
+
+            List<Integer> component = new ArrayList<>();
 
             // Perform DFS to collect all nodes in this component
             dfs(i, adj, vis, component);
 
             // Add the component to the result list
-            res.push_back(component);
+            res.add(component);
         }
     }
 
@@ -3129,12 +3127,12 @@ A graph has an Eulerian Path if and only if the below two conditions are true
   - If two vertices have odd degree → Eulerian Path exists (but not a cycle).
   - If one vertex has an odd degree → Not possible in an undirected graph. (Because the sum of all degrees in an undirected graph is always even.)
 
-```cpp
+```java
 // DFS to check connectivity, excluding zero-degree vertices
-void dfs(int node, vector<int> adj[], vector<bool> &visited) {
+void dfs(int node, List<List<Integer>> adj, boolean[] visited) {
     visited[node] = true;
 
-    for (int neighbor : adj[node]) {
+    for (int neighbor : adj.get(node)) {
         if (!visited[neighbor]) {
             dfs(neighbor, adj, visited);
         }
@@ -3142,13 +3140,13 @@ void dfs(int node, vector<int> adj[], vector<bool> &visited) {
 }
 
 // Function to check Eulerian Path or Circuit
-int isEulerCircuit(int v, vector<int> adj[]) {
-    vector<bool> visited(v, false);
+int isEulerCircuit(int v, List<List<Integer>> adj) {
+    boolean[] visited = new boolean[v];
 
     // Find first vertex with non-zero degree
     int start = -1;
     for (int i = 0; i < v; i++) {
-        if (adj[i].size() > 0) {
+        if (adj.get(i).size() > 0) {
             start = i;
             break;
         }
@@ -3164,7 +3162,7 @@ int isEulerCircuit(int v, vector<int> adj[]) {
 
     // Check if all non-zero degree vertices are connected
     for (int i = 0; i < v; i++) {
-        if (adj[i].size() > 0 && !visited[i]) {
+        if (adj.get(i).size() > 0 && !visited[i]) {
             return 0; // Not connected
         }
     }
@@ -3172,18 +3170,18 @@ int isEulerCircuit(int v, vector<int> adj[]) {
     // Count vertices with odd degree
     int odd = 0;
     for (int i = 0; i < v; i++) {
-        if (adj[i].size() % 2 != 0) {
+        if (adj.get(i).size() % 2 != 0) {
             odd++;
         }
     }
 
     // Apply Eulerian rules
     if (odd == 0) {
-        return 2; 
+        return 2;
     } else if (odd == 2) {
-        return 1; 
+        return 1;
     } else {
-        return 0; 
+        return 0;
     }
 }
 ```
@@ -3215,18 +3213,19 @@ Bottom-Up Approach (Tabulation)
 
 Space optimisation for 2D dp using tabulation
 
-```cpp
-int longestCommonSubsequence(string s1, string s2) {
-    vector<vector<int>> dp(2, vector<int>(n + 1, 0));
-    
+```java
+int longestCommonSubsequence(String s1, String s2) {
+    int m = s1.length(), n = s2.length();
+    int[][] dp = new int[2][n + 1];
+
     for (int i = 1; i <= m; i++) {
         for (int j = 1; j <= n; j++) {
-            if (s1[i - 1] == s2[j - 1]) {
+            if (s1.charAt(i - 1) == s2.charAt(j - 1)) {
                 dp[i % 2][j] = dp[(i - 1) % 2][j - 1] + 1;
-            } 
-            
+            }
+
             else {
-                dp[i % 2][j] = max(dp[(i - 1) % 2][j], dp[i % 2][j - 1]);
+                dp[i % 2][j] = Math.max(dp[(i - 1) % 2][j], dp[i % 2][j - 1]);
             }
         }
     }
@@ -3310,8 +3309,8 @@ A ^ A = 0
 
 Get bit at nth position
 
-```cpp
-bool getBit(int num, int i)
+```java
+static boolean getBit(int num, int i)
 {
     // Return true if the bit is
     // set. Otherwise return false
@@ -3321,77 +3320,80 @@ bool getBit(int num, int i)
 
 Set bit at nth position
 
-```cpp
-void set(int& num, int pos)
+```java
+static int set(int num, int pos)
 {
     // First step is shift '1', second
     // step is bitwise OR
     num |= (1 << pos);
+    return num;
 }
 ```
 
 Clear/unset bit at nth position
 
-```cpp
-void unset(int& num, int pos)
+```java
+static int unset(int num, int pos)
 {
     // Second step is to bitwise and this  number with given
     // number
     num &= (~(1 << pos));
+    return num;
 }
 ```
 
 Toggling a bit at nth position
 
-```cpp
-void toggle(int& num, int pos) { 
+```java
+static int toggle(int num, int pos) {
     // First step is to shift 1,Second step is to XOR with given
     // number
-    num ^= (1 << pos); 
+    num ^= (1 << pos);
+    return num;
 }
 ```
 
 Checking if the bit at nth position is Set or Unset
 
-```cpp
-bool at_position(int num, int pos)
+```java
+static boolean atPosition(int num, int pos)
 {
-    bool bit = num & (1 << pos);
+    boolean bit = (num & (1 << pos)) != 0;
     return bit;
 }
 ```
 
 Multiply a number by 2 using the left shift operator
 
-```cpp
+```java
 int ans = num << 1;
 ```
 
 Divide a number 2 using the right shift operator
 
-```cpp
+```java
 int ans = num >> 1;
 ```
 
 Check if a number is a power of 2
 
-```cpp
-bool isPowerOfTwo(int x)
+```java
+static boolean isPowerOfTwo(int x)
 {
     // First x in the below expression is
     // for the case when x is 0
-    return x && (!(x & (x - 1)));
+    return x != 0 && ((x & (x - 1)) == 0);
 }
 ```
 
 Count Set bits in an integer
 
-```cpp
-int countBits(int n)
+```java
+static int countBits(int n)
 {
     // Initialising a variable count to 0.
     int count = 0;
-    while (n) {
+    while (n != 0) {
         // If the last bit is 1, count will be incremented
         // by 1 in this step.
         count += n & 1;
@@ -3399,7 +3401,7 @@ int countBits(int n)
         // Using the right shift operator.
         // The bits will be shifted one position to the
         // right.
-        n >>= 1;
+        n >>>= 1;
     }
     return count;
 }
@@ -3407,11 +3409,11 @@ int countBits(int n)
 
 Position of rightmost set bit
 
-```cpp
-int positionOfRightmostSetBit(int n)
+```java
+static int positionOfRightmostSetBit(int n)
 {
     // if the number is odd, return 1
-    if (n & 1) {
+    if ((n & 1) != 0) {
         return 1;
     }
 
@@ -3422,8 +3424,8 @@ int positionOfRightmostSetBit(int n)
     // we can directly return `log2(n) + 1` from the
     // function
     int pos = 0;
-    while (n) {
-        n = n >> 1;
+    while (n != 0) {
+        n = n >>> 1;
         pos++;
     }
     return pos;
@@ -3433,42 +3435,42 @@ int positionOfRightmostSetBit(int n)
 
 ## Bitset
 
-```cpp
-bitset<n> name;
+```java
+BitSet name = new BitSet(n);
 ```
 
 where, n is the number of bits to allocate, and name is the name assigned.
 
 In bitset, numbering is reversed. The right side (LSB) is 0 and the left side (MSB) is n-1.
 
-```cpp
-bitset<32> bs1(18);
-bitset<32> bs2("10010");
+```java
+BitSet bs1 = BitSet.valueOf(new long[] { 18 });
+BitSet bs2 = BitSet.valueOf(new long[] { Long.parseLong("10010", 2) });
 ```
 
-STL
+Java
 
 | Operation | Syntax |
 | --- | --- |
-| Set all bits | `b.set();` |
+| Set all bits (no set-all - give an explicit range) | `b.set(0, n);` |
 | Set bit at index i | `b.set(i);` |
-| Set bit i to val | `b.set(i, 0);` |
-| Reset all bits | `b.reset();` |
-| Reset bit at index i | `b.reset(i);` |
-| Flip all bits | `b.flip();` |
+| Set bit i to val | `b.set(i, false);` |
+| Reset all bits | `b.clear();` |
+| Reset bit at index i | `b.clear(i);` |
+| Flip all bits (no flip-all - give an explicit range) | `b.flip(0, n);` |
 | Flip bit at index i | `b.flip(i);` |
-| Test bit at index i | `b.test(i)` |
-| Check if any bit is 1 | `b.any()` |
-| Check if all bits are 1 | `b.all()` |
-| Count number of 1s | `b.count()` |
-| Convert to string | `b.to_string()` |
-| Convert to unsigned long | `b.to_ulong()` |
-| Convert to unsigned long long | `b.to_ullong()` |
+| Test bit at index i | `b.get(i)` |
+| Check if any bit is 1 | `!b.isEmpty()` |
+| Check if all n bits are 1 (no built-in) | `b.cardinality() == n` |
+| Count number of 1s | `b.cardinality()` |
+| Convert to string (set-index form such as `{1, 4}`, not a bit string) | `b.toString()` |
+| Convert to a long (Java has no unsigned types) | `b.toLongArray()[0]` |
+| Convert to longs when wider than 64 bits (Java has no long long) | `b.toLongArray()` |
 
 Count the no of set bits in a number
 
-```cpp
-int count = __builtin_popcount(num);
+```java
+int count = Integer.bitCount(num);
 ```
 
 
@@ -3477,19 +3479,19 @@ int count = __builtin_popcount(num);
 
 ## Declaration
 
-```cpp
+```java
 class TrieNode {
-public:
-    TrieNode* childNode[26];
-    bool isEndOfWord;
+    TrieNode[] childNode;
+    boolean isEndOfWord;
 
     TrieNode() {
         isEndOfWord = false;
+        childNode = new TrieNode[26];
         for (int i = 0; i < 26; i++) {
-            childNode[i] = nullptr;
+            childNode[i] = null;
         }
     }
-};
+}
 ```
 
 
@@ -3497,18 +3499,18 @@ public:
 
 TC = O(n)
 
-```cpp
-void insert_key(TrieNode* root, const string& key) {
-    TrieNode* currentNode = root;
+```java
+static void insertKey(TrieNode root, String key) {
+    TrieNode currentNode = root;
 
-    for (char c : key) {
-        if (currentNode->childNode[c - 'a'] == nullptr) {
-            currentNode->childNode[c - 'a'] = new TrieNode();
+    for (char c : key.toCharArray()) {
+        if (currentNode.childNode[c - 'a'] == null) {
+            currentNode.childNode[c - 'a'] = new TrieNode();
         }
-        currentNode = currentNode->childNode[c - 'a'];
+        currentNode = currentNode.childNode[c - 'a'];
     }
 
-    currentNode->isEndOfWord = true;
+    currentNode.isEndOfWord = true;
 }
 ```
 
@@ -3517,18 +3519,18 @@ void insert_key(TrieNode* root, const string& key) {
 
 TC = O(n)
 
-```cpp
-bool search_key(TrieNode* root, const string& key) {
-    TrieNode* currentNode = root;
+```java
+static boolean searchKey(TrieNode root, String key) {
+    TrieNode currentNode = root;
 
-    for (char c : key) {
-        if (currentNode->childNode[c - 'a'] == nullptr) {
+    for (char c : key.toCharArray()) {
+        if (currentNode.childNode[c - 'a'] == null) {
             return false;
         }
-        currentNode = currentNode->childNode[c - 'a'];
+        currentNode = currentNode.childNode[c - 'a'];
     }
 
-    return currentNode->isEndOfWord;
+    return currentNode.isEndOfWord;
 }
 ```
 
@@ -3537,55 +3539,53 @@ bool search_key(TrieNode* root, const string& key) {
 
 TC = O(n)
 
-```cpp
-bool delete_key(TrieNode* root, const string& word) {
-    TrieNode* currentNode = root;
-    TrieNode* lastBranchNode = nullptr;
+```java
+static boolean deleteKey(TrieNode root, String word) {
+    TrieNode currentNode = root;
+    TrieNode lastBranchNode = null;
     char lastBranchChar = 'a';
 
-    for (char c : word) {
-        if (currentNode->childNode[c - 'a'] == nullptr) {
+    for (char c : word.toCharArray()) {
+        if (currentNode.childNode[c - 'a'] == null) {
             return false;  // word not found
         }
 
         int childCount = 0;
         for (int i = 0; i < 26; i++) {
-            if (currentNode->childNode[i] != nullptr) {
+            if (currentNode.childNode[i] != null) {
                 childCount++;
             }
         }
 
-        if (childCount > 1 || currentNode->isEndOfWord) {
+        if (childCount > 1 || currentNode.isEndOfWord) {
             lastBranchNode = currentNode;
             lastBranchChar = c;
         }
 
-        currentNode = currentNode->childNode[c - 'a'];
+        currentNode = currentNode.childNode[c - 'a'];
     }
 
     // If the node has children, just unset isEndOfWord
     int childCount = 0;
     for (int i = 0; i < 26; i++) {
-        if (currentNode->childNode[i] != nullptr) {
+        if (currentNode.childNode[i] != null) {
             childCount++;
         }
     }
 
     if (childCount > 0) {
-        currentNode->isEndOfWord = false;
+        currentNode.isEndOfWord = false;
         return true;
     }
 
     // If it's a leaf node and shares a prefix
-    if (lastBranchNode != nullptr) {
-        delete lastBranchNode->childNode[lastBranchChar];
-        lastBranchNode->childNode[lastBranchChar] = nullptr;
+    if (lastBranchNode != null) {
+        lastBranchNode.childNode[lastBranchChar - 'a'] = null;
         return true;
     }
 
     // The word is completely unique -- delete from root
-    delete root->childNode[word[0] - 'a'];
-    root->childNode[word[0] - 'a'] = nullptr;
+    root.childNode[word.charAt(0) - 'a'] = null;
     return true;
 }
 ```

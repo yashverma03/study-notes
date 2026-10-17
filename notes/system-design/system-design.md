@@ -1356,13 +1356,13 @@ Focus on Inheritance, Association and Interface implementation
 +-----------------------------+
 |         BankAccount         |
 +-----------------------------+
-| - accountNumber: string     |
-| - accountHolder: string     |
+| - accountNumber: String     |
+| - accountHolder: String     |
 | - balance: double           |
 +-----------------------------+
-| + BankAccount(string, string, double) |
+| + BankAccount(String, String, double) |
 | + deposit(amount: double): void       |
-| + withdraw(amount: double): bool      |
+| + withdraw(amount: double): boolean   |
 | + getBalance(): double                |
 | + printDetails(): void                |
 +-----------------------------+
@@ -2678,11 +2678,11 @@ class Main {
 +---------------------------+
 |         Vehicle          |<--<<abstract>>
 +---------------------------+
-| - plate: string           |
+| - plate: String           |
 +---------------------------+
-| +constructor(plate: string)         |
+| +constructor(plate: String)         |
 | +getType(): VehicleType (abstract)  |
-| +getPlate(): string                 |
+| +getPlate(): String                 |
 +---------------------------+
         ▲
    +----+----+
@@ -2726,13 +2726,13 @@ class Main {
 |          Ticket             |
 +-----------------------------+
 | - id: number                |
-| - plate: string             |
+| - plate: String             |
 | - slotId: number            |
 | - entryTime: Date           |
 +-----------------------------+
-| +constructor(plate: string, slotId: number) |
+| +constructor(plate: String, slotId: number) |
 | +getId(): number            |
-| +getPlate(): string         |
+| +getPlate(): String         |
 | +getSlotId(): number        |
 | +getEntryTime(): Date       |
 +-----------------------------+
@@ -3032,7 +3032,7 @@ class Main {
 +---------------------+
 |       Item          |
 +---------------------+
-| - name: string      |
+| - name: String      |
 | - price: int        |
 | - quantity: int     |
 +---------------------+
@@ -3045,27 +3045,27 @@ class Main {
 +---------------------+
 |     Inventory       |
 +---------------------+
-| - items: unordered_map<string, Item> |
+| - items: HashMap<String, Item>       |
 +---------------------+
 | +addItem(code, Item): void           |
-| +isAvailable(code): bool             |
+| +isAvailable(code): boolean          |
 | +getPrice(code): int                 |
-| +getName(code): string               |
+| +getName(code): String               |
 | +dispenseItem(code): void            |
 | +showInventory(): void               |
 +---------------------+
 
-+----------------------------+
-|    PaymentProcessor        |
-+----------------------------+
-| - currentBalance: int      |
-+----------------------------+
-| +insertCash(amount): void  |
-| +verifyPayment(price): bool|
-| +deductAmount(amount): void|
-| +refund(): void            |
-| +getBalance(): int         |
-+----------------------------+
++-------------------------------+
+|       PaymentProcessor        |
++-------------------------------+
+| - currentBalance: int         |
++-------------------------------+
+| +insertCash(amount): void     |
+| +verifyPayment(price): boolean|
+| +deductAmount(amount): void   |
+| +refund(): void               |
+| +getBalance(): int            |
++-------------------------------+
 
 +----------------------------+
 |      VendingMachine        |
@@ -3269,26 +3269,26 @@ final class Main {
 | - weight            |
 +---------------------+
 
-+----------------------+
-|   ExternalPanel      |
-+----------------------+
-| - upPressed: bool    |
-| - downPressed: bool  |
-+----------------------+
-| +pressUp()           |
-| +pressDown()         |
-| +reset()             |
-+----------------------+
++-----------------------+
+|     ExternalPanel     |
++-----------------------+
+| - upPressed: boolean  |
+| - downPressed: boolean|
++-----------------------+
+| +pressUp()            |
+| +pressDown()          |
+| +reset()              |
++-----------------------+
 
-+------------------------+
-|    InternalPanel       |
-+------------------------+
-| - floorButtons: set<int> |
-+------------------------+
-| +pressFloor(int)       |
-| +resetFloor(int)       |
-| +hasRequests(): bool   |
-+------------------------+
++------------------------------+
+|        InternalPanel         |
++------------------------------+
+| - floorButtons: Set<Integer> |
++------------------------------+
+| +pressFloor(int)             |
+| +resetFloor(int)             |
+| +hasRequests(): boolean      |
++------------------------------+
 
 +----------------------+
 |      Display         |
@@ -3304,14 +3304,14 @@ final class Main {
 | - direction: Direction        |
 | - door: DoorStatus            |
 | - currentWeight: int          |
-| - passengers: vector<Person>  |
+| - passengers: List<Person>    |
 | - internalPanel: InternalPanel|
 | - display: Display            |
 +-------------------------------+
 | +step()                       |
 | +addRequest(floor)            |
 | +boardPassenger(Person)       |
-| +isFull(weight): bool         |
+| +isFull(weight): boolean      |
 | +openDoor() / closeDoor()     |
 | +unloadPassengers()           |
 | +getCurrentFloor(), getId()   |
@@ -3321,8 +3321,8 @@ final class Main {
 +--------------------------------+
 |       ElevatorSystem           |
 +--------------------------------+
-| - elevators: vector<Elevator>  |
-| - floorPanels: vector<ExternalPanel> |
+| - elevators: List<Elevator>    |
+| - floorPanels: List<ExternalPanel>   |
 +--------------------------------+
 | +callElevator(floor, dir)      |
 | +step()                        |
@@ -3560,8 +3560,8 @@ final class Main {
 +------------------------+
 |       Account          |
 +------------------------+
-| -cardNumber: string    |
-| -pin: string           |
+| -cardNumber: String    |
+| -pin: String           |
 | -balance: double       |
 +------------------------+
 | +authenticate(pin)     |
@@ -3574,13 +3574,13 @@ final class Main {
 +------------------------+
 |      CardReader        |
 +------------------------+
-| +readCard(): string    |
+| +readCard(): String    |
 +------------------------+
 
 +------------------------+
 |        Keypad          |
 +------------------------+
-| +getPIN(): string      |
+| +getPIN(): String      |
 | +getMenuChoice(): int  |
 | +getAmount(): double   |
 +------------------------+
@@ -3622,7 +3622,7 @@ final class Main {
 +----------------------------+
 |           ATM              |
 +----------------------------+
-| -accounts: map<string, IAccount*>  |
+| -accounts: Map<String, IAccount>   |
 | -cardReader, keypad, display       |
 | -dispenser, depositSlot            |
 +----------------------------+
@@ -3882,8 +3882,8 @@ final class Main {
 +------------------+
 |      User        |
 +------------------+
-| - name: string   |
-| - email: string  |
+| - name: String   |
+| - email: String  |
 +------------------+
 | +getName()       |
 | +getEmail()      |
@@ -3892,7 +3892,7 @@ final class Main {
 +---------------------------+
 |     BalanceService        |
 +---------------------------+
-| - balances: map<map>      |
+| - balances: Map<Map>      |
 +---------------------------+
 | +addTransaction()         |
 | +showBalances()           |
@@ -3902,8 +3902,8 @@ final class Main {
 +------------------------------+
 |         Expense              |  <<abstract>>
 +------------------------------+
-| - payer: string              |
-| - participants: vector       |
+| - payer: String              |
+| - participants: List         |
 | - amount: double             |
 +------------------------------+
 | +apply(BalanceService&)      |
@@ -3919,8 +3919,8 @@ final class Main {
 +-------------------------------+
 |       ExpenseManager          |
 +-------------------------------+
-| - users: map<string, User*>   |
-| - expenses: vector<Expense*>  |
+| - users: Map<String, User>    |
+| - expenses: List<Expense>     |
 | - balanceService              |
 +-------------------------------+
 | +addUser()                    |
@@ -4084,20 +4084,20 @@ final class Main {
 +-------------------------+         +------------------------+
 |         Rider           |         |        Driver          |
 +-------------------------+         +------------------------+
-| -name: string           |         | -name: string          |
-| -phone: string          |         | -vehicleNumber: string |
+| -name: String           |         | -name: String          |
+| -phone: String          |         | -vehicleNumber: String |
 +-------------------------+         | -location: Location    |
-| +getName(): string      |         | -status: CabStatus     |
+| +getName(): String      |         | -status: CabStatus     |
 +-------------------------+         +------------------------+
-                                    | +isAvailable(): bool   |
+                                    | +isAvailable(): boolean|
                                     | +assignTrip()          |
                                     | +endTrip(Location)     |
                                     | +getDistance(Location) |
-+-------------------------+         | +getName(): string     |
++-------------------------+         | +getName(): String     |
 |          Trip           |         +------------------------+
 +-------------------------+
-| -rider: Rider*          |
-| -driver: Driver*        |
+| -rider: Rider           |
+| -driver: Driver         |
 | -from: Location         |
 | -to: Location           |
 | -fare: double           |
@@ -4112,7 +4112,7 @@ final class Main {
 +-------------------------------+
 | DriverMatchingStrategy        | <<interface>>
 +-------------------------------+
-| +match(source, drivers):Driver*|
+| +match(source, drivers):Driver|
 +-------------------------------+
 
         ▲
@@ -4126,13 +4126,13 @@ final class Main {
 +-------------------------------+
 |     CabBookingService         |
 +-------------------------------+
-| -riders: vector<Rider*>       |
-| -drivers: vector<Driver*>     |
+| -riders: List<Rider>          |
+| -drivers: List<Driver>        |
 | -strategy: DriverMatching...  |
 +-------------------------------+
-| +registerRider(Rider*)        |
-| +registerDriver(Driver*)      |
-| +bookTrip(Rider*, from, to)   |
+| +registerRider(Rider)         |
+| +registerDriver(Driver)       |
+| +bookTrip(Rider, from, to)    |
 +-------------------------------+
 ```
 
@@ -4885,9 +4885,9 @@ final class Main {
 +------------------------+               +-----------------------------+
 |        User            |               |   NotificationSender        |  <-- Singleton
 +------------------------+               +-----------------------------+
-| - id, name, email, ... |               | - channels: vector<...>     |
+| - id, name, email, ... |               | - channels: List<...>       |
 | +getEmail(), etc.      |               | +addChannel()               |
-+------------------------+               | +notify(User*, string)      |
++------------------------+               | +notify(User, String)       |
                                          +-----------------------------+
                                                    /_\
                                                     |
@@ -4896,7 +4896,7 @@ final class Main {
                         +--------------------------+     +--------------------------+
                         | INotificationChannel      |     | NotificationFactory      |
                         +--------------------------+     +--------------------------+
-                        | +send(User*, string)     |     | +createChannel(type):... |
+                        | +send(User, String)      |     | +createChannel(type):... |
                         +--------------------------+     +--------------------------+
                                 /    |    \
                                /     |     \
@@ -5051,8 +5051,8 @@ final class Main {
 |       Piece              |<-------------------------+
 +--------------------------+                          |
 | - color: Color           |                          |
-| - position: Cell*        |                          |
-| +canMove(Board*, src, dst)|                         |
+| - position: Cell         |                          |
+| +canMove(Board, src, dst)|                          |
 +--------------------------+                          |
          ^       ^       ^                            |
          |       |       |                            |
@@ -5072,7 +5072,7 @@ final class Main {
 |        Cell               |<------------------------+
 +---------------------------+
 | - row, col               |
-| - piece: Piece*          |
+| - piece: Piece           |
 +---------------------------+
 | +getPiece(), setPiece()  |
 +---------------------------+
@@ -5318,18 +5318,18 @@ final class Main {
 +-------------------------------+     +------------------------------+
 |           User                |◄───|        ShoppingCart          |
 +-------------------------------+     +------------------------------+
-| - id: int                     |     | - items: vector<CartItem>    |
-| - name: string                |     +------------------------------+
-| +viewProducts(): void         |     | +addProduct(Product*, int)   |
-| +addToCart(Product*,int)      |     | +removeProduct(pid)          |
+| - id: int                     |     | - items: List<CartItem>      |
+| - name: String                |     +------------------------------+
+| +viewProducts(): void         |     | +addProduct(Product, int)    |
+| +addToCart(Product,int)       |     | +removeProduct(pid)          |
 +-------------------------------+     | +getTotal(): double          |
                                       +------------------------------+
 
 +-------------------------------+     +-------------------------------+
 |        CartItem               |     |         Product               |
 +-------------------------------+     +-------------------------------+
-| - product: Product*           |     | - id: int                     |
-| - quantity: int               |     | - name: string                |
+| - product: Product            |     | - id: int                     |
+| - quantity: int               |     | - name: String                |
 +-------------------------------+     | - price: double               |
 | +getSubtotal(): double        |     +-------------------------------+
 
@@ -5337,8 +5337,8 @@ final class Main {
 |         Order                 |◄─── CheckoutStrategy
 +-------------------------------+
 | - id: int                     |
-| - user: User*                 |
-| - items: vector<CartItem>     |
+| - user: User                  |
+| - items: List<CartItem>       |
 | - status: OrderStatus         |
 +-------------------------------+
 | +placeOrder(): void           |
@@ -5356,27 +5356,27 @@ final class Main {
 | <<interface>>                 |
 | CheckoutStrategy              |
 +-------------------------------+
-| +checkout(Order*): bool       |
+| +checkout(Order): boolean     |
 +-------------------------------+
        ▲           ▲
        |           |
 +------------------+     +-------------------+
 | PaymentGateway   |     | MockGateway       |
 +------------------+     +-------------------+
-| +checkout(Order*)|     | +checkout(Order*) |
+| +checkout(Order) |     | +checkout(Order)  |
 +------------------+     +-------------------+
 
 +-------------------------------+
 |   <<Singleton>>               |
 |       ECommercePlatform       |
 +-------------------------------+
-| - users: vector<User*>        |
-| - products: vector<Product*>  |
-| - platform: ECommercePlatform*|
+| - users: List<User>           |
+| - products: List<Product>     |
+| - platform: ECommercePlatform |
 +-------------------------------+
 | +registerUser()               |
 | +addProduct()                 |
-| +getInstance(): ECommercePlatform*|
+| +getInstance(): ECommercePlatform |
 +-------------------------------+
 ```
 
