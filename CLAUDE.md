@@ -62,6 +62,10 @@ Whenever a heading is added, removed, or renamed, update the Index section in th
 - Use the `assets/` folder only for images that can't reasonably be expressed as a Mermaid diagram.
 - Reference images from `assets/` using a relative path into that note's own subfolder under the matching category (e.g. from `notes/tech/load-balancer-architecture.md`: `![Load balancer architecture](../../assets/tech/load-balancer-architecture/round-robin-diagram.png)`), never an absolute path.
 
+## Keeping README.md in sync
+
+`README.md` lists the folder structure under `notes/` and links to every note file. Whenever a note is added, removed, renamed, or a category folder changes, update `README.md`'s Structure section in the same change so it stays accurate.
+
 ## Working with these files (context management)
 
 - Notes can be very long. Avoid reading an entire file when only a small edit is needed.
