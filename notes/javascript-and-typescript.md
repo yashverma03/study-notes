@@ -33,7 +33,7 @@ collection of key-value pairs used to store and organize data
 
 forEach()
 
-```
+```javascript
 nums.forEach((num, index) => {
   console.log(`Index ${index}: ${num}`);
 });
@@ -41,19 +41,19 @@ nums.forEach((num, index) => {
 
 map()
 
-```
+```javascript
 const doubled = nums.map(num => num * 2);
 ```
 
 reduce()
 
-```
+```javascript
 const sum = nums.reduce((acc, num) => acc + num, 0);
 ```
 
 filter()
 
-```
+```javascript
 const evens = nums.filter(num => num % 2 === 0);
 ```
 
@@ -86,7 +86,7 @@ const evens = nums.filter(num => num % 2 === 0);
 
 ## Class
 
-```
+```javascript
 class Car {
   constructor(brand) {
     this.carname = brand;
@@ -132,7 +132,7 @@ Self-Invoking functions/ Immediately Invoked Function Expression (IIFE)
 
 - a function that defines itself (function expression) and executes immediately after it's defined
 
-```
+```javascript
 (function () {
   console.log("This runs immediately!");
 })();
@@ -142,7 +142,7 @@ call()
 
 - call a function with a specific this context and pass arguments individually
 
-```
+```javascript
 const person = {
   fullName: function(city, country) {
     return this.firstName + " " + this.lastName + "," + city + "," + country;
@@ -161,7 +161,7 @@ apply()
 
 - same as call(), arguments are taken as array
 
-```
+```javascript
 func.apply(thisArg, [arg1, arg2, ...]);
 ```
 
@@ -170,7 +170,7 @@ bind()
 - creates a new function with a fixed this value
 - it does not call the function immediately — it returns a copy you can call later
 
-```
+```javascript
 const person = {
   fullName: function(city, country) {
     return this.firstName + " " + this.lastName + ", " + city + ", " + country;
@@ -195,7 +195,7 @@ console.log(result); // John Doe, Oslo, Norway
 
 - function that remembers variables from the outer (enclosing) scope, even after that outer function has finished executing
 
-```
+```javascript
 function outer() {
   let count = 0;
   // Inner() is a closure. It "remembers" count from the outer() function.
@@ -219,7 +219,7 @@ Callbacks- function passed as an argument to another function.
 - represents the eventual result (or failure) of an asynchronous operation
 - 3 states- pending, fulfilled, rejected
 
-```
+```javascript
 function asyncTask(success = true) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -308,7 +308,7 @@ provides access to browser-specific objects that allow JavaScript to interact wi
 
 key-value pair stored in the browser and sent to the server with every HTTP request
 
-```
+```javascript
 document.cookie = "username=Yash; expires=Fri, 31 Dec 2025 23:59:59 UTC; path=/";
 ```
 
@@ -332,7 +332,7 @@ Session storage- Stores data temporarily in the browser
 
 make HTTP requests (like GET, POST, PUT, DELETE) from the browser using JavaScript
 
-```
+```javascript
 async function getPost() {
   try {
     const response = await fetch('https://jsonplaceholder.typicode.com/posts/1');
@@ -360,7 +360,7 @@ getPost();
 - designed to store and transport data in a structured, readable, and platform-independent format
 - used in SOAP APIs
 
-```
+```xml
 <user>
   <name>Yash</name>
   <age>24</age>

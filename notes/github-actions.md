@@ -30,7 +30,7 @@ Mean Time To Recovery (MTTR)- Average time taken to restore service after a fail
 
 # Example
 
-```
+```yaml
 name: Build Docker Image and Deploy to EKS
 
 # ------------------------------------------------------------

@@ -3,7 +3,7 @@
 
 ## Input/ output
 
-```
+```python
 name = input("Enter your name: ")
 print("Hello", name)
 ```
@@ -50,7 +50,7 @@ range(start, stop, step)
 - Produces one value at a time
 - Memory efficient- Does not store all values in memory. Faster for large data
 
-```
+```python
 def my_gen():
     yield 1
     yield 2
@@ -67,7 +67,7 @@ for x in my_gen():
 - Allows a function to accept any number of positional arguments (0 or more).
 - args is a tuple of all positional arguments passed.
 
-```
+```python
 def greet(*args):
     for name in args:
         print(f"Hello, {name}!")
@@ -82,7 +82,7 @@ greet("Alice", "Bob", "Charlie")
 - Allows a function to accept any number of keyword arguments (0 or more)
 - kwargs is a dictionary of all keyword arguments passed
 
-```
+```python
 def introduce(**kwargs):
     for key, value in kwargs.items():
         print(f"{key}: {value}")
@@ -99,7 +99,7 @@ Pass by Value- Immutable objects (integers, strings, tuples)
 
 lambda arguments : expression
 
-```
+```python
 add = lambda x, y: x + y
 ```
 
@@ -110,7 +110,7 @@ map(function, iterable)
 
 Returns a map object, convert to list, tuple, dict
 
-```
+```python
 def square(x):
     return x ** 2
 
@@ -119,7 +119,7 @@ squared = map(square, numbers)
 print(list(squared))  # Output: [1, 4, 9, 16]
 ```
 
-```
+```python
 numbers1 = [1, 2, 3]
 numbers2 = [4, 5, 6]
 result = map(lambda x, y: x + y, numbers1, numbers2)
@@ -133,7 +133,7 @@ applies a function cumulatively to an iterable, reducing it to a single value
 
 reduce(function, iterable\[, initializer\])
 
-```
+```python
 from functools import reduce
 
 def add(x, y):
@@ -151,7 +151,7 @@ extract elements from an iterable (like a list, tuple or set) that satisfy a giv
 
 filter(function, iterable)
 
-```
+```python
 def starts_a(w):
     return w.startswith("a")
 
@@ -165,7 +165,7 @@ print(list(res))
 
 a function that takes another function as an argument and returns a new function with enhanced functionality
 
-```
+```python
 def decorator_name(func):
     def wrapper(*args, **kwargs):
         print("Before execution")
@@ -186,7 +186,7 @@ print(add(5, 3))
 
 define a method that doesn't operate on an instance of class (i.e., it doesn't use self). Static methods are called on class itself, not on an instance of class.
 
-```
+```python
 class MathOperations:
     @staticmethod
     def add(x, y):
@@ -204,7 +204,7 @@ It is used to define a method that operates on class itself (i.e., it uses cls).
 
 Cannot directly access instance attributes
 
-```
+```python
 class Employee:
     raise_amount = 1.05
     def __init__(self, name, salary):
@@ -225,7 +225,7 @@ print(Employee.raise_amount)
 
 It is used to define a method as a property, which allows you to access it like an attribute
 
-```
+```python
 class Circle:
     def __init__(self, radius):
         self._radius = radius
@@ -385,7 +385,7 @@ immutable ordered collection of elements
 - iterable → a sequence (like list, range, string, etc.)
 - condition (optional) → filters which elements are included
 
-```
+```python
 a = [1, 2, 3, 4, 5]
 res = [val * 2 for val in a if val % 2 == 0]
 print(res)
@@ -394,7 +394,7 @@ print(res)
 
 # OOP
 
-```
+```python
 class User:
     def __init__(self):
         self.name = "Yash"
@@ -418,7 +418,7 @@ print(u.city)  # Delhi
 print(u.age)   # 23
 ```
 
-```
+```python
 # Define a class
 class Car:
     def __init__(self, brand, model):
@@ -444,7 +444,7 @@ car2.drive()        # Output: Honda Civic is driving
 
 ## Encapsulation
 
-```
+```python
 class BankAccount:
     def __init__(self, balance):
         self.__balance = balance  # private attribute
@@ -464,7 +464,7 @@ print(acc.get_balance())  # Output: 1500
 
 ## Abstraction
 
-```
+```python
 from abc import ABC, abstractmethod
 
 class Shape(ABC):
@@ -487,7 +487,7 @@ print(r.area())  # Output: 20
 
 ## Inheritance
 
-```
+```python
 class Vehicle:
     def __init__(self, brand):
         self.brand = brand
@@ -510,7 +510,7 @@ c.drive()  # Output: Toyota is driving
 
 ## Polymorphism
 
-```
+```python
 class Bird:
     def speak(self):
         print("Some generic sound")
@@ -533,7 +533,7 @@ b2.speak()  # Output: Caw!
 
 # Exception Handling
 
-```
+```python
 try:
       # Code 
 except SomeException:
@@ -544,14 +544,14 @@ finally:
     # Code
 ```
 
-```
+```python
 raise Exception("Error message")
 ```
 
 
 # File Handling
 
-```
+```python
 import os
 
 # 1. Create and write to a file

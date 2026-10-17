@@ -19,7 +19,7 @@ Python framework with build in ORM, templating engine, admin panel
 
 ## Example
 
-```
+```python
 # ==========================================================
 # models.py
 # ==========================================================

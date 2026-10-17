@@ -41,7 +41,7 @@ special functions that let you use React features (like state, lifecycle, etc.) 
 - perform side effects in your components
 - useEffect(\<function>, \<dependency>)
 
-```
+```javascript
 useEffect(() => {
   // Runs on every render
 });
@@ -71,7 +71,7 @@ useEffect(() => {
 - manage state globally
 - prevent props drilling
 
-```
+```jsx
 const UserContext = createContext()
 
 function Component1() {
@@ -104,7 +104,7 @@ function Component5() {
 - store a mutable value that does not cause a re-render when updated
 - can be used to access a DOM element directly
 
-```
+```jsx
 function App() {
   const inputElement = useRef();
 
@@ -127,7 +127,7 @@ function App() {
 - managing complex or structured state logic, especially when the state depends on previous values or involves multiple sub-values
 - useReducer(\<reducer>, \<initialState>)
 
-```
+```jsx
 function reducer(state, action) {
   switch (action.type) {
     case 'increment':
@@ -159,7 +159,7 @@ function Counter() {
 - prevent unnecessary re-renders of child components that depend on functions as props
 - optimize performance
 
-```
+```jsx
 import React, { useState, useCallback } from 'react';
 
 function Button({ handleClick, children }) {
@@ -204,7 +204,7 @@ export default App;
 - optimize performance
 - avoiding unnecessary recalculations on every render
 
-```
+```jsx
 import React, { useState, useMemo } from 'react';
 
 function App() {
@@ -243,7 +243,7 @@ function App() {
 
 navigate between different pages in your app
 
-```
+```javascript
 const navigate = useNavigate();
 navigate('/targetpath')
 ```
@@ -253,7 +253,7 @@ navigate('/targetpath')
 
 access route parameters from the current URL
 
-```
+```javascript
 const { param1, param2, ... } = useParams();
 ```
 
@@ -262,7 +262,7 @@ const { param1, param2, ... } = useParams();
 
 your own reusable functions built using React’s built-in hooks like useState, useEffect, useRef
 
-```
+```javascript
 import { useState, useEffect } from 'react';
 
 function useLocalStorage(key, initialValue) {
@@ -353,7 +353,7 @@ memo
 
 - prevent unnecessary re-renders of functional components, until props have changed
 
-```
+```jsx
 import React, { useState, memo } from 'react';
 
 const Child = memo(({ name }) => {
@@ -384,7 +384,7 @@ Uncontrolled Components- DOM itself manages the input state. You access the valu
 
 Higher-Order Components (HOCs)- function that takes a component and returns a new component with added functionality
 
-```
+```jsx
 function withLogger(WrappedComponent) {
   return function Enhanced(props) {
     console.log('Rendering:', WrappedComponent.name);

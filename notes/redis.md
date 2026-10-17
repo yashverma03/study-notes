@@ -20,7 +20,7 @@ Data types
 
 Commands
 
-```
+```bash
 SET key value              # Set value for a key
 GET key                    # Get value of a key
 DEL key                    # Delete a key
@@ -35,7 +35,7 @@ MSET key1 val1 key2 val2   # Set multiple keys at once
 
 Example
 
-```
+```typescript
 import { Injectable, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
 import Redis from 'ioredis';
 

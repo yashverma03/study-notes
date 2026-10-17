@@ -1,6 +1,6 @@
 # Intro
 
-```
+```typescript
 import { Test, TestingModule } from '@nestjs/testing';
 import { UserService } from './user.service'; 
 import { UserRepository } from './user.repository';
@@ -85,7 +85,7 @@ describe('UserService', () => {
 });
 ```
 
-```
+```javascript
 describe('Jest Matchers - Reference Suite', () => {
   const numbers = [1, 2, 3];
   const user = { id: 1, name: 'Alice' };

@@ -504,7 +504,7 @@ Quadtree
 
 - degree to which a system is operational and accessible when it is needed for use
 
-```
+```text
 Availability (%) = ((Uptime) / (Uptime + Downtime)) * 100;
 ```
 
@@ -589,25 +589,25 @@ Measurements
 
 1\. Uptime Percentage
 
-```
+```text
 Uptime Percentage = ((TotalTime-Downtime) / TotalTime ) * 100
 ```
 
 2\. Mean Time Between Failures (MTBF)
 
-```
+```text
 MTBF = (Total Operational Time / Number of Failures)
 ```
 
 3\. Mean Time to Repair (MTTR)
 
-```
+```text
 MTTR = Total Repair Time / Number of Failures
 ```
 
 4\. Error Rate
 
-```
+```text
 Error Rate = (Number of Errors / Total Transactions or Operations) * 100
 ```
 
@@ -1247,7 +1247,7 @@ Shows classes, attributes, methods, and relationships (inheritance, composition,
 
 Focus on Inheritance, Association and Interface implementation
 
-```
+```text
 +-----------------------------+
 |         BankAccount         |
 +-----------------------------+
@@ -1348,7 +1348,7 @@ Shows how objects interact over time — method calls, order of execution
 - A class should have only one reason to change
 - A class should do one thing and do it well
 
-```
+```java
 // This class only handles report data generation
 class Report {
     void generate() {
@@ -1369,7 +1369,7 @@ class ReportPrinter {
 - Software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification
 - should be able to extend a class behavior, without modifying it
 
-```
+```java
 // Base class (interface) for discount strategy
 interface Discount {
     double getDiscount();
@@ -1394,7 +1394,7 @@ class SilverDiscount implements Discount {
 - Derived or child classes must be substitutable for their base or parent classes
 - Any class that is the child of a parent class should be usable in place of its parent without any unexpected behaviour
 
-```
+```java
 class Rectangle {
     protected double width;
     protected double height;
@@ -1497,7 +1497,7 @@ class Main2 {
 - do not force any client to implement an interface which is irrelevant to them
 - avoiding fat interface and give preference to many small client-specific interfaces
 
-```
+```java
 // Smaller, specific interface for printing
 interface IPrinter {
     void print();
@@ -1521,7 +1521,7 @@ class OldPrinter implements IPrinter {
 - High-level modules should not depend on low-level modules. Both should depend on abstractions
 - classes should rely on abstractions (e.g., interfaces or abstract classes) rather than concrete implementations
 
-```
+```java
 // High-level code depends on this abstraction
 interface IDatabase {
     void save();
@@ -1574,7 +1574,7 @@ Components
 
 ![](../assets/system-design/factory-pattern-vehicle-class-structure.png)
 
-```
+```java
 import java.util.Scanner;
 
 // ============================================
@@ -1686,7 +1686,7 @@ Components
 - Concrete Products- Actual products created by concrete factories. Eg: CarEngine, CarTyre, BikeEngine, BikeTyre
 - Client- Uses factories to create and use products without knowing their concrete types. Eg: VehicleAssembler
 
-```
+```java
 // ==============================
 // Abstract Products
 // ==============================
@@ -1818,7 +1818,7 @@ class Main {
 - Lazy Initialization- Instance created only when first needed (optional).
 - Thread Safety- Ensures safe access in multi-threaded environments.
 
-```
+```java
 class Singleton {
     private static Singleton instance;
 
@@ -1861,7 +1861,7 @@ Components
 - Director- Directs the building process using the Builder interface, doesn't know the details of construction.
 - Client- Creates the Builder and Director, and asks the Director to build the product.
 
-```
+```java
 // ==============================
 // 1. Product
 // ==============================
@@ -2018,7 +2018,7 @@ Components
 - Adapter- Translates the Adaptee’s interface to the Target interface (PrinterAdapter)
 - Client- Uses only the Target interface, is unaware of the Adapter’s inner workings (ModernComputer)
 
-```
+```java
 // ==============================
 // Adaptee: LegacyPrinter
 // ==============================
@@ -2102,7 +2102,7 @@ Components
 - Decorator- Abstract class that holds a reference to a Component and implements the interface.
 - Concrete Decorator- Extends the Decorator to add specific behavior (e.g., MilkDecorator, SugarDecorator).
 
-```
+```java
 // ================================
 // 1. Component Interface
 // ================================
@@ -2209,7 +2209,7 @@ Components
 - Client- Calls the Facade instead of directly accessing subsystem classes
 - Interface- The exposed methods that the client can use (e.g., startCar())
 
-```
+```java
 // ===========================
 // Subsystem Components
 // ===========================
@@ -2295,7 +2295,7 @@ Components
 - ConcreteSubject- Holds the state and notifies observers when it changes.
 - ConcreteObserver- Subscribes to the subject and implements reaction logic inside update().
 
-```
+```java
 import java.util.ArrayList;
 import java.util.List;
 
@@ -2393,7 +2393,7 @@ Components
 - Context- Maintains a reference to a Strategy object and delegates the work to it.
 - Client- Decides which strategy to use and injects it into the context.
 
-```
+```java
 // =====================================
 // 1. Strategy Interface
 // =====================================
@@ -2478,7 +2478,7 @@ Components
 - State Interface/Base Class: Defines common methods for all states, allowing Context to work with them without knowing concrete types.
 - Concrete States: Implement the State interface, encapsulating behavior for specific states and defining Context’s actions in those states.
 
-```
+```java
 // =====================================
 // 1. State Interface (Abstract Base)
 // =====================================
@@ -2569,7 +2569,7 @@ class Main {
 
 ## Parking Lot
 
-```
+```text
 +---------------------------+
 |         Vehicle          |<--<<abstract>>
 +---------------------------+
@@ -2646,7 +2646,7 @@ class Main {
 +---------------------------------------------------------+
 ```
 
-```
+```java
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.Duration;
@@ -2923,7 +2923,7 @@ class Main {
 
 ## Vending Machine
 
-```
+```text
 +---------------------+
 |       Item          |
 +---------------------+
@@ -2974,7 +2974,7 @@ class Main {
 +----------------------------+
 ```
 
-```
+```java
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.Instant;
@@ -3156,7 +3156,7 @@ final class Main {
 
 ## Elevator
 
-```
+```text
 +---------------------+
 |      Person         |
 +---------------------+
@@ -3225,7 +3225,7 @@ final class Main {
 +--------------------------------+
 ```
 
-```
+```java
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -3440,7 +3440,7 @@ final class Main {
 
 ## ATM
 
-```
+```text
 +------------------------+
 |       IAccount         |  <<interface>>
 +------------------------+
@@ -3525,7 +3525,7 @@ final class Main {
 +----------------------------+
 ```
 
-```
+```java
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
@@ -3773,7 +3773,7 @@ final class Main {
 
 ## Splitwise
 
-```
+```text
 +------------------+
 |      User        |
 +------------------+
@@ -3825,7 +3825,7 @@ final class Main {
 +-------------------------------+
 ```
 
-```
+```java
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -3966,7 +3966,7 @@ final class Main {
 
 ## Cab Booking System (Uber/ Ola)
 
-```
+```text
 +-------------------------+
 |        Location         |
 +-------------------------+
@@ -4031,7 +4031,7 @@ final class Main {
 +-------------------------------+
 ```
 
-```
+```java
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -4198,7 +4198,7 @@ final class Main {
 
 ## Food Delivery System (Swiggy/ Zomato)
 
-```
+```text
 +----------------+        +-----------------+        +----------------+
 |    User        |<>------|   Order         |<>------|   Delivery     |
 +----------------+        +-----------------+        +----------------+
@@ -4242,7 +4242,7 @@ final class Main {
 +--------------------+
 ```
 
-```
+```java
 import java.util.ArrayList;
 import java.util.List;
 
@@ -4481,7 +4481,7 @@ final class Main {
 
 ## Movie Ticket Booking System (BookMyShow)
 
-```
+```text
 +----------------+          +---------------+
 |    User        |<>--------|   Booking     |
 +----------------+          +---------------+
@@ -4527,7 +4527,7 @@ final class Main {
 +----------------+
 ```
 
-```
+```java
 import java.util.ArrayList;
 import java.util.List;
 
@@ -4776,7 +4776,7 @@ final class Main {
 
 ## Notification System
 
-```
+```text
 +------------------------+               +-----------------------------+
 |        User            |               |   NotificationSender        |  <-- Singleton
 +------------------------+               +-----------------------------+
@@ -4802,7 +4802,7 @@ final class Main {
                +-------------+  +-------------+  +-------------+
 ```
 
-```
+```java
 import java.util.ArrayList;
 import java.util.List;
 
@@ -4926,7 +4926,7 @@ final class Main {
 
 ## Chess Game
 
-```
+```text
 +------------------+        +----------------+
 |     Game         |<>------|     Board      |<-- contains --> [Cell]
 +------------------+        +----------------+
@@ -4973,7 +4973,7 @@ final class Main {
 +---------------------------+
 ```
 
-```
+```java
 // ---------- Enums ----------
 
 enum Color { WHITE, BLACK }
@@ -5209,7 +5209,7 @@ final class Main {
 
 ## Ecommerce (Amazon)
 
-```
+```text
 +-------------------------------+     +------------------------------+
 |           User                |◄───|        ShoppingCart          |
 +-------------------------------+     +------------------------------+
@@ -5275,7 +5275,7 @@ final class Main {
 +-------------------------------+
 ```
 
-```
+```java
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -5566,7 +5566,7 @@ final class Main {
 
 ## File sharing (Dropbox)
 
-```
+```text
            +-------------------+
            |  Client (Web/Mobile) |
            +-------------------+
@@ -5622,7 +5622,7 @@ Multipart upload
 
 ## Ecommerce (Amazon, Flipkart)
 
-```
+```text
                         +----------------------+
                         |      Client (Web/Mobile)     |
                         +----------------------+
@@ -5663,7 +5663,7 @@ Multipart upload
 
 ## Food ordering (swiggy, zomato)
 
-```
+```text
                         +------------------------+
                         |  Client (Mobile/Web)   |
                         +------------------------+
@@ -5708,7 +5708,7 @@ Multipart upload
 
 ## Video streaming (Netflix)
 
-```
+```text
 [ Client Apps (Web, Mobile, TV) ]
                |
       [ API Gateway / BFF Layer ]
@@ -5743,7 +5743,7 @@ Multipart upload
 
 ## Video streaming (Youtube)
 
-```
+```text
     [ Clients (Web / App / Smart TVs) ]
                   |
          [ API Gateway / BFF ]
@@ -5780,7 +5780,7 @@ Search  Video    Comments  Likes     Notifications  Ads
 
 ## Ride sharing (Uber, Ola)
 
-```
+```text
        [ Mobile App / Web ]
                  |
           [ API Gateway ]
@@ -5818,7 +5818,7 @@ Service Service  Service    Service     Service       Service
 
 ## Booking (BookMyShow)
 
-```
+```text
 [ Clients (Web, Mobile) ]
          |
    [ API Gateway / BFF ]
@@ -5846,7 +5846,7 @@ Svc    Svc     Svc       Svc      Svc        Svc
 
 ## Social media (twitter, instagram)
 
-```
+```text
             +------------+
              |  Client UI |
              +-----+------+
@@ -5888,7 +5888,7 @@ Svc    Svc     Svc       Svc      Svc        Svc
 
 ## Messaging (whatsapp, facebook messenger)
 
-```
+```text
                   +-------------+
                    |  Mobile/Web |
                    |    Client   |
@@ -5941,7 +5941,7 @@ Svc    Svc     Svc       Svc      Svc        Svc
 
 ## Notification system
 
-```
+```text
         +-----------------------+
          |    Notification API   |
          +----------+------------+
@@ -5967,7 +5967,7 @@ Svc    Svc     Svc       Svc      Svc        Svc
 
 ## Typeahead (Autocomplete) System
 
-```
+```text
                   +----------------------+
                    |   Web / Mobile App   |
                    +----------+-----------+
@@ -5996,7 +5996,7 @@ Svc    Svc     Svc       Svc      Svc        Svc
 
 ## Collaborative Editing Tool (Google docs)
 
-```
+```text
 +------------+       +------------------+        +------------------------+
 |  Web Client| <---> |  Collaboration   | <----> |   Operational Storage  |
 |  (Editor)  | WebSocket/HTTP |  Server (OT/CRDT) | (Redis/Mongo/Postgres) |
@@ -6030,7 +6030,7 @@ Svc    Svc     Svc       Svc      Svc        Svc
 
 ## Rate Limiter
 
-```
+```text
                    +-------------+
                     |   Client    |
                     +-------------+
@@ -6050,7 +6050,7 @@ Svc    Svc     Svc       Svc      Svc        Svc
 
 ## Web Crawler
 
-```
+```text
                    +-------------------+
                      |   Seed URL Queue  |
                      +-------------------+
@@ -6088,7 +6088,7 @@ Svc    Svc     Svc       Svc      Svc        Svc
 
 ## Distributed cache system (Redis)
 
-```
+```text
                    +------------------+
                     |     Clients      |
                     +--------+---------+
@@ -6117,7 +6117,7 @@ Svc    Svc     Svc       Svc      Svc        Svc
 
 ## Google Maps
 
-```
+```text
       +------------+       +--------------------+      +------------------+
        |  Mobile/Web| <---> |     API Gateway    | <--> |  Auth/Throttle   |
        +------------+       +--------------------+      +------------------+

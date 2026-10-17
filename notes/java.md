@@ -19,7 +19,7 @@ Components
 
 Executing Java code file
 
-```
+```bash
 // Take input from file
 java Main.java < input.txt
 
@@ -55,7 +55,7 @@ java Main.java arg1 arg2
 
 Values
 
-```
+```java
 Integer.MIN_VALUE  // -2147483648  (-2^31)
 Integer.MAX_VALUE  //  2147483647  (2^31 - 1)
 
@@ -79,7 +79,7 @@ instanceof- check if an object is an instance of a class, a subclass, or an inte
 
 Variable-length Arguments- allow you to pass a variable number of arguments to a method
 
-```
+```java
 int sum(int... numbers) {
     int total = 0;
     for (int n : numbers) total += n;
@@ -164,7 +164,7 @@ int sum(int... numbers) {
 
 # OOP
 
-```
+```java
 // A simple class representing a Car
 class Car {
 
@@ -248,7 +248,7 @@ Interface
 - Only abstract methods. Can have default, private and static methods
 - Useful when you want only rules / contract
 
-```
+```java
 // ---------- Interface (100% abstraction) ----------
 interface Payment {
     void pay(int amount);   // no body → must be implemented
@@ -321,7 +321,7 @@ Types
 4. Multiple Inheritance
 5. Hybrid Inheritance
 
-```
+```java
 // Parent Class (Super Class)
 class Animal {
 
@@ -368,7 +368,7 @@ Java doesn't support the Operator Overloading
 
 ![](../assets/java/polymorphism-compile-time-vs-runtime.png)
 
-```
+```java
 // ---------- Compile-Time Polymorphism (Overloading) ----------
 class MathOperations {
 
@@ -435,7 +435,7 @@ public class Main {
 
 ## Package
 
-```
+```java
 package com.myapp.utils;
 
 public class Calculator {
@@ -448,7 +448,7 @@ public class Calculator {
 
 Path = src/com/myapp/utils/Calculator.java
 
-```
+```java
 import com.myapp.utils.Calculator;
 ```
 
@@ -460,7 +460,7 @@ import com.myapp.utils.Calculator;
 
 has only one abstract method, making it suitable for use with lambda expressions and method references
 
-```
+```java
 @FunctionalInterface
 interface Greeting {
     void sayHello();   // one abstract method
@@ -471,7 +471,7 @@ interface Greeting {
 
 Checks a condition → returns boolean.
 
-```
+```java
 Predicate<Integer> isEven = n -> n % 2 == 0;
 System.out.println(isEven.test(4));   // true
 ```
@@ -480,7 +480,7 @@ System.out.println(isEven.test(4));   // true
 
 Takes input T, returns output R.
 
-```
+```java
 Function<String, Integer> length = s -> s.length();
 System.out.println(length.apply("Yash"));   // 4
 ```
@@ -489,7 +489,7 @@ System.out.println(length.apply("Yash"));   // 4
 
 Takes input, returns nothing.
 
-```
+```java
 Consumer<String> printer = s -> System.out.println(s);
 printer.accept("Hello World");
 ```
@@ -498,7 +498,7 @@ printer.accept("Hello World");
 
 Returns a value, takes no input.
 
-```
+```java
 Supplier<Double> random = () -> Math.random();
 System.out.println(random.get());
 ```
@@ -507,7 +507,7 @@ System.out.println(random.get());
 
 Two inputs → one output.
 
-```
+```java
 BiFunction<Integer, Integer, Integer> add = (a, b) -> a + b;
 System.out.println(add.apply(5, 3));   // 8
 ```
@@ -518,7 +518,7 @@ Special case of BiFunction
 
 T, T → T
 
-```
+```java
 BinaryOperator<Integer> mul = (a, b) -> a * b;
 System.out.println(mul.apply(4, 3));   // 12
 ```
@@ -529,7 +529,7 @@ Special case of Function
 
 T → T
 
-```
+```java
 UnaryOperator<Integer> square = n -> n * n;
 System.out.println(square.apply(5));    // 25
 ```
@@ -597,7 +597,7 @@ Types
    - ArrayStoreException
    - EmptyStackException
 
-```
+```java
 class Calculator {
 
     // Method that may throw an exception
@@ -851,7 +851,7 @@ Sorted by key
 
 functional interface used to define custom sorting logic for objects
 
-```
+```java
 import java.util.*;
 
 // Separate Comparator Class
@@ -895,7 +895,7 @@ public class Main {
 
 interface used to define the natural ordering of objects. Used when a class defines its own default sorting logic
 
-```
+```java
 class Student implements Comparable<Student> {
     int marks;
 
@@ -920,7 +920,7 @@ Collections.sort(list);   // uses compareTo internally
 
 ## Lambda Expressions
 
-```
+```java
 @FunctionalInterface
 interface Adder {
     int add(int a, int b);
@@ -949,7 +949,7 @@ public class Main {
 
 Implementing the Runnable Interface
 
-```
+```java
 class CookingJob implements Runnable {
     private String task;
 
@@ -1007,7 +1007,7 @@ Methods
 2. Synchronized Block
 3. Static Synchronization
 
-```
+```java
 class Counter {
     private int count = 0;
 
@@ -1079,7 +1079,7 @@ public class SyncExample {
 
 Process Synchronization
 
-```
+```java
 import java.io.*;
 import java.nio.channels.*;
 
@@ -1109,7 +1109,7 @@ public class ProcessSync {
 - The variable is never cached per thread, always read from main memory
 - Not atomic (not thread safe). Volatile does not make operations like count++ safe
 
-```
+```java
 class Example {
     volatile boolean flag = false;
 
@@ -1132,7 +1132,7 @@ class Example {
 - classes that make a single variable's read-modify-write atomic without locks.
 - They use hardware CAS (Compare-And-Swap): "set to new value only if it still equals the expected old value, else retry.
 
-```
+```java
 import java.util.concurrent.atomic.*;
 
 class User {
@@ -1191,7 +1191,7 @@ public class AtomicDemo {
 - thread-safe collections (java.util.concurrent) are collections that can be safely used by multiple threads at once without external synchronisation.
 - Each operation like put or add is atomic, so data doesn't get lost or corrupted.
 
-```
+```java
 import java.util.*;
 import java.util.concurrent.*;
 
@@ -1239,7 +1239,7 @@ public class ConcurrentDemo {
 - Exclusive Lock
 - Only one thread can acquire the lock at a time
 
-```
+```java
 import java.util.concurrent.locks.ReentrantLock;
 
 class SafeCounter {
@@ -1289,7 +1289,7 @@ public class Main {
 - Shared Lock
 - allows multiple threads to read a resource concurrently, but only one thread to write, ensuring no reads happen during writing
 
-```
+```java
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 class Product {
@@ -1351,7 +1351,7 @@ Thread Pool
 
 Input/Output
 
-```
+```java
 import java.util.*;
 
 public class BasicIOExample {
@@ -1409,7 +1409,7 @@ public class BasicIOExample {
 
 File operations
 
-```
+```java
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;

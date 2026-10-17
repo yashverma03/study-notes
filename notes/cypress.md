@@ -2,7 +2,7 @@
 
 e2e test
 
-```
+```javascript
 describe('🧪 Auth Flow E2E Tests', () => {
   // Runs once before all tests
   before(() => {
@@ -91,7 +91,7 @@ describe('🧪 Auth Flow E2E Tests', () => {
 
 Component test
 
-```
+```jsx
 import React from 'react';
 import { Button } from './Button';
 

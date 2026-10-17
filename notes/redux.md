@@ -1,6 +1,6 @@
 # Intro
 
-```
+```jsx
 import React, { useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider, useDispatch, useSelector } from 'react-redux';

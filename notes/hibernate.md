@@ -27,7 +27,7 @@
 - It activates the Hibernate framework.
 - It reads both configuration file and mapping files
 
-```
+```java
 Configuration cfg = new Configuration();
 cfg.configure(); // Reads and validates hibernate.cfg.xml
 ```
@@ -37,7 +37,7 @@ cfg.configure(); // Reads and validates hibernate.cfg.xml
 - creates Session objects and maintains a second-level cache.
 - It is heavyweight and thread-safe, so usually one per application
 
-```
+```java
 SessionFactory factory = cfg.buildSessionFactory();
 ```
 
@@ -46,7 +46,7 @@ SessionFactory factory = cfg.buildSessionFactory();
 - The Session interface interacts with the database and provides CRUD operations.
 - It maintains a first-level cache (session-level).
 
-```
+```java
 Session session = factory.openSession();
 ```
 
@@ -54,7 +54,7 @@ Session session = factory.openSession();
 
 - handles atomic database operations, ensuring data integrity through commit or rollback
 
-```
+```java
 Transaction tx = session.beginTransaction();
 tx.commit(); // or tx.rollback();
 ```
@@ -63,7 +63,7 @@ tx.commit(); // or tx.rollback();
 
 - The Query interface executes HQL, Criteria API or native SQL queries to fetch or manipulate data.
 
-```
+```java
 Query<Student> query = session.createQuery("from Student");
 List<Student> students = query.list();
 ```
@@ -73,7 +73,7 @@ List<Student> students = query.list();
 - Java classes annotated with @Entity represent database tables.
 - Each object maps to a row.
 
-```
+```java
 @Entity
 @Table(name="student")
 class Student {
@@ -165,7 +165,7 @@ Types
 
 ## Example
 
-```
+```java
 // File: src/main/java/com/example/demo/DemoApplication.java
 package com.example.demo;
 

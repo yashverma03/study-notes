@@ -2,7 +2,7 @@
 
 Express.js is a minimal and flexible Node.js web framework used to build web applications and APIs
 
-```
+```javascript
 const express = require('express');
 const cors = require('cors');
 

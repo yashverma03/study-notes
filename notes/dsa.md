@@ -15,22 +15,22 @@
 
 ## Pair
 
-```
+```cpp
 pair<int, string> p = {1, "Geeks"};
 ```
 
-```
+```cpp
 cout << p.first << " " << p.second;
 ```
 
 
 ## Tuple
 
-```
+```cpp
 tuple<int, string, float> t = {42, "banana", 6.28};
 ```
 
-```
+```cpp
 cout << get<0>(t) << "\n";
 cout << get<1>(t) << "\n";
 cout << get<2>(t) << "\n";
@@ -103,26 +103,26 @@ Operations in 1 sec = 10<sup>8</sup>
 
 Quotient Remainder Theorem
 
-```
+```text
 a = b x q + r 
 where 0 <= r < b
 ```
 
 Modular Addition
 
-```
+```text
 (a + b) mod m = ((a mod m) + (b mod m)) mod m
 ```
 
 Modular Multiplication
 
-```
+```text
 (a x b) mod m = ((a mod m) x (b mod m)) mod m
 ```
 
 Modular Division
 
-```
+```text
 (a / b) mod m = (a x (inverse of b if exists)) mod m
 ```
 
@@ -133,7 +133,7 @@ Modular Exponentiation
 
 ## GCD (Greatest Common Divisor)
 
-```
+```cpp
 __gcd(m, n)
 ```
 
@@ -142,11 +142,11 @@ returns 0, if both m and n are zero, else gcd of m and n
 
 ## Decimal Precision
 
-```
+```cpp
 setprecision(int n)
 ```
 
-```
+```cpp
 cout << setprecision(5);
 
 cout << num << endl;
@@ -164,7 +164,7 @@ To check prime number:
 - Brute force O(n)- Check for each number from 1 to n and check if some number divides it
 - Optimised O(√n)- Check from 1 to √n
 
-```
+```cpp
 bool isPrime(int n) {
     if (n <= 1) return false;
     for (int i = 2; i * i <= n; i++) {
@@ -180,7 +180,7 @@ bool isPrime(int n) {
 
 Marking the multiples of each prime starting from 2, marking them as non-prime, and continuing this process up to sqrt(n), leaving only the prime numbers unmarked
 
-```
+```cpp
 void sieveOfEratosthenes(int n) {
     vector<bool> isPrime(n + 1, true);
     isPrime[0] = isPrime[1] = false;
@@ -203,7 +203,7 @@ void sieveOfEratosthenes(int n) {
 
 T.C
 
-```
+```text
 O(N * log (log(N)))
 ```
 
@@ -233,19 +233,19 @@ What is PseudoCode: A Complete Tutorial- [https://www.geeksforgeeks.org/what-is-
 
 Declaration
 
-```
+```cpp
 int arr[5];
 ```
 
 Initialization
 
-```
+```cpp
 int arr[] = { 1, 2, 3, 4, 5 };
 ```
 
 Size
 
-```
+```cpp
 int size = sizeof(arr) / sizeof(arr[0]);
 ```
 
@@ -254,17 +254,17 @@ int size = sizeof(arr) / sizeof(arr[0]);
 
 Declaration
 
-```
+```cpp
 vector<int> v1;
 ```
 
 Initialization
 
-```
+```cpp
 vector<int> v1 = {1, 4, 2, 3, 5};
 ```
 
-```
+```cpp
 // size 5 with default value of -1
 vector<int> v1(5, -1);
 ```
@@ -308,7 +308,7 @@ Total = n × (n + 1) / 2
 
 T.C = O(n<sup>2</sup>)
 
-```
+```cpp
 vector<vector<int>> generateSubarrays(const vector<int>& arr) {
     int n = arr.size();
     vector<vector<int>> result;
@@ -330,7 +330,7 @@ vector<vector<int>> generateSubarrays(const vector<int>& arr) {
 
 Total = 2<sup>n</sup>
 
-```
+```cpp
 vector<vector<int>> generateSubsequences(const vector<int>& arr) {
     int n = arr.size();
     int total = 1 << n;  // 2^n subsequences
@@ -354,7 +354,7 @@ vector<vector<int>> generateSubsequences(const vector<int>& arr) {
 
 TC = O(n \* 2<sup>n</sup>)
 
-```
+```cpp
 void buildSubsequences(int index, const vector<int>& arr, vector<int>& current, vector<vector<int>>& result) {
     if (index == arr.size()) {
         result.push_back(current);
@@ -399,7 +399,7 @@ TC = O(2<sup>n</sup>)
 
 Maximum sum of a contiguous subarray
 
-```
+```cpp
 int maxSubarraySum(vector<int> &arr) {
     int res = arr[0];
     int maxEnding = arr[0];
@@ -427,14 +427,14 @@ For a range update "add `v` to `[l, r]`":
 - Something increases by `v` at position `l`
 - Something decreases by `v` right after position `r`, i.e. at `r+1`
 
-```
+```cpp
 diff[l]   += v
 diff[r+1] -= v
 ```
 
 After all queries, a single prefix sum over `diff` gives you the actual value at each position.
 
-```
+```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -509,7 +509,7 @@ string::npos- until the end of the string
 
 ## Palindrome string
 
-```
+```cpp
 bool isPalindrome(const string& s) {
     int left = 0, right = s.length() - 1;
 
@@ -530,11 +530,11 @@ For Pattern Searching
 
 Whenever we detect a mismatch (after some matches), we already know some of the characters in the text of the next window
 
-```
+```text
 lps[i] = the longest proper prefix of pat[0..i] which is also a suffix of pat[0..i]
 ```
 
-```
+```cpp
 void constructLps(string &pat, vector<int> &lps) {
     // len stores the length of longest prefix which
     // is also a suffix for the previous index
@@ -625,37 +625,37 @@ Ref- [https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/](https:
 
 Declaration
 
-```
+```cpp
 vector<vector<int>> arr(rows, vector<int>(cols));
 ```
 
 Initialization
 
-```
+```cpp
 vector<vector<int>> arr = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 ```
 
 Row size
 
-```
+```cpp
 vec.size();
 ```
 
 Column size
 
-```
+```cpp
 vec[0].size();
 ```
 
 Sort row wise
 
-```
+```cpp
 sort(mat.begin(), mat.end());
 ```
 
 Transpose of matrix
 
-```
+```cpp
 void transpose(vector<vector<int>>& mat) {
     int n = mat.size(); 
     for (int i = 0; i < n; i++) {
@@ -676,7 +676,7 @@ Sorted array
 
 TC = O(log n)
 
-```
+```cpp
 int binarySearch(int arr[], int low, int high, int x)
 {
     while (low <= high) {
@@ -718,7 +718,7 @@ Stable sorting- If two objects with equal keys appear in the same order in sorte
 
 Sorts an array by repeatedly selecting the smallest (or largest) element from the unsorted portion and swapping it with the first unsorted element
 
-```
+```cpp
 void selectionSort(vector<int> &arr) {
     int n = arr.size();
 
@@ -750,7 +750,7 @@ void selectionSort(vector<int> &arr) {
 
 Repeatedly swapping the adjacent elements if they are in the wrong order
 
-```
+```cpp
 void bubbleSort(vector<int>& arr) {
     int n = arr.size();
     bool swapped;
@@ -776,7 +776,7 @@ void bubbleSort(vector<int>& arr) {
 
 inserting each element of an unsorted list into its correct position in a sorted portion of the list
 
-```
+```cpp
 void insertionSort(int arr[], int n)
 {
     for (int i = 1; i < n; ++i) {
@@ -802,7 +802,7 @@ dividing the input array into two halves, recursively sorting the two halves and
 
 TC = O(n log n)
 
-```
+```cpp
 // Merges two subarrays of arr[].
 // First subarray is arr[left..mid]
 // Second subarray is arr[mid+1..right]
@@ -876,7 +876,7 @@ picks an element as a pivot and partitions the given array around the picked piv
 
 TC = O(n^2)
 
-```
+```cpp
 int partition(vector<int>& arr, int low, int high) {
   
     // Choose the pivot
@@ -958,7 +958,7 @@ Types
 
 ## Structure
 
-```
+```cpp
 class Node {
 public:
     int data;
@@ -974,7 +974,7 @@ public:
 Node* newNode = new Node(value);
 ```
 
-```
+```cpp
 struct Node {
     int data;
     Node* next;
@@ -988,7 +988,7 @@ Node* newNode = new Node{value, nullptr};
 
 Insertion
 
-```
+```cpp
 Node* insertAfterNode(Node* head, Node* prevNode, int val) {
     if (!prevNode) {
         cout << "Previous node cannot be NULL\n";
@@ -1005,7 +1005,7 @@ Node* insertAfterNode(Node* head, Node* prevNode, int val) {
 
 Deletion
 
-```
+```cpp
 Node* deleteAfterNode(Node* head, Node* prevNode) {
     if (!prevNode || !prevNode->next) {
         cout << "No node to delete after the given node\n";
@@ -1023,7 +1023,7 @@ Node* deleteAfterNode(Node* head, Node* prevNode) {
 
 ## Length of Linked List
 
-```
+```cpp
 // Counts number of nodes in linked list
 int countNodes(Node* head) {
           
@@ -1051,7 +1051,7 @@ int countNodes(Node* head) {
 
 ## Reverse a Linked List
 
-```
+```cpp
 Node *reverseList(Node *head) {
     // Initialize three pointers: curr, prev and next
     Node *curr = head, *prev = nullptr, *next;
@@ -1082,7 +1082,7 @@ Node *reverseList(Node *head) {
   - fast moves two steps at a time.
 - Used for cycle detection (loop) and finding middle of the LL
 
-```
+```cpp
 bool hasCycle(Node* head) {
     Node* slow = head;
     Node* fast = head;
@@ -1098,7 +1098,7 @@ bool hasCycle(Node* head) {
 }
 ```
 
-```
+```cpp
 Node* findMiddle(Node* head) {
     Node* slow = head;
     Node* fast = head;
@@ -1117,7 +1117,7 @@ Node* findMiddle(Node* head) {
 
 TC = O(n \* log(n))
 
-```
+```cpp
 // Function to split the singly linked list into two halves
 Node *split(Node *head) {
     Node *fast = head;
@@ -1209,7 +1209,7 @@ STL
 - maintaining elements in either increasing or decreasing order
 - useful for Next Greater Element (NGE) and Next Smaller Element (NSE)
 
-```
+```cpp
 vector<int> monotonicIncreasing(vector<int>& nums)
 {
     int n = nums.size();
@@ -1288,7 +1288,7 @@ Dequeue STL
 
 maintaining elements in either increasing or decreasing order
 
-```
+```cpp
 deque<int> increasing_monotonic_queue(int arr[], int n)
 {
     deque<int> q;
@@ -1322,7 +1322,7 @@ Implementations
 - Removes the least recently used item when the cache reaches its capacity
 - Implemented using doubly linked list (DLL) and unordered_map
 
-```
+```cpp
 struct Node {
     int key;
     int value;
@@ -1433,7 +1433,7 @@ int main(){
 
 # Binary Tree
 
-```
+```cpp
 class Node {
 public:
     int data;
@@ -1487,7 +1487,7 @@ N-ary Tree- each node can have at most N children
 
 Inorder Traversal- Left -> Root -> Right
 
-```
+```cpp
 void inorderTraversal(Node* root, vector<int>& result) {
     if (!root) return;
     inorderTraversal(root->left, result);
@@ -1498,7 +1498,7 @@ void inorderTraversal(Node* root, vector<int>& result) {
 
 Preorder Traversal- Root -> Left -> Right
 
-```
+```cpp
 void preorderTraversal(Node* root, vector<int>& result) {
     if (!root) return;
     result.push_back(root->val);
@@ -1509,7 +1509,7 @@ void preorderTraversal(Node* root, vector<int>& result) {
 
 Postorder Traversal- Left -> Right -> Root
 
-```
+```cpp
 void postorderTraversal(Node* root, vector<int>& result) {
     if (!root) return;
     postorderTraversal(root->left, result);
@@ -1520,7 +1520,7 @@ void postorderTraversal(Node* root, vector<int>& result) {
 
 Level Order Traversal (BFS)
 
-```
+```cpp
 vector<int> levelOrderTraversal(Node* root) {
     vector<int> result;
     if (!root) return result;
@@ -1542,7 +1542,7 @@ vector<int> levelOrderTraversal(Node* root) {
 
 Reverse Level Order Traversal
 
-```
+```cpp
 vector<int> reverseLevelOrderTraversal(Node* root) {
     vector<int> result;
     if (!root) return result;
@@ -1579,7 +1579,7 @@ Boundary Traversal- [https://www.geeksforgeeks.org/boundary-traversal-of-binary-
 
 Can use level order traversal also
 
-```
+```cpp
 int height(Node *root) {
     if (root == nullptr)
         return -1;
@@ -1597,7 +1597,7 @@ int height(Node *root) {
 
 Total number of nodes
 
-```
+```cpp
 int getSize(Node* root) {
     if (root == nullptr)
         return 0;
@@ -1617,7 +1617,7 @@ int getSize(Node* root) {
 
 Can use level order traversal also
 
-```
+```cpp
 int getLevel(Node* root, int target, int level) {
     if (root == nullptr) {
         return -1;
@@ -1642,7 +1642,7 @@ int getLevel(Node* root, int target, int level) {
 
 ## Print path from root to a given node in a binary tree
 
-```
+```cpp
 // Returns true if there is a path from root
 // to the given node. It also populates 
 // 'arr' with the given path
@@ -1702,7 +1702,7 @@ Deletion- [https://www.geeksforgeeks.org/deletion-in-an-avl-tree/](https://www.g
 
 ## Insertion
 
-```
+```cpp
 Node* insert(Node* root, int x)
 {
 
@@ -1740,7 +1740,7 @@ Node* insert(Node* root, int x)
 
 ## Searching
 
-```
+```cpp
 // Function to search in a bst.
 bool search(struct Node* root, int x) {
     
@@ -1775,7 +1775,7 @@ bool search(struct Node* root, int x) {
 2. Delete a Node with Single Child in BST
 3. Delete a Node with Both Children in BST
 
-```
+```cpp
 // Note that it is not a generic inorder
 // successor function. It mainly works
 // when right child is not empty which is 
@@ -1832,7 +1832,7 @@ Node* delNode(Node* root, int x){
 
 ## Inorder predecessor and successor in BST
 
-```
+```cpp
 Node* rightMost(Node* node) {
     while (node->right != nullptr) {
         node = node->right;
@@ -1876,7 +1876,7 @@ vector<Node*> findPreSuc(Node* root, int key) {
 
 ## Sorted Array to Balanced BST
 
-```
+```cpp
 // Recursive function to construct BST
 Node* sortedArrayToBSTRecur(vector<int>& arr, int start, int end) {
     if(start > end) return nullptr;
@@ -1918,7 +1918,7 @@ Node* sortedArrayToBST(vector<int> &arr) {
   - Left child = arr\[(2\*i)+1\]
   - Right child = arr\[(2\*i)+2\]
 
-```
+```cpp
 class MaxHeap {
     // A pointer pointing to the elements
     // in the array in the heap.
@@ -2102,7 +2102,7 @@ TC of heap sort = O (n log n)
 
 TC of building a heap = O (n)
 
-```
+```cpp
 // To heapify a subtree rooted with node i
 // which is an index in arr[].
 void heapify(vector<int>& arr, int n, int i){
@@ -2171,7 +2171,7 @@ STL
 
 ## Custom Comparator
 
-```
+```cpp
 class Compare {
 public:
         bool operator()(data_type a, data_type b) {
@@ -2183,7 +2183,7 @@ public:
 };
 ```
 
-```
+```cpp
 priority_queue<PII, vector<PII>, Compare> pq;
 ```
 
@@ -2205,7 +2205,7 @@ priority_queue<PII, vector<PII>, Compare> pq;
 
 1\. Division Method
 
-```
+```text
 h(k) = k % m
 ```
 
@@ -2213,7 +2213,7 @@ Where k is the key and m is a prime number.
 
 2\. Multiplication Method
 
-```
+```text
 h(k) = ⌊m * (k * A % 1)⌋
 ```
 
@@ -2233,7 +2233,7 @@ Where ⌊ ⌋ denotes the floor function.
 
 6\. Universal Hashing
 
-```
+```text
 h(k) = ((a⋅k+b)%p)%m
 ```
 
@@ -2297,7 +2297,7 @@ Adjacency Matrix
 
 ![](../assets/dsa/graph-adjacency-matrix-representation.png)
 
-```
+```cpp
 void addEdge(vector<vector<int>> &mat, int i, int j)
 {
     mat[i][j] = 1;
@@ -2320,7 +2320,7 @@ Adjacency List
 
 ![](../assets/dsa/graph-adjacency-list-representation.png)
 
-```
+```cpp
 // Function to add an edge between two vertices
 void addEdge(vector<vector<int>>& adj, int i, int j) {
     adj[i].push_back(j);
@@ -2341,7 +2341,7 @@ void displayAdjList(const vector<vector<int>>& adj) {
 
 Convert Adjacency Matrix to Adjacency List
 
-```
+```cpp
 vector<vector<int>> convert( vector<vector<int>> a)
 {
     vector<vector<int>> adjList(a.size());
@@ -2362,7 +2362,7 @@ vector<vector<int>> convert( vector<vector<int>> a)
 
 Convert Adjacency List to Adjacency Matrix
 
-```
+```cpp
 vector<vector<int> > convert(vector<int> adj[], int V)
 {
     // Initialize a matrix
@@ -2379,7 +2379,7 @@ vector<vector<int> > convert(vector<int> adj[], int V)
 
 In and out degree
 
-```
+```cpp
 void findInOutDegrees(const vector<vector<int>>& adj, int V) {
     vector<int> inDegree(V, 0);
     vector<int> outDegree(V, 0);
@@ -2414,7 +2414,7 @@ TC = O(V + E)
 
 SC = O(V)
 
-```
+```cpp
 // BFS from given source s
 void bfs(vector<vector<int>>& adj, int s, vector<bool>& visited, vector<int> &res) {
     // Create a queue for BFS
@@ -2472,7 +2472,7 @@ TC = O(V + E)
 
 SC = O(V)
 
-```
+```cpp
 // Recursive function for DFS traversal
 void dfsRec(vector<vector<int>> &adj, vector<bool> &visited, int s, vector<int> &res)
 {
@@ -2512,7 +2512,7 @@ vector<int> DFS(vector<vector<int>> &adj)
 
 Use DFS and find a back edge (a node points to one of its ancestors in a DFS tree)
 
-```
+```cpp
 // Utility function for DFS to detect a cycle in a directed graph
 bool isCyclicUtil(vector<vector<int>> &adj, int u, vector<bool> &visited, vector<bool> &recStack)
 {
@@ -2568,7 +2568,7 @@ bool isCyclic(int V, vector<vector<int>> &edges)
 - do BFS and check if a node has been visited earlier, ensuring that we do not consider the parent node of the current node while making this check.
 - If we encounter a visited node that is not the parent, a cycle exists in the graph
 
-```
+```cpp
 // Function to perform BFS from node start
 bool bfs(int start, vector<vector<int>>& adj, vector<bool>& visited) {
     queue<pair<int, int>> q;
@@ -2631,7 +2631,7 @@ TC = O(E \* logV)
 
 SC = O(V)
 
-```
+```cpp
 // Returns shortest distances from src to all other vertices
 vector<int> dijkstra(int V, vector<vector<int>> &edges, int src){    
     // Create adjacency list
@@ -2691,7 +2691,7 @@ TC = O(V \* E)
 
 SC = O(V)
 
-```
+```cpp
 vector<int> bellmanFord(int V, vector<vector<int>>& edges, int src) {    
     // Initially distance from source to all 
     // other vertices are not known(Infinite).
@@ -2727,7 +2727,7 @@ vector<int> bellmanFord(int V, vector<vector<int>>& edges, int src) {
 
 use Bellman Ford algorithm
 
-```
+```cpp
 // The main function that finds shortest distances
 // from src to all other vertices using Bellman-
 // Ford algorithm. The function also detects
@@ -2813,7 +2813,7 @@ bool isNegCycleDisconnected(struct Graph* graph)
 - Works for negative weights, but should not have negative weight cycle
 - TC = O(V<sup>3</sup>)
 
-```
+```cpp
 void floydWarshall(vector<vector<int>> &dist) {
     int V = dist.size();
 
@@ -2859,7 +2859,7 @@ Steps
 - The idea is to maintain two sets of vertices. The first set contains the vertices already included in the MST, and the other set contains the vertices not yet included.
 - At every step, it considers all the edges that connect the two sets and picks the minimum weight edge from these edges. After picking the edge, it moves the other endpoint of the edge to the set containing MST.
 
-```
+```cpp
 // Returns {totalWeight, mstEdges} where each edge is {u, v, weight}
 int primMST(vector<vector<int>> adj[], int V) {    
     // Min-heap: {weight, node, parent}
@@ -2905,7 +2905,7 @@ int primMST(vector<vector<int>> adj[], int V) {
 - use Kahn's algorithm
 - TC = O(V+E)
 
-```
+```cpp
 vector<int> topologicalSort(int V, vector<vector<int> >& edges)
 {
     vector<vector<int>> adj = constructadj(V,edges);
@@ -2952,7 +2952,7 @@ vector<int> topologicalSort(int V, vector<vector<int> >& edges)
 
 TC = O(V + E)
 
-```
+```cpp
 // Function to perform DFS and collect all
 // nodes in the current connected component
 void dfs(int node, vector<vector<int>>& adj,
@@ -3025,7 +3025,7 @@ A graph has an Eulerian Path if and only if the below two conditions are true
   - If two vertices have odd degree → Eulerian Path exists (but not a cycle).
   - If one vertex has an odd degree → Not possible in an undirected graph. (Because the sum of all degrees in an undirected graph is always even.)
 
-```
+```cpp
 // DFS to check connectivity, excluding zero-degree vertices
 void dfs(int node, vector<int> adj[], vector<bool> &visited) {
     visited[node] = true;
@@ -3111,7 +3111,7 @@ Bottom-Up Approach (Tabulation)
 
 Space optimisation for 2D dp using tabulation
 
-```
+```cpp
 int longestCommonSubsequence(string s1, string s2) {
     vector<vector<int>> dp(2, vector<int>(n + 1, 0));
     
@@ -3154,7 +3154,7 @@ D = (a<sub>n-1</sub> × 2<sup>n-1</sup>) +...+(a<sub>3</sub> × 2<sup>3</sup>) +
 
 Using 2’s complement:
 
-```
+```text
 ans = A - B
 ans = A + (2's complement of B)
 
@@ -3179,25 +3179,25 @@ ans = A + (2's complement of B)
 
 Commutative property
 
-```
+```text
 A ^ B = B ^ A
 ```
 
 Associative property
 
-```
+```text
 (A ^ B) ^ C = A ^ (B ^ C)
 ```
 
 Identity property
 
-```
+```text
 A ^ 0 = A
 ```
 
 Negation property
 
-```
+```text
 A ^ A = 0
 ```
 
@@ -3206,7 +3206,7 @@ A ^ A = 0
 
 Get bit at nth position
 
-```
+```cpp
 bool getBit(int num, int i)
 {
     // Return true if the bit is
@@ -3217,7 +3217,7 @@ bool getBit(int num, int i)
 
 Set bit at nth position
 
-```
+```cpp
 void set(int& num, int pos)
 {
     // First step is shift '1', second
@@ -3228,7 +3228,7 @@ void set(int& num, int pos)
 
 Clear/unset bit at nth position
 
-```
+```cpp
 void unset(int& num, int pos)
 {
     // Second step is to bitwise and this  number with given
@@ -3239,7 +3239,7 @@ void unset(int& num, int pos)
 
 Toggling a bit at nth position
 
-```
+```cpp
 void toggle(int& num, int pos) { 
     // First step is to shift 1,Second step is to XOR with given
     // number
@@ -3249,7 +3249,7 @@ void toggle(int& num, int pos) {
 
 Checking if the bit at nth position is Set or Unset
 
-```
+```cpp
 bool at_position(int num, int pos)
 {
     bool bit = num & (1 << pos);
@@ -3259,19 +3259,19 @@ bool at_position(int num, int pos)
 
 Multiply a number by 2 using the left shift operator
 
-```
+```cpp
 int ans = num << 1;
 ```
 
 Divide a number 2 using the right shift operator
 
-```
+```cpp
 int ans = num >> 1;
 ```
 
 Check if a number is a power of 2
 
-```
+```cpp
 bool isPowerOfTwo(int x)
 {
     // First x in the below expression is
@@ -3282,7 +3282,7 @@ bool isPowerOfTwo(int x)
 
 Count Set bits in an integer
 
-```
+```cpp
 int countBits(int n)
 {
     // Initialising a variable count to 0.
@@ -3303,7 +3303,7 @@ int countBits(int n)
 
 Position of rightmost set bit
 
-```
+```cpp
 int positionOfRightmostSetBit(int n)
 {
     // if the number is odd, return 1
@@ -3329,7 +3329,7 @@ int positionOfRightmostSetBit(int n)
 
 ## Bitset
 
-```
+```cpp
 bitset<n> name;
 ```
 
@@ -3337,7 +3337,7 @@ where, n is the number of bits to allocate, and name is the name assigned.
 
 In bitset, numbering is reversed. The right side (LSB) is 0 and the left side (MSB) is n-1.
 
-```
+```cpp
 bitset<32> bs1(18);
 bitset<32> bs2("10010");
 ```
@@ -3363,7 +3363,7 @@ STL
 
 Count the no of set bits in a number
 
-```
+```cpp
 int count = __builtin_popcount(num);
 ```
 
@@ -3373,7 +3373,7 @@ int count = __builtin_popcount(num);
 
 ## Declaration
 
-```
+```cpp
 class TrieNode {
 public:
     TrieNode* childNode[26];
@@ -3393,7 +3393,7 @@ public:
 
 TC = O(n)
 
-```
+```cpp
 void insert_key(TrieNode* root, const string& key) {
     TrieNode* currentNode = root;
 
@@ -3413,7 +3413,7 @@ void insert_key(TrieNode* root, const string& key) {
 
 TC = O(n)
 
-```
+```cpp
 bool search_key(TrieNode* root, const string& key) {
     TrieNode* currentNode = root;
 
@@ -3433,7 +3433,7 @@ bool search_key(TrieNode* root, const string& key) {
 
 TC = O(n)
 
-```
+```cpp
 bool delete_key(TrieNode* root, const string& word) {
     TrieNode* currentNode = root;
     TrieNode* lastBranchNode = nullptr;

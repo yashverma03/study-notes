@@ -2,7 +2,7 @@
 
 Data Type Conversion
 
-```
+```cpp
 // Convert char data type into integer
 cout << (int)c << endl;
 ```
@@ -13,7 +13,7 @@ Type Modifiers
 
 Basic Input / Output
 
-```
+```cpp
 cin >> age;
 cout << "GeeksforGeeks";
 ```
@@ -23,7 +23,7 @@ cout << "GeeksforGeeks";
 
 Function Definition
 
-```
+```cpp
 int add(int a, int b) {
     return a + b;
 }
@@ -34,7 +34,7 @@ Inline Functions
 - optimize the performance of the program by reducing the overhead related to a function call.
 - When a function is specified as inline the whole code of the inline function is inserted or substituted at the point of its call during the compilation instead of using the normal function call mechanism
 
-```
+```cpp
 inline int square(int x) {
         return x * x;
 }
@@ -48,14 +48,14 @@ inline int square(int x) {
 - NULL is a macro which is 0 or ((void\*)0) depending on compiler
 - nullptr is type safe and only represents null pointer
 
-```
+```cpp
 int val = 22;
 int* ptr = &val;
 ```
 
 Dereferencing- process of accessing the value present at the memory address pointed by the pointer
 
-```
+```cpp
 // Store the address of var variable
 int* ptr = &var;
     
@@ -65,20 +65,20 @@ cout << *ptr;
 
 Wild Pointer- When a pointer is created, it just contains a random address that may or may not be valid
 
-```
+```cpp
 // Wild pointer
 int *ptr;
 ```
 
 NULL Pointer- pointer that does not point to any valid memory location but NULL
 
-```
+```cpp
 int *ptr = NULL;
 ```
 
 Void Pointer- point to a value that has no particular type. It also means that they can point to any data type
 
-```
+```cpp
 void* ptr_name;
 ```
 
@@ -98,7 +98,7 @@ Pointer Arithmetic
 - Cannot be NULL
 - Cannot reassign
 
-```
+```cpp
 int main() {
     int x = 10;
 
@@ -119,7 +119,7 @@ int main() {
 
 ## Create a Dynamic 2D Array Inside a Class
 
-```
+```cpp
 class Matrix {
 private:
     int** arr;
@@ -150,7 +150,7 @@ malloc()
 - allocate a single block of contiguous memory on the heap at runtime
 - The memory allocated is uninitialized, meaning it contains garbage values
 
-```
+```c
 int *ptr = (int *)malloc(20);
 ```
 
@@ -159,7 +159,7 @@ calloc()
 - contiguous allocation
 - similar to malloc(), but it initializes the allocated memory to zero
 
-```
+```c
 int *ptr = (int *)calloc(5, sizeof(int));
 ```
 
@@ -167,7 +167,7 @@ free()
 
 - release dynamically allocated memory back to the operating system
 
-```
+```c
 free(ptr);
 ```
 
@@ -175,7 +175,7 @@ free(ptr);
 
 new()
 
-```
+```cpp
 int *ptr = new int;
 int *ptr = new int(10);
 
@@ -187,7 +187,7 @@ delete
 
 - release dynamically allocated memory
 
-```
+```cpp
 delete ptr;
 delete[] arr;
 ```
@@ -203,7 +203,7 @@ Memory layout
 
 Read Data
 
-```
+```cpp
 int main() {
 
     // Open a file in read mode
@@ -221,7 +221,7 @@ int main() {
 
 Write Data to File
 
-```
+```cpp
 int main() {
 
     // Open a file
@@ -236,7 +236,7 @@ int main() {
 
 Close file
 
-```
+```cpp
 int main() {
 
     // Open a file in read mode
@@ -259,7 +259,7 @@ getline()
 
 - used to read a string or a line from an input stream
 
-```
+```cpp
 int main() {
     string name;
     
@@ -279,7 +279,7 @@ int main() {
 
 ## Enum
 
-```
+```cpp
 #include <iostream>
 using namespace std;
 

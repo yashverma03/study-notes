@@ -5,7 +5,7 @@
 
 It creates and manages objects (beans), injects dependencies and manages their life cycles
 
-```
+```java
 @Service
 class PaymentService {
     void pay() {
@@ -30,7 +30,7 @@ class OrderService {
 
 Spring gives (injects) the required objects (dependencies) into your class instead of you creating them manually with new
 
-```
+```java
 @Service
 class NotificationService {
 
@@ -76,7 +76,7 @@ Scopes
 
 process where Spring automatically injects the required dependency into a class
 
-```
+```java
 @Service
 class OrderService {
 
@@ -140,7 +140,7 @@ Types
 - @AfterThrowing- run after exception
 - @Around- run before & after method
 
-```
+```java
 package com.example.demo.aop;
 
 import org.aspectj.lang.JoinPoint;

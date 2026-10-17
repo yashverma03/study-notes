@@ -175,7 +175,7 @@ A is a proper subset of B if:
 - All elements of A are in B
 - A ≠ B
 
-```
+```text
 {1, 2} ⊂ {1, 2, 3}
 ```
 
@@ -183,7 +183,7 @@ A is a proper subset of B if:
 
 A subset that is equal to the original set.
 
-```
+```text
 {1, 2, 3} ⊆ {1, 2, 3}
 ```
 
@@ -519,7 +519,7 @@ The BEGIN TRANSACTION command marks the beginning of a new transaction.
 
 The COMMIT command is used to save all changes made during the current transaction to the database.
 
-```
+```sql
 BEGIN TRANSACTION;
 
 -- Deduct $150 from Account A
@@ -538,14 +538,14 @@ COMMIT;
 
 The ROLLBACK command is used to undo all changes made in the current transaction
 
-```
+```sql
 DELETE FROM Student WHERE AGE = 20;
 ROLLBACK;
 ```
 
 A SAVEPOINT is used to create a checkpoint within a transaction. We can roll back to a specific SAVEPOINT instead of rolling back the entire transaction
 
-```
+```sql
 SAVEPOINT SP1;
 -- Savepoint created.
 DELETE FROM Student WHERE AGE = 20;
@@ -556,7 +556,7 @@ SAVEPOINT SP2;
 
 The ROLLBACK TO SAVEPOINT command allows us to roll back the transaction to a specific savepoint
 
-```
+```sql
 ROLLBACK TO SP1;
 -- Rollback completed
 ```
@@ -569,7 +569,7 @@ ROLLBACK TO SP1;
 
 Create view
 
-```
+```sql
 CREATE VIEW StudentNames AS
 SELECT S_ID, NAME
 FROM StudentDetails
@@ -578,25 +578,25 @@ ORDER BY NAME;
 
 List all views
 
-```
+```sql
 SHOW FULL TABLES WHERE table_type LIKE "%VIEW";
 ```
 
 Deleting a view
 
-```
+```sql
 DROP VIEW MarksView;
 ```
 
 Updating a View
 
-```
+```sql
 UPDATE view_name
 SET column1 = value1, column2 = value2...., columnN = valueN
 WHERE [condition];
 ```
 
-```
+```sql
 CREATE OR REPLACE VIEW view_name AS
 SELECT column1, column2, ...
 FROM table_name
@@ -618,7 +618,7 @@ CHECK- allows us to specify a condition that data must satisfy before it is inse
 
 DEFAULT- provides a default value for a column when no value is specified during insertion
 
-```
+```sql
 CREATE TABLE employees (
     id INT PRIMARY KEY AUTO_INCREMENT,                         -- PRIMARY KEY
     name VARCHAR(100) NOT NULL,                                -- NOT NULL
@@ -635,26 +635,26 @@ CREATE TABLE employees (
 
 Creating a Role
 
-```
+```sql
 CREATE ROLE manager;
 ```
 
 Grant Privileges To a Role
 
-```
+```sql
 GRANT create table, create view
 TO manager;
 ```
 
 Revoke Privilege from a Role
 
-```
+```sql
 REVOKE create table FROM manager;
 ```
 
 Drop a Role
 
-```
+```sql
 DROP ROLE manager;
 ```
 
@@ -663,35 +663,35 @@ DROP ROLE manager;
 
 Creating an Index
 
-```
+```sql
 CREATE INDEX idx_product_id
 ON Sales (product_id);
 ```
 
 Multi - Column Indexes
 
-```
+```sql
 CREATE INDEX idx_product_quantity
 ON Sales (product_id, quantity);
 ```
 
 Unique Indexes
 
-```
+```sql
 CREATE UNIQUE INDEX idx_unique_employee_id
 ON Employees (employee_id);
 ```
 
 Removing an Index
 
-```
+```sql
 DROP INDEX index;
 ```
 
 
 ## Arithmetic Operators
 
-```
+```text
 +           [Addition]
 -           [Subtraction]
 /           [Division]
@@ -702,7 +702,7 @@ DROP INDEX index;
 
 ## CREATE TABLE
 
-```
+```sql
 CREATE TABLE Customer(
     CustomerID INT PRIMARY KEY,
     CustomerName VARCHAR(50),
@@ -713,7 +713,7 @@ CREATE TABLE Customer(
 );
 ```
 
-```
+```sql
 CREATE TABLE SubTable AS
 SELECT CustomerID, CustomerName
 FROM customer;
@@ -722,7 +722,7 @@ FROM customer;
 
 ## INSERT INTO Statement
 
-```
+```sql
 INSERT INTO Student (ROLL_NO, NAME, ADDRESS, PHONE, AGE) VALUES
 (1, 'Ram', 'Delhi', 'XXXXXXXXXX', 18),
 (2, 'Ramesh', 'Gurgaon', 'XXXXXXXXXX', 18),
@@ -730,12 +730,12 @@ INSERT INTO Student (ROLL_NO, NAME, ADDRESS, PHONE, AGE) VALUES
 (4, 'Suresh', 'Rohtak', 'XXXXXXXXXX', 18);
 ```
 
-```
+```sql
 INSERT INTO Student 
 VALUES ('5','HARSH','WEST BENGAL', 'XXXXXXXXXX','19');
 ```
 
-```
+```sql
 INSERT INTO Students (Name, Age)
 SELECT Name, Age
 FROM OldStudents;
@@ -744,7 +744,7 @@ FROM OldStudents;
 
 ## UPDATE Statement
 
-```
+```sql
 UPDATE Customer 
 SET CustomerName = 'Satyam', Country = 'USA' 
 WHERE CustomerID = 1;
@@ -753,7 +753,7 @@ WHERE CustomerID = 1;
 
 ## DELETE Statement
 
-```
+```sql
 DELETE 
 FROM GFG_Employees 
 WHERE department = 'Development';
@@ -764,25 +764,25 @@ WHERE department = 'Development';
 
 DROP command is used to permanently remove an object from a database, such as a table, database, index, or view
 
-```
+```sql
 DROP TABLE table_name;
 DROP DATABASE database_name;
 ```
 
 TRUNCATE command removes all rows from a table but preserves the structure of the table
 
-```
+```sql
 TRUNCATE TABLE  table_name;
 ```
 
 
 ## AND and OR Operators
 
-```
+```sql
 SELECT * FROM table_name WHERE condition1 AND condition2 AND ...conditionN;
 ```
 
-```
+```sql
 SELECT * FROM table_name WHERE condition1 OR condition2 OR... conditionN;
 ```
 
@@ -798,7 +798,7 @@ Common Table Expressions (CTEs)
 
 WITH clause is used to define temporary tables or result sets within a query. These temporary relations, act like virtual tables that exist only during the execution of the query
 
-```
+```sql
 WITH temporaryTable (averageValue) AS (
     SELECT AVG(Salary)
     FROM Employee
@@ -812,7 +812,7 @@ WHERE Employee.Salary > temporaryTable.averageValue;
 
 ## SELECT Query
 
-```
+```sql
 SELECT column1,column2.... FROM table_name ;
 ```
 
@@ -821,7 +821,7 @@ SELECT column1,column2.... FROM table_name ;
 
 Cross join- returns the Cartesian product of two tables, meaning each row from the first table is combined with every row from the second table
 
-```
+```sql
 SELECT Student.NAME, Student.AGE, StudentCourse.COURSE_ID
 FROM Student
 CROSS JOIN StudentCourse;
@@ -829,7 +829,7 @@ CROSS JOIN StudentCourse;
 
 Self join- Where a table is joined with itself
 
-```
+```sql
 SELECT a.ROLL_NO , b.NAME
 FROM Student a, Student b
 WHERE a.ROLL_NO < b.ROLL_NO;
@@ -837,7 +837,7 @@ WHERE a.ROLL_NO < b.ROLL_NO;
 
 Inner join- The result contains only the rows that have matching values in both tables based on a specific condition
 
-```
+```sql
 SELECT StudentCourse.COURSE_ID, Student.NAME, Student.AGE FROM Student
 INNER JOIN StudentCourse
 ON Student.ROLL_NO = StudentCourse.ROLL_NO;
@@ -845,7 +845,7 @@ ON Student.ROLL_NO = StudentCourse.ROLL_NO;
 
 Left join- returns all rows from the left table, along with matching rows from the right table
 
-```
+```sql
 SELECT Student.NAME,StudentCourse.COURSE_ID 
 FROM Student
 LEFT JOIN StudentCourse 
@@ -854,7 +854,7 @@ ON StudentCourse.ROLL_NO = Student.ROLL_NO;
 
 Right join- returns all rows from the right table, along with matching rows from the left table
 
-```
+```sql
 SELECT Student.NAME,StudentCourse.COURSE_ID 
 FROM Student
 RIGHT JOIN StudentCourse 
@@ -863,7 +863,7 @@ ON StudentCourse.ROLL_NO = Student.ROLL_NO;
 
 Full join- combines the results of both LEFT JOIN and RIGHT JOIN
 
-```
+```sql
 SELECT Student.NAME,StudentCourse.COURSE_ID 
 FROM Student
 FULL JOIN StudentCourse 
@@ -880,7 +880,7 @@ ON StudentCourse.ROLL_NO = Student.ROLL_NO;
 
 ## LIKE Operator
 
-```
+```sql
 SELECT * FROM products WHERE name LIKE BINARY 'apple%'
 ```
 
@@ -889,28 +889,28 @@ SELECT * FROM products WHERE name LIKE BINARY 'apple%'
 
 Renaming a Table
 
-```
+```sql
 ALTER TABLE table_name
 RENAME TO new_table_name;
 ```
 
 Renaming a Column
 
-```
+```sql
 ALTER TABLE table_name
 RENAME COLUMN old_column_name TO new_column_name;
 ```
 
 Adding a New Column
 
-```
+```sql
 ALTER TABLE table_name
 ADD column_name datatype;
 ```
 
 Modifying a Column Data Type
 
-```
+```sql
 ALTER TABLE table_name
 MODIFY COLUMN column_name new_datatype;
 ```
@@ -920,7 +920,7 @@ MODIFY COLUMN column_name new_datatype;
 
 used to arrange identical data into groups based on specified columns
 
-```
+```sql
 SELECT SUBJECT, YEAR, Count(*)
 FROM Student
 GROUP BY SUBJECT, YEAR;
@@ -928,7 +928,7 @@ GROUP BY SUBJECT, YEAR;
 
 HAVING clause is used to filter groups created by GROUP BY
 
-```
+```sql
 SELECT column1, function_name(column2)
 FROM table_name
 WHERE condition
@@ -937,7 +937,7 @@ HAVING condition
 ORDER BY column1, column2;
 ```
 
-```
+```sql
 SELECT customer, SUM(amount) AS total_paid
 FROM orders
 WHERE status = 'paid'                   -- filters only paid orders (row level)
@@ -950,7 +950,7 @@ HAVING SUM(amount) > 2000;              -- filters groups based on aggregated su
 
 sort query results in either ascending or descending order based on one or more columns
 
-```
+```sql
 SELECT * FROM students ORDER BY age DESC , name ASC;
 ```
 
@@ -959,7 +959,7 @@ SELECT * FROM students ORDER BY age DESC , name ASC;
 
 control the number of rows returned in a query result
 
-```
+```sql
 SELECT * FROM student 
 LIMIT 3;
 ```
@@ -971,12 +971,12 @@ skips the specified number of rows before returning the remaining rows
 
 Skip 3 rows, and get next 2 rows
 
-```
+```sql
 SELECT * FROM students
 LIMIT 2 OFFSET 3;
 ```
 
-```
+```sql
 SELECT * FROM students
 LIMIT 3, 2;  -- LIMIT offset, count
 ```
@@ -986,13 +986,13 @@ LIMIT 3, 2;  -- LIMIT offset, count
 
 combine the results of two or more SELECT statements into a single result set
 
-```
+```sql
 SELECT column_name(s) FROM table1  
 UNION -- no duplicates
 SELECT column_name(s) FROM table2;
 ```
 
-```
+```sql
 SELECT column_name(s) FROM table1 
 UNION ALL -- has duplicates
 SELECT column_name(s) FROM table2;
@@ -1003,7 +1003,7 @@ SELECT column_name(s) FROM table2;
 
 provide the result of the intersection of two select statements
 
-```
+```sql
 SELECT column-1, column-2 ...... 
 FROM table 1
 WHERE.....
@@ -1017,7 +1017,7 @@ WHERE.....
 
 EXCEPT clause contains all the rows that are returned by the first SELECT operation, and not returned by the second SELECT operation
 
-```
+```sql
 SELECT column-1, column-2 ...... 
 FROM table 1
 WHERE.....
@@ -1034,7 +1034,7 @@ WHERE.....
 
 return only those rows which are unique in only first SELECT query and not those rows which are common to both first and second SELECT queries
 
-```
+```sql
 SELECT column1 , column2 , ... columnN
 FROM table_name
 WHERE condition
@@ -1051,7 +1051,7 @@ WHERE condition;
 - If a distinct keyword is used with multiple columns, the distinct combination is displayed in the result set
 - DISTINCT keyword treats NULL as a unique value
 
-```
+```sql
 SELECT DISTINCT column1, column2 
 FROM table_name
 ```
@@ -1061,7 +1061,7 @@ FROM table_name
 
 negate or reverse the result of a condition
 
-```
+```sql
 SELECT column1, column2, ... 
 FROM table_name WHERE NOT condition;
 ```
@@ -1071,7 +1071,7 @@ FROM table_name WHERE NOT condition;
 
 BETWEEN operator is used to test whether a value falls within a given range of values (inclusive)
 
-```
+```sql
 SELECT column_name(s)
 FROM table_name
 WHERE column_name BETWEEN value1 AND value2;
@@ -1079,7 +1079,7 @@ WHERE column_name BETWEEN value1 AND value2;
 
 IN operator- filter data by matching values against a specific list,
 
-```
+```sql
 SELECT column_name(s)
 FROM table_name
 WHERE column_name IN (list_of_values);
@@ -1090,7 +1090,7 @@ WHERE column_name IN (list_of_values);
 
 whether a correlated subquery returns any results
 
-```
+```sql
 SELECT column_name(s)
 FROM table_name
 WHERE EXISTS (
@@ -1105,7 +1105,7 @@ WHERE EXISTS (
 
 to perform conditional logic
 
-```
+```sql
 CASE case_value
 WHEN condition THEN result1
 WHEN condition THEN result2
@@ -1114,7 +1114,7 @@ Else result
 END CASE;
 ```
 
-```
+```sql
 SELECT CustomerName, Age,
 CASE
     WHEN Age> 22 THEN 'The Age is greater than 22'
@@ -1136,7 +1136,7 @@ FROM Customer;
 - COUNT(column_name): Counts non-NULL values in the specified column.
 - COUNT(DISTINCT column_name): Counts unique non-NULL values in the column.
 
-```
+```sql
 -- Total number of records in the table
 SELECT COUNT(*) AS TotalRecords FROM Employee;
 
@@ -1151,7 +1151,7 @@ SELECT COUNT(DISTINCT Salary) AS UniqueSalaries FROM Employee;
 
 SUM(column_name): Returns the total sum of all non-NULL values in a column.
 
-```
+```sql
 -- Calculate the total salary
 SELECT SUM(Salary) AS TotalSalary FROM Employee;
 
@@ -1163,7 +1163,7 @@ SELECT SUM(DISTINCT Salary) AS DistinctSalarySum FROM Employee;
 
 AVG(column_name): Returns the average of the non-NULL values in the column.
 
-```
+```sql
 -- Calculate the average salary
 SELECT AVG(Salary) AS AverageSalary FROM Employee;
 
@@ -1177,7 +1177,7 @@ MIN(column_name): Returns the minimum value.
 
 MAX(column_name): Returns the maximum value.
 
-```
+```sql
 -- Find the highest salary
 SELECT MAX(Salary) AS HighestSalary FROM Employee;
 
@@ -1185,7 +1185,7 @@ SELECT MAX(Salary) AS HighestSalary FROM Employee;
 SELECT MIN(Salary) AS LowestSalary FROM Employee;
 ```
 
-```
+```sql
 SELECT
   customer,
   COUNT(*) AS total_orders,
@@ -1220,61 +1220,61 @@ operate on a single value and return a single value
 
 Get Current Date and Time
 
-```
+```sql
 SELECT NOW();
 ```
 
 Get Current Date Only
 
-```
+```sql
 SELECT CURDATE();
 ```
 
 Get Current Time Only
 
-```
+```sql
 SELECT CURTIME();
 ```
 
 Extract the Date Part from a DATETIME Value
 
-```
+```sql
 SELECT Name, DATE(BirthTime) 
 AS BirthDate FROM Test;
 ```
 
 Extract Specific Date Parts (MICROSECOND, SECOND, MINUTE, HOUR, DAY, WEEK, MONTH, QUARTER, YEAR)
 
-```
+```sql
 SELECT Name, Extract(DAY FROM BirthTime) AS BirthDay FROM Test;
 ```
 
 Add Intervals to a Date
 
-```
+```sql
 DATE_ADD(date, INTERVAL expr type);
 ```
 
-```
+```sql
 SELECT Name, DATE_ADD(BirthTime, INTERVAL 1 YEAR) AS BirthTimeModified FROM Test;
 ```
 
 Find the Difference Between Two Dates
 
-```
+```sql
 DATEDIFF(interval, date1, date2);
 
 interval - minute/hour/month/year,etc
 date1 & date2- date/time expression
 ```
 
-```
+```sql
 SELECT DATEDIFF(day, '2017-01-13', '2017-01-03') AS DateDiff;
 ```
 
 Format Date and Time
 
-```
+```sql
 DATE_FORMAT(date, format);
 ```
 
@@ -1283,38 +1283,38 @@ DATE_FORMAT(date, format);
 
 Concatenate Strings
 
-```
+```sql
 SELECT CONCAT('John', ' ', 'Doe') AS FullName;
 ```
 
 String Length
 
-```
+```sql
 SELECT CHAR_LENGTH('Hello') AS StringLength;
 ```
 
 Convert Text Case
 
-```
+```sql
 SELECT UPPER('hello') AS UpperCase;
 SELECT LOWER('HELLO') AS LowerCase;
 ```
 
 Length of String in Bytes
 
-```
+```sql
 SELECT LENGTH('Hello') AS LengthInBytes;
 ```
 
 Replace Substring in String
 
-```
+```sql
 SELECT REPLACE('Hello World', 'World', 'SQL') AS UpdatedString;
 ```
 
 Extract Part of a String
 
-```
+```sql
 SELECT SUBSTRING('Hello World', 1, 5) AS SubStringExample;
 ```
 
@@ -1323,31 +1323,31 @@ SELECT SUBSTRING('Hello World', 1, 5) AS SubStringExample;
 
 Absolute Value
 
-```
+```sql
 SELECT ABS(-25);
 ```
 
 Round Number Up
 
-```
+```sql
 SELECT CEIL(12.34);
 ```
 
 Round Number Down
 
-```
+```sql
 SELECT FLOOR(12.98);
 ```
 
 Round a Number to a Specified Decimal Place
 
-```
+```sql
 SELECT ROUND(15.6789, 2);
 ```
 
 Remove Decimal Places
 
-```
+```sql
 SELECT TRUNCATE(12.98765, 2);
 ```
 
@@ -1356,7 +1356,7 @@ SELECT TRUNCATE(12.98765, 2);
 
 TO_CHAR: Convert DATE or NUMBER to STRING
 
-```
+```sql
 -- Convert date to string
 SELECT TO_CHAR(SYSDATE, 'YYYY-MM-DD') FROM dual;
 
@@ -1366,20 +1366,20 @@ SELECT TO_CHAR(12345.678, '99999.99') FROM dual;
 
 TO_NUMBER: Convert STRING → NUMBER
 
-```
+```sql
 SELECT TO_NUMBER('12345.67', '99999.99') FROM dual;
 ```
 
 TO_DATE: Convert STRING → DATE
 
-```
+```sql
 SELECT TO_DATE('2025-06-16', 'YYYY-MM-DD') FROM dual;
 ```
 
 
 ## Subquery
 
-```
+```sql
 SELECT column_name
 FROM table_name
 WHERE column_name expression operator 
@@ -1393,7 +1393,7 @@ Correlated subquery- subquery that references columns from the outer query. It i
 
 list of expressions in a specified order and returns the first non-null value encountered
 
-```
+```sql
 SELECT COALESCE (NULL, 'X', 'Y') 
 AS RESULT ;
 ```
@@ -1403,13 +1403,13 @@ AS RESULT ;
 
 Least- returns the smallest (minimum) value from a list of expressions
 
-```
+```sql
 SELECT LEAST(10, 20, 30, 40) AS Least_Value;
 ```
 
 Greatest- returns the largest (maximum) value from a list of expressions.
 
-```
+```sql
 SELECT GREATEST(10, 20, 30, 40, 50) AS Greatest_Value;
 ```
 
@@ -1422,11 +1422,11 @@ SELECT GREATEST(10, 20, 30, 40, 50) AS Greatest_Value;
 - If two or more rows share the same values according to the specified criteria, they will receive the same rank.
 - In this scenario, the rank of the next row is incremented by the number of tied rows.
 
-```
+```sql
 RANK() OVER (PARTITION BY column1, column2, ... ORDER BY sort_column1, sort_column2, ...)
 ```
 
-```
+```sql
 SELECT *,
   RANK() OVER (PARTITION BY month ORDER BY amount DESC) AS rank
 FROM sales;
@@ -1437,7 +1437,7 @@ FROM Students;
 
 - no gaps between ranks in cases where multiple rows share the same values
 
-```
+```sql
 DENSE_RANK() OVER (PARTITION BY column1, column2, ... ORDER BY sort_column1, sort_column2, ...)
 ```
 
@@ -1445,7 +1445,7 @@ DENSE_RANK() OVER (PARTITION BY column1, column2, ... ORDER BY sort_column1, sor
 
 Assigns a unique number to each row within the partition (no ties).
 
-```
+```sql
 SELECT *,
   ROW_NUMBER() OVER (PARTITION BY employee ORDER BY month) AS row_num
 FROM sales;
@@ -1457,7 +1457,7 @@ Lag- Returns the previous row's value in the partition.
 
 Lead-         Returns the next row's value in the partition.
 
-```
+```sql
 SELECT *,
   LAG(amount) OVER (PARTITION BY employee ORDER BY month) AS previous_amount,
   LEAD(amount) OVER (PARTITION BY employee ORDER BY month) AS next_amount

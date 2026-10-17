@@ -4,7 +4,7 @@ NestJS is a progressive Node.js framework for building efficient, scalable, and 
 
 Dependency Injection- design pattern where an object receives its dependencies from an external source, instead of creating them itself
 
-```
+```typescript
 import { Controller, Get, Post, Body, Param, Query, Injectable, Module, NestModule, MiddlewareConsumer, NestFactory, Req, BadRequestException, Catch, ExceptionFilter, ArgumentsHost } from '@nestjs/common';
 import { IsString, validateSync } from 'class-validator';
 import { plainToInstance } from 'class-transformer';

@@ -61,7 +61,7 @@ Linux- OS built upon the Linux Kernel. based on the UNIX operating system
 
 # Shell Scripting
 
-```
+```bash
 # Shebang
 #!/bin/bash
 

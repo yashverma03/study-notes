@@ -9,7 +9,7 @@ which holds its own data members and member functions that can be accessed and u
 
 Classes do not use memory. They merely serve as a template from which items are made
 
-```
+```cpp
 class className {
 access_specifier:
 
@@ -31,17 +31,17 @@ instance of a class
 
 Memory is allocated when an object is created.
 
-```
+```cpp
 className objectName;
 ```
 
-```
+```cpp
 Car my_car;
 ```
 
 Member access
 
-```
+```cpp
 obj.member1 // For data members
 obj.member2(..) // For functions
 ```
@@ -78,7 +78,7 @@ pass arguments to constructors
 
 using namespace std;
 
-```
+```cpp
 class A {
 public:
     int val;
@@ -100,7 +100,7 @@ int main() {
 
 Using initialization list
 
-```
+```cpp
 class Demo {
     int a;
     int b;
@@ -121,7 +121,7 @@ takes a reference to an object of the same class as an argument
 
 Shallow copy- Copies only the pointer
 
-```
+```cpp
 #include <iostream>
 #include <cstring>
 using namespace std;
@@ -165,7 +165,7 @@ int main() {
 
 Deep copy- Copies actual data (creates new copy)
 
-```
+```cpp
 #include <iostream>
 #include <cstring>
 using namespace std;
@@ -219,7 +219,7 @@ Copy constructor is called
 
 instead of copying the object in the new memory, it makes use of move semantics to transfer the ownership of the already created object to the new object without creating extra copies
 
-```
+```cpp
 #include <iostream>
 #include <vector>
 using namespace std; 
@@ -261,7 +261,7 @@ Whenever we want to prevent the destruction of an object, we can make the destru
 
 Cannot be overloaded
 
-```
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -305,12 +305,12 @@ Can be called directly through the class without creating any objects
 
 Can be accessed using Scope Resolution Operator or through objects
 
-```
+```cpp
 Class_Name :: var_name
 A::x;
 ```
 
-```
+```cpp
 object_name . var_name
 obj.x;
 ```
@@ -322,7 +322,7 @@ pointer that points to the current instance of a class
 
 used within the member functions of a class to refer to the object of that class
 
-```
+```cpp
 class A {
     int n;
     A(int n) {
@@ -336,7 +336,7 @@ class A {
 
 A friend class can access private and protected members of other classes in which it is declared as a friend
 
-```
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -381,7 +381,7 @@ int main() {
 
 A friend function can be granted special access to private and protected members of a class
 
-```
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -445,7 +445,7 @@ restricts direct access to some of the object's components, which is a means of 
 
 ![](../assets/oops/encapsulation-methods-variables-class.png)
 
-```
+```cpp
 #include <iostream>
 
 using namespace std;
@@ -495,7 +495,7 @@ Achieved using abstract classes (with pure virtual functions)
 
 ![](../assets/oops/abstraction-input-output-black-box.png)
 
-```
+```cpp
 #include <iostream>
 #include <string>
 
@@ -538,7 +538,7 @@ int main() {
 
 new class inherits properties and behaviors (methods) from an existing class
 
-```
+```cpp
 class DerivedClass : mode_of_inheritance BaseClass {
     // Body of the Derived Class
 }
@@ -550,7 +550,7 @@ Mode of inheritance
 - Protected- Both public and protected members of the base class will become protected in the derived class
 - Private- Both public members and protected members of the base class will become private in the derived class
 
-```
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -610,7 +610,7 @@ compiler determines how the function or operator will work depending on the cont
 
 two or more functions can have the same name but behave differently for different parameters
 
-```
+```cpp
 class Geeks {
 public:
     
@@ -632,7 +632,7 @@ public:
 
 giving special meaning to an existing operator in C++ without changing its original meaning
 
-```
+```cpp
 class Number {
 public:
     int value;
@@ -664,7 +664,7 @@ the function call in runtime polymorphism is resolved at runtime
 
 Function Overriding occurs when a derived class defines one or more member functions of the base class. That base function is said to be overridden. The base class function must be declared as virtual function for runtime polymorphism to happen
 
-```
+```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -729,7 +729,7 @@ Working of virtual function
 - For every class with virtual functions, the compiler creates a vtable (virtual table) — a table of pointers to virtual functions. Each class has its own vtable.
 - Each object of a class with virtual functions contains a hidden pointer, called vptr (virtual pointer), which points to that class’s vtable
 
-```
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -770,7 +770,7 @@ Virtual Destructor- Deleting a derived class object using a pointer of base clas
 
 Virtual Constructor- C++ constructors cannot be declared virtual. Use factory pattern
 
-```
+```cpp
 class Shape {
 public:
     virtual Shape* create() const = 0;  // acts like a "virtual constructor"
@@ -809,7 +809,7 @@ An interface does not have an implementation of any of its methods, it can be co
 | An abstract class can have final, non-final, static and non-static variables. | The interface has only static and final variables. |
 | Abstract class doesn't support multiple inheritance | An interface supports multiple inheritance. |
 
-```
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -839,7 +839,7 @@ int main() {
 
 Pure Virtual Destructor
 
-```
+```cpp
 // C++ program to demonstrate if the value of
 // of pure virtual destructor are provided
 // then the program compiles & runs fine.

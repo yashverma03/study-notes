@@ -72,7 +72,7 @@ Hypervisor- software that allows you to run multiple virtual machines (VMs) on a
 
 Dockerfile
 
-```
+```dockerfile
 # Use official Node image
 FROM node:18-alpine
 
@@ -96,7 +96,7 @@ Docker compose
 - tool for defining and running multi-container Docker applications
 - docker-compose.yml
 
-```
+```yaml
 # ================================================
 # Docker Compose file for Node.js + MySQL + Redis
 # Version: 3.8 (stable for production use)

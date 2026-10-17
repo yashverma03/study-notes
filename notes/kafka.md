@@ -18,7 +18,7 @@ Components
 
 Commands
 
-```
+```bash
 # Create a topic named 'orders' with 3 partitions and replication factor 1
 kafka-topics.sh --create \
   --topic orders \
@@ -61,7 +61,7 @@ kafka-console-consumer.sh \
 
 Example
 
-```
+```typescript
 import { Injectable, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
 import { Kafka, Consumer, Producer } from 'kafkajs';
 

@@ -13,7 +13,7 @@ Alternatives: Nginx, Apache HTTP Server
 
 # Example
 
-```
+```caddyfile
 #############################################
 # GLOBAL OPTIONS BLOCK
 #############################################
@@ -165,7 +165,7 @@ http://old-domain.com {
 }
 ```
 
-```
+```caddyfile
 # Main domain (Frontend)
 {env.MAIN_DOMAIN} {
     reverse_proxy localhost:{env.FRONTEND_PORT}
