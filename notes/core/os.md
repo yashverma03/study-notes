@@ -77,7 +77,7 @@ System Call
 - A system call is a way for programs to interact with the operating system
 - System calls are the only entry points into the kernel system and are executed in kernel mode
 
-![](../assets/os/system-call-types-tree.png)
+![](../../assets/core/os/system-call-types-tree.png)
 
 Dual Mode operations
 
@@ -85,7 +85,7 @@ Dual Mode operations
 - When the system boots, the hardware starts in kernel mode and when the operating system is loaded, it starts the user application in user mode.
 - To provide protection to the hardware, we have privileged instructions which execute only in kernel mode
 
-![](../assets/os/dual-mode-user-kernel-switch.png)
+![](../../assets/core/os/dual-mode-user-kernel-switch.png)
 
 Privileged Instructions
 
@@ -109,7 +109,7 @@ Interrupt
 
 ## Process Operations
 
-![](../assets/os/process-operations-lifecycle.png)
+![](../../assets/core/os/process-operations-lifecycle.png)
 
 Process Creation- Process creation in an operating system (OS) is the act of generating a new process. This new process is an instance of a program that can execute independently.
 
@@ -119,13 +119,13 @@ Execution- CPU starts working on the process. During this time, the process migh
 
 Killing the Process- After the process finishes its tasks, the operating system ends it and removes its Process Control Block (PCB)
 
-![](../assets/os/process-state-transition-diagram.png)
+![](../../assets/core/os/process-state-transition-diagram.png)
 
 Context Switching- The process of saving the context of one process and loading the context of another process
 
 Process Control Block (PCB)- data structure in the operating system that contains information about a specific process, including its current state, resources, and CPU context
 
-![](../assets/os/process-control-block-fields.png)
+![](../../assets/core/os/process-control-block-fields.png)
 
 Process Table- array of PCBs, which logically contains a PCB for all of the current processes in the system
 
@@ -165,7 +165,7 @@ responsible for deciding which process should run next on the CPU (process sched
 - temporarily removes processes from main memory (RAM) and moves them to secondary storage (swap space). This is called swapping out.
 - It later restores them (swaps in) when enough memory becomes available
 
-![](../assets/os/long-short-term-scheduler-queues.png)
+![](../../assets/core/os/long-short-term-scheduler-queues.png)
 
 Dispatcher
 
@@ -185,7 +185,7 @@ Terminologies
 
 ### Algorithms
 
-![](../assets/os/cpu-scheduling-algorithms-tree.png)
+![](../../assets/core/os/cpu-scheduling-algorithms-tree.png)
 
 1\. FCFS – First Come, First Serve
 
@@ -320,7 +320,7 @@ Livelock
 
 # Memory Management
 
-![](../assets/os/memory-hierarchy-pyramid.png)
+![](../../assets/core/os/memory-hierarchy-pyramid.png)
 
 - Memories are made up of registers
 - Each register in the memory is one storage location, called memory location
@@ -329,7 +329,7 @@ Livelock
 - A storage element is called a Cell
 - Each register is made up of a storage element in which one bit of data is stored.
 
-![](../assets/os/memory-measurement-units-table.png)
+![](../../assets/core/os/memory-measurement-units-table.png)
 
 
 ## Cache Memory

@@ -66,7 +66,7 @@ Long.MAX_VALUE  //  9223372036854775807  (2^63 - 1)
 
 ## Operators
 
-![](../assets/java/java-operator-types-overview.png)
+![](../../assets/tech/java/java-operator-types-overview.png)
 
 Arithmetic Right Shift (>>): copies the sign bit (the leftmost bit). Negative numbers stay negative, positive stay positive.
 
@@ -366,7 +366,7 @@ public class Main {
 
 Java doesn't support the Operator Overloading
 
-![](../assets/java/polymorphism-compile-time-vs-runtime.png)
+![](../../assets/tech/java/polymorphism-compile-time-vs-runtime.png)
 
 ```java
 // ---------- Compile-Time Polymorphism (Overloading) ----------

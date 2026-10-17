@@ -30,7 +30,7 @@ Types
 1. Physical level data independence- modify the physical schema without any alterations to the conceptual or logical schema
 2. Logical Level Data Independence- modify the logical schema without affecting the external schema or application program
 
-![](../assets/dbms/data-independence-three-schema-levels.png)
+![](../../assets/core/dbms/data-independence-three-schema-levels.png)
 
 
 # Entity-Relationship Model (ER Model)
@@ -39,9 +39,9 @@ Types
 - Attribute: Properties that describe an entity such as StudentID, CourseName, or EmployeeEmail.
 - Relationship: A connection between entities such as "a Student enrolls in a Course".
 
-![](../assets/dbms/er-model-components-overview.png)
+![](../../assets/core/dbms/er-model-components-overview.png)
 
-![](../assets/dbms/er-diagram-symbols-table.png)
+![](../../assets/core/dbms/er-diagram-symbols-table.png)
 
 
 ## Entity
@@ -58,7 +58,7 @@ Types
 - It depends on a strong entity to be identified.
 - A weak entity is associated with an identifying entity (strong entity), which helps in its identification.
 
-![](../assets/dbms/weak-entity-employee-dependants.png)
+![](../../assets/core/dbms/weak-entity-employee-dependants.png)
 
 
 ## Attributes
@@ -67,25 +67,25 @@ Types
 
 The attribute which uniquely identifies each entity in the entity set
 
-![](../assets/dbms/key-attribute-roll-no.png)
+![](../../assets/core/dbms/key-attribute-roll-no.png)
 
 2\. Composite Attribute
 
 An attribute composed of many other attributes
 
-![](../assets/dbms/composite-attribute-address.png)
+![](../../assets/core/dbms/composite-attribute-address.png)
 
 3\. Multivalued Attribute
 
 attribute consisting of more than one value for a given entity.
 
-![](../assets/dbms/multivalued-attribute-phone-no.png)
+![](../../assets/core/dbms/multivalued-attribute-phone-no.png)
 
 4\. Derived Attribute
 
 An attribute that can be derived from other attributes of the entity type
 
-![](../assets/dbms/derived-attribute-age.png)
+![](../../assets/core/dbms/derived-attribute-age.png)
 
 
 ## Cardinality
@@ -94,25 +94,25 @@ An attribute that can be derived from other attributes of the entity type
 
 When each entity in each entity set can take part only once in the relationship
 
-![](../assets/dbms/one-to-one-surgeon-hod.png)
+![](../../assets/core/dbms/one-to-one-surgeon-hod.png)
 
 2\. One-to-Many
 
 each entity can be related to more than one entity
 
-![](../assets/dbms/one-to-many-department-doctors.png)
+![](../../assets/core/dbms/one-to-many-department-doctors.png)
 
 3\. Many-to-One
 
 When entities in one entity set can take part only once in the relationship set and entities in other entity sets can take part more than once in the relationship set
 
-![](../assets/dbms/many-to-one-surgeries-surgeon.png)
+![](../../assets/core/dbms/many-to-one-surgeries-surgeon.png)
 
 4\. Many-to-Many
 
 When entities in all entity sets can take part more than once in the relationship
 
-![](../assets/dbms/many-to-many-employees-projects.png)
+![](../../assets/core/dbms/many-to-many-employees-projects.png)
 
 Many to many requires 3 tables, while other relationships requires 2 tables
 
@@ -123,7 +123,7 @@ Many to many requires 3 tables, while other relationships requires 2 tables
 
 2\. Partial Participation- The entity in the entity set may or may not participate in the relationship
 
-![](../assets/dbms/total-participation-student-course.png)
+![](../../assets/core/dbms/total-participation-student-course.png)
 
 
 # Relational Model
@@ -320,7 +320,7 @@ series of operations that are executed together as a single unit to perform a ta
 
 Data is temporary stored in memory (buffer)
 
-![](../assets/dbms/transaction-states-diagram.png)
+![](../../assets/core/dbms/transaction-states-diagram.png)
 
 
 ## ACID Properties
@@ -436,7 +436,7 @@ Lock- It is a variable associated with a data item that indicates whether it is 
 
 process of lining the transactions and executing them one by one.
 
-![](../assets/dbms/types-of-schedules-hierarchy.png)
+![](../../assets/core/dbms/types-of-schedules-hierarchy.png)
 
 Conflict Serializability guarantees that even though transactions run concurrently, their outcome will be identical to the result achieved if the transactions were executed one by one in a specific order.
 
@@ -463,7 +463,7 @@ Types
 - All leaf nodes of a B tree are at the same level, i.e. they have the same depth (height of the tree).
 - The keys of each node of a B tree (in case of multiple keys), should be stored in the ascending order.
 
-![](../assets/dbms/b-tree-order-example.png)
+![](../../assets/core/dbms/b-tree-order-example.png)
 
 
 ## B+ Tree
@@ -472,7 +472,7 @@ Types
 - self-balancing
 - used by modern relational database
 
-![](../assets/dbms/b-plus-tree-leaf-data-pointers.png)
+![](../../assets/core/dbms/b-plus-tree-leaf-data-pointers.png)
 
 
 # Structured Query Language (SQL)
@@ -510,7 +510,7 @@ Data Types
   - XML
   - GEOMETRY
 
-![](../assets/dbms/sql-command-categories-ddl-dml-dcl-tcl.png)
+![](../../assets/core/dbms/sql-command-categories-ddl-dml-dcl-tcl.png)
 
 
 ## Transaction

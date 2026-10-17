@@ -2,7 +2,7 @@
 
 Linux- OS built upon the Linux Kernel. based on the UNIX operating system
 
-![](../assets/linux/linux-root-directory-structure.png)
+![](../../assets/tech/linux/linux-root-directory-structure.png)
 
 
 ## File permissions

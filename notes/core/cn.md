@@ -39,7 +39,7 @@ Gateway- Connects two different systems or networks that use different protocols
 
 Network topology
 
-![](../assets/cn/network-topology-types.png)
+![](../../assets/core/cn/network-topology-types.png)
 
 
 ## VPN (Virtual Private Network)
@@ -54,7 +54,7 @@ Network topology
 
 Transmission Control Protocol/Internet Protocol is a four-layer networking framework
 
-![](../assets/cn/osi-vs-tcp-ip-layer-mapping.png)
+![](../../assets/core/cn/osi-vs-tcp-ip-layer-mapping.png)
 
 
 # OSI Model (Open Systems Interconnection)
@@ -392,7 +392,7 @@ DNS attacks
 
 Components of URL
 
-![](../assets/cn/url-components-breakdown.png)
+![](../../assets/core/cn/url-components-breakdown.png)
 
 Bluetooth- wireless communication technology used to exchange data over short distances (\~10 metre) between devices like smartphones, laptops, speakers, headphones, and IoT devices using radio waves
 

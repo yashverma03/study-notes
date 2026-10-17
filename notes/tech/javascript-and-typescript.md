@@ -271,7 +271,7 @@ Working
 
 structure of a web page as a tree of objects, where each element, attribute, and piece of text is a node in that tree
 
-![](../assets/javascript-and-typescript/html-document-dom-tree.png)
+![](../../assets/tech/javascript-and-typescript/html-document-dom-tree.png)
 
 | Method | Description |
 | --- | --- |

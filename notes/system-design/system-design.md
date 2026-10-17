@@ -847,7 +847,7 @@ Use cases
 
 ### Types
 
-![](../assets/system-design/forward-proxy-vs-reverse-proxy.png)
+![](../../assets/system-design/system-design/forward-proxy-vs-reverse-proxy.png)
 
 1\. Forward Proxy
 
@@ -921,7 +921,7 @@ Caching stores frequently accessed data in a fast-access storage layer (memory/d
 - On write: App writes to the DB, then invalidates or updates the cache manually.
 - Eg: ecommerce (reads are more frequent than writes)
 
-![](../assets/system-design/cache-aside-strategy-flow.png)
+![](../../assets/system-design/system-design/cache-aside-strategy-flow.png)
 
 2\. Read-Through
 
@@ -931,7 +931,7 @@ Caching stores frequently accessed data in a fast-access storage layer (memory/d
 - On write: Cache also updates the DB.
 - Eg: social media applications
 
-![](../assets/system-design/read-through-cache-flow.png)
+![](../../assets/system-design/system-design/read-through-cache-flow.png)
 
 3\. Write-Through
 
@@ -940,7 +940,7 @@ Caching stores frequently accessed data in a fast-access storage layer (memory/d
 - On read: Same as read-through or direct cache read.
 - Eg: banking applications
 
-![](../assets/system-design/write-through-cache-flow.png)
+![](../../assets/system-design/system-design/write-through-cache-flow.png)
 
 4\. Write-Back (Write-Behind)
 
@@ -950,7 +950,7 @@ Caching stores frequently accessed data in a fast-access storage layer (memory/d
 - On read: Reads from cache.
 - Eg: Content Management System (CMS)
 
-![](../assets/system-design/write-back-cache-flow.png)
+![](../../assets/system-design/system-design/write-back-cache-flow.png)
 
 5\. Write-Around
 
@@ -959,7 +959,7 @@ Caching stores frequently accessed data in a fast-access storage layer (memory/d
 - Cache is updated only when a read occurs (lazy loading).
 - Eg: Cloud Storage Service.
 
-![](../assets/system-design/write-around-cache-flow.png)
+![](../../assets/system-design/system-design/write-around-cache-flow.png)
 
 ### Cache Eviction Policies
 
@@ -1279,9 +1279,9 @@ Visibility Notation
 - bi-directional relationship between two classes.
 - It indicates that instances of one class are connected to instances of another class.
 
-![](../assets/system-design/uml-association-library-books.png)
+![](../../assets/system-design/system-design/uml-association-library-books.png)
 
-![](../assets/system-design/uml-directed-association-teacher-course.png)
+![](../../assets/system-design/system-design/uml-directed-association-teacher-course.png)
 
 2\. Aggregation
 
@@ -1289,7 +1289,7 @@ Visibility Notation
 - A whole-part relationship
 - The part can exist independently of the whole
 
-![](../assets/system-design/uml-aggregation-company-employee.png)
+![](../../assets/system-design/system-design/uml-aggregation-company-employee.png)
 
 3\. Composition
 
@@ -1297,48 +1297,48 @@ Visibility Notation
 - A stronger form of aggregation
 - The part cannot exist without the whole.
 
-![](../assets/system-design/uml-composition-contact-book.png)
+![](../../assets/system-design/system-design/uml-composition-contact-book.png)
 
 4\. Inheritance (Generalization)
 
 - Is-a relationship
 - One class is a subtype of another
 
-![](../assets/system-design/uml-generalization-bank-accounts.png)
+![](../../assets/system-design/system-design/uml-generalization-bank-accounts.png)
 
 5\. Dependency
 
 - one class relies on another, but the relationship is not as strong as association or inheritance
 
-![](../assets/system-design/uml-dependency-person-book.png)
+![](../../assets/system-design/system-design/uml-dependency-person-book.png)
 
 
 ## State Machine Diagram
 
 Shows an object's states and transitions between them
 
-![](../assets/system-design/state-machine-user-verification.png)
+![](../../assets/system-design/system-design/state-machine-user-verification.png)
 
 
 ## Activity Diagrams
 
 Like a flowchart — shows workflow/process logic, branching, parallel flows
 
-![](../assets/system-design/activity-diagram-decision-node.png)
+![](../../assets/system-design/system-design/activity-diagram-decision-node.png)
 
 
 ## Use Case Diagrams
 
 High-level view of actors (users/systems) and what actions they can perform
 
-![](../assets/system-design/use-case-online-shopping-system.png)
+![](../../assets/system-design/system-design/use-case-online-shopping-system.png)
 
 
 ## Sequence Diagram
 
 Shows how objects interact over time — method calls, order of execution
 
-![](../assets/system-design/sequence-diagram-mood-playlist.png)
+![](../../assets/system-design/system-design/sequence-diagram-mood-playlist.png)
 
 
 ## SOLID Principles
@@ -1572,7 +1572,7 @@ Components
 - Creator- Interface/abstract class that declares the factory method createVehicle() and may contain business logic. Eg: VehicleFactory
 - Concrete Creator- Subclass of Creator that overrides the factory method to return a specific Concrete Product. Eg: CarFactory, BikeFactory
 
-![](../assets/system-design/factory-pattern-vehicle-class-structure.png)
+![](../../assets/system-design/system-design/factory-pattern-vehicle-class-structure.png)
 
 ```java
 import java.util.Scanner;
@@ -5555,7 +5555,7 @@ final class Main {
 
 ## URL Shortener (bit.ly, TinyURL)
 
-![](../assets/system-design/url-shortener-architecture-flow.png)
+![](../../assets/system-design/system-design/url-shortener-architecture-flow.png)
 
 - Use base62 encoding of auto incrementing id
 - A central counter (Redis INCR or a DB sequence) hands out ranges, not single IDs. E.g. app server A gets 1,000,000 to 1,999,999, server B gets 2,000,000 to 2,999,999. Each app server increments locally in memory, so no network call per request. When its range runs out, it fetches a new one.

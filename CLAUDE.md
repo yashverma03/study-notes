@@ -4,13 +4,18 @@ Personal technical study notes for interview preparation.
 
 ## Structure
 
-- `notes/` — Markdown files containing study notes, one topic per file.
-- `assets/` — Images and other media referenced by notes (diagrams should use Mermaid instead, see below). Scoped per note: each note with images gets its own subfolder under `assets/` named after the note, e.g. `assets/load-balancer-architecture/`, containing only that note's images.
+- `notes/` — Markdown files containing study notes, one topic per file, grouped into category folders:
+  - `notes/dsa/` — data structures & algorithms notes, e.g. `dsa.md`.
+  - `notes/system-design/` — system design notes, e.g. `system-design.md`.
+  - `notes/core/` — core CS fundamentals, e.g. `dbms.md`, `os.md`, `cn.md`, `oops.md`.
+  - `notes/tech/` — technology/language/framework notes, e.g. `java.md`, `react-js.md`, `docker.md`. This is the catch-all for anything that isn't DSA, system design, or a core CS fundamental.
+  - These categories aren't fixed — if a note doesn't fit any existing category, a new category folder can be added under `notes/`.
+- `assets/` — Images and other media referenced by notes (diagrams should use Mermaid instead, see below). Mirrors the `notes/` category structure: `assets/<category>/<note-name>/`, scoped per note, containing only that note's images, e.g. `assets/tech/load-balancer-architecture/`, `assets/core/os/`, `assets/dsa/dsa/`.
 
 ## File naming
 
 - All files in `notes/` and `assets/` use kebab-case, e.g. `java.md`, `system-design.md`, `hashmap-vs-treemap.md`, `java-garbage-collection.md`.
-- Each note's image subfolder under `assets/` is named identically (kebab-case) to its note file, e.g. `notes/load-balancer-architecture.md` → `assets/load-balancer-architecture/`. Images inside it must have meaningful, descriptive kebab-case names reflecting what the image actually shows, e.g. `assets/load-balancer-architecture/round-robin-diagram.png` — never generic/non-descriptive names like `image-1.png` or `img1.png`.
+- Each note's image subfolder under `assets/` is named identically (kebab-case) to its note file, nested under the same category, e.g. `notes/tech/load-balancer-architecture.md` → `assets/tech/load-balancer-architecture/`. Images inside it must have meaningful, descriptive kebab-case names reflecting what the image actually shows, e.g. `assets/tech/load-balancer-architecture/round-robin-diagram.png` — never generic/non-descriptive names like `image-1.png` or `img1.png`.
 
 ## Required structure for every note
 
@@ -56,7 +61,7 @@ Whenever a heading is added, removed, or renamed, update the Index section in th
 
 - Prefer Mermaid diagrams (fenced ```mermaid blocks) over static images for flowcharts, sequence diagrams, class diagrams, etc.
 - Use the `assets/` folder only for images that can't reasonably be expressed as a Mermaid diagram.
-- Reference images from `assets/` using a relative path into that note's own subfolder (e.g. `![Load balancer architecture](../assets/load-balancer-architecture/round-robin-diagram.png)`), never an absolute path.
+- Reference images from `assets/` using a relative path into that note's own subfolder under the matching category (e.g. from `notes/tech/load-balancer-architecture.md`: `![Load balancer architecture](../../assets/tech/load-balancer-architecture/round-robin-diagram.png)`), never an absolute path.
 
 ## Working with these files (context management)
 

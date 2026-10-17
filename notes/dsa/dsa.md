@@ -128,7 +128,7 @@ Modular Division
 
 Modular Exponentiation
 
-![](../assets/dsa/modular-exponentiation-recursive-formula.png)
+![](../../assets/dsa/dsa/modular-exponentiation-recursive-formula.png)
 
 
 ## GCD (Greatest Common Divisor)
@@ -921,7 +921,7 @@ void quickSort(vector<int>& arr, int low, int high) {
 
 ## Time and Space Complexity Comparison Table
 
-![](../assets/dsa/sorting-algorithms-complexity-comparison-table.png)
+![](../../assets/dsa/dsa/sorting-algorithms-complexity-comparison-table.png)
 
 
 # Recursion
@@ -1460,27 +1460,27 @@ Properties
 
 Complete Binary Tree- all the levels are completely filled except possibly the last level and the last level has all keys as left as possible
 
-![](../assets/dsa/complete-binary-tree-example.png)
+![](../../assets/dsa/dsa/complete-binary-tree-example.png)
 
 Perfect Binary Tree- all the internal nodes have two children and all leaf nodes are at the same level.
 
-![](../assets/dsa/perfect-binary-tree-example.png)
+![](../../assets/dsa/dsa/perfect-binary-tree-example.png)
 
 Balanced Binary Tree- difference between the height of the left and the right subtree for each node is either 0 or 1. Height will be O(log n)
 
-![](../assets/dsa/balanced-vs-unbalanced-binary-tree.png)
+![](../../assets/dsa/dsa/balanced-vs-unbalanced-binary-tree.png)
 
 Full Binary Tree- binary tree with either zero or two child nodes for each node
 
-![](../assets/dsa/full-binary-tree-example.png)
+![](../../assets/dsa/dsa/full-binary-tree-example.png)
 
 Degenerate Binary Tree/ Skewed Binary Tree- Every non-leaf node has just one child. They are either left or right skewed
 
-![](../assets/dsa/left-and-right-skewed-binary-trees.png)
+![](../../assets/dsa/dsa/left-and-right-skewed-binary-trees.png)
 
 N-ary Tree- each node can have at most N children
 
-![](../assets/dsa/n-ary-tree-printed-graphically.png)
+![](../../assets/dsa/dsa/n-ary-tree-printed-graphically.png)
 
 
 ## Traversals
@@ -2258,44 +2258,44 @@ Null Graph- no edges in the graph
 
 Trivial Graph- only a single vertex, it is also the smallest graph possible
 
-![](../assets/dsa/null-and-trivial-graph.png)
+![](../../assets/dsa/dsa/null-and-trivial-graph.png)
 
 Undirected Graph- edges do not have any direction
 
 Directed Graph- edge has direction
 
-![](../assets/dsa/undirected-and-directed-graph.png)
+![](../../assets/dsa/dsa/undirected-and-directed-graph.png)
 
 Connected Graph- in which from one node we can visit any other node in the graph
 
 Disconnected Graph- at least one node is not reachable from a node
 
-![](../assets/dsa/connected-and-disconnected-graph.png)
+![](../../assets/dsa/dsa/connected-and-disconnected-graph.png)
 
 Regular Graph- degree of every vertex is equal to K is called K regular graph
 
 Complete Graph- The graph in which from each node there is an edge to each other node
 
-![](../assets/dsa/regular-and-complete-graph.png)
+![](../../assets/dsa/dsa/regular-and-complete-graph.png)
 
 Cycle Graph- The graph in which the graph is a cycle in itself, the minimum value of degree of each vertex is 2
 
 Cyclic Graph- graph containing at least one cycle
 
-![](../assets/dsa/cycle-and-cyclic-graph.png)
+![](../../assets/dsa/dsa/cycle-and-cyclic-graph.png)
 
 Directed Acyclic Graph- A Directed Graph that does not contain any cycle
 
 Bipartite Graph- A graph in which vertex can be divided into two sets such that vertex in each set does not contain any edge between them
 
-![](../assets/dsa/directed-acyclic-and-bipartite-graph.png)
+![](../../assets/dsa/dsa/directed-acyclic-and-bipartite-graph.png)
 
 
 ## Representation
 
 Adjacency Matrix
 
-![](../assets/dsa/graph-adjacency-matrix-representation.png)
+![](../../assets/dsa/dsa/graph-adjacency-matrix-representation.png)
 
 ```cpp
 void addEdge(vector<vector<int>> &mat, int i, int j)
@@ -2318,7 +2318,7 @@ void displayMatrix(vector<vector<int>> &mat)
 
 Adjacency List
 
-![](../assets/dsa/graph-adjacency-list-representation.png)
+![](../../assets/dsa/dsa/graph-adjacency-list-representation.png)
 
 ```cpp
 // Function to add an edge between two vertices
@@ -2845,7 +2845,7 @@ void floydWarshall(vector<vector<int>> &dist) {
 - MST- spanning tree with the smallest possible total edge weight
 - No of edges (E) = V-1
 
-![](../assets/dsa/minimum-spanning-tree-directed-graph.png)
+![](../../assets/dsa/dsa/minimum-spanning-tree-directed-graph.png)
 
 
 ## Prim’s Algorithm

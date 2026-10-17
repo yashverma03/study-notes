@@ -331,7 +331,7 @@ Prop Drilling- practice of passing data through several layers of nested compone
 
 different phases a component goes through during its time
 
-![](../assets/react-js/react-component-lifecycle-phases.png)
+![](../../assets/tech/react-js/react-component-lifecycle-phases.png)
 
 - Mounting: Initializes, renders, and mounts the component (componentDidMount()).
 - Updating: Handles state/prop changes, re-renders, and updates (componentDidUpdate()).

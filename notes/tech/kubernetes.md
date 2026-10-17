@@ -46,7 +46,7 @@ Components
 
 ## Architecture
 
-![](../assets/kubernetes/master-and-worker-nodes-architecture.png)
+![](../../assets/tech/kubernetes/master-and-worker-nodes-architecture.png)
 
 ### Control Plane Components
 
@@ -70,7 +70,7 @@ nodes where the actual work happens. Each Node can have multiple pods and pods h
 
 3\. kube-proxy- forwarding the request from Services to the pods
 
-![](../assets/kubernetes/control-plane-and-node-components.png)
+![](../../assets/tech/kubernetes/control-plane-and-node-components.png)
 
 
 ## Helm Chart

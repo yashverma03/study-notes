@@ -9,7 +9,7 @@ cout << (int)c << endl;
 
 Type Modifiers
 
-![](../assets/c-plus-plus/type-modifiers-signed-unsigned-long-short.png)
+![](../../assets/tech/c-plus-plus/type-modifiers-signed-unsigned-long-short.png)
 
 Basic Input / Output
 
@@ -196,7 +196,7 @@ Memory Leaks- program allocates memory dynamic memory but forgets to deallocate 
 
 Memory layout
 
-![](../assets/c-plus-plus/program-memory-layout-segments.png)
+![](../../assets/tech/c-plus-plus/program-memory-layout-segments.png)
 
 
 ## File Handling

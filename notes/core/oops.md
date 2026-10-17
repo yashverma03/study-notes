@@ -443,7 +443,7 @@ Bundling of data (attributes) and methods (functions) that operate on the data i
 
 restricts direct access to some of the object's components, which is a means of preventing accidental interference and misuse of the data, using access modifiers like private, protected, and public
 
-![](../assets/oops/encapsulation-methods-variables-class.png)
+![](../../assets/core/oops/encapsulation-methods-variables-class.png)
 
 ```cpp
 #include <iostream>
@@ -493,7 +493,7 @@ hiding the complex implementation details and showing only the essential feature
 
 Achieved using abstract classes (with pure virtual functions)
 
-![](../assets/oops/abstraction-input-output-black-box.png)
+![](../../assets/core/oops/abstraction-input-output-black-box.png)
 
 ```cpp
 #include <iostream>
@@ -578,7 +578,7 @@ int main() {
 
 Types
 
-![](../assets/oops/inheritance-types-class-hierarchy.png)
+![](../../assets/core/oops/inheritance-types-class-hierarchy.png)
 
 static variables and methods are shared across all instances of the class
 
@@ -600,7 +600,7 @@ Polymorphism allows objects of different classes to be treated as objects of a c
 
 ### Types:
 
-![](../assets/oops/polymorphism-compile-time-vs-run-time.png)
+![](../../assets/core/oops/polymorphism-compile-time-vs-run-time.png)
 
 ### 1. Compile-Time Polymorphism
 
