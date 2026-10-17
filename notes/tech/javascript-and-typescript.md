@@ -309,7 +309,7 @@ provides access to browser-specific objects that allow JavaScript to interact wi
 key-value pair stored in the browser and sent to the server with every HTTP request
 
 ```javascript
-document.cookie = "username=Yash; expires=Fri, 31 Dec 2025 23:59:59 UTC; path=/";
+document.cookie = "username=John; expires=Fri, 31 Dec 2025 23:59:59 UTC; path=/";
 ```
 
 Attributes
@@ -362,9 +362,9 @@ getPost();
 
 ```xml
 <user>
-  <name>Yash</name>
+  <name>John</name>
   <age>24</age>
-  <email>yash@example.com</email>
+  <email>john.doe@example.com</email>
 </user>
 ```
 

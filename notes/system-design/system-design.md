@@ -2456,7 +2456,7 @@ class Main {
     public static void main(String[] args) {
         // Select a payment method (can come from user input, config, etc.)
         CreditCardPayment creditCard = new CreditCardPayment("4111111111111234");
-        UpiPayment upi = new UpiPayment("yash@okhdfcbank");
+        UpiPayment upi = new UpiPayment("john@okhdfcbank");
 
         PaymentContext payment = new PaymentContext(creditCard);
         payment.checkout(1500); // -> Using Credit Card
@@ -4458,7 +4458,7 @@ final class Main {
         oService.addAgent(new DeliveryAgent(2, "Ajay", "8888888888"));
 
         // Setup customer
-        final Customer cust = new Customer(1, "Yash", "7777777777", "Delhi");
+        final Customer cust = new Customer(1, "John", "7777777777", "Delhi");
 
         // Browse
         rManager.listRestaurants();
@@ -4757,7 +4757,7 @@ final class Main {
         t1.addShow(show1);
 
         // Users
-        final Customer user = new Customer(1, "Yash", "yash@example.com", "1234567890");
+        final Customer user = new Customer(1, "John", "john.doe@example.com", "1234567890");
         final Admin admin = new Admin(2, "Admin", "admin@pvr.com", "0000000000");
 
         // View shows
@@ -4901,7 +4901,7 @@ final class NotificationSender {
 final class Main {
     public static void main(final String[] args) {
         // User
-        final User user = new User(1, "Yash", "yash@example.com", "9999999999");
+        final User user = new User(1, "John", "john.doe@example.com", "9999999999");
 
         // Factory + Strategy
         final INotificationChannel email = NotificationFactory.createChannel("email");
@@ -5478,7 +5478,7 @@ final class Main {
         platform.addProduct(new Product(3, "AirPods Pro", new BigDecimal("24999.0")));
 
         // Register a user
-        final User user = new User(1, "Yash");
+        final User user = new User(1, "John");
         platform.registerUser(user);
 
         // User interaction

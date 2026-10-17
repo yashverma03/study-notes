@@ -87,7 +87,7 @@ def introduce(**kwargs):
     for key, value in kwargs.items():
         print(f"{key}: {value}")
 
-introduce(name="Yash", age=23, city="Delhi")
+introduce(name="John", age=23, city="Delhi")
 ```
 
 Pass by Reference- Mutable objects (list, dict)
@@ -397,7 +397,7 @@ print(res)
 ```python
 class User:
     def __init__(self):
-        self.name = "Yash"
+        self.name = "John"
         self.age = 22
 
 u = User()
@@ -407,7 +407,7 @@ print(hasattr(u, "name"))   # True
 print(hasattr(u, "city"))   # False
 
 # --- getattr ---
-print(getattr(u, "name"))           # Yash
+print(getattr(u, "name"))           # John
 print(getattr(u, "city", "Unknown"))  # Unknown (default)
 
 # --- setattr ---

@@ -56,7 +56,7 @@ export class AppService implements OnModuleInit {
 
   async onModuleInit() {
     // ✅ CREATE
-    const user = this.userRepo.create({ name: 'Yash' });
+    const user = this.userRepo.create({ name: 'John' });
     await this.userRepo.save(user);
 
     const post = this.postRepo.create({ title: 'Hello TypeORM', author: user });
@@ -67,7 +67,7 @@ export class AppService implements OnModuleInit {
     console.log('🔍 Users with posts:', users);
 
     // ✅ UPDATE
-    await this.userRepo.update({ name: 'Yash' }, { name: 'Yash Updated' });
+    await this.userRepo.update({ name: 'John' }, { name: 'John Updated' });
 
     // ✅ DELETE
     await this.postRepo.delete({ title: 'Hello TypeORM' });
@@ -76,7 +76,7 @@ export class AppService implements OnModuleInit {
     const qbResult = await this.userRepo
       .createQueryBuilder('user')
       .leftJoinAndSelect('user.posts', 'post')
-      .where('user.name = :name', { name: 'Yash Updated' })
+      .where('user.name = :name', { name: 'John Updated' })
       .getMany();
     console.log('🧱 QueryBuilder result:', qbResult);
 

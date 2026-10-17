@@ -83,8 +83,8 @@ async function main() {
 // --------------------------------------------
 
   const user = await User.create({
-    name: 'Yash',
-    email: 'yash@example.com',
+    name: 'John',
+    email: 'john.doe@example.com',
     age: 24,
     role: 'admin',
   });
@@ -110,7 +110,7 @@ async function main() {
   // --------------------------------------------
 
   const updatedUser = await User.findOneAndUpdate(
-    { email: 'yash@example.com' },
+    { email: 'john.doe@example.com' },
     { age: 25 },
     { new: true }
   );

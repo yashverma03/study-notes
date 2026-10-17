@@ -366,7 +366,7 @@ function App() {
 
   return (
     <div>
-      <Child name="Yash" />
+      <Child name="John" />
       <button onClick={() => setCount(count + 1)}>Increment Count</button>
       <p>Count: {count}</p>
     </div>

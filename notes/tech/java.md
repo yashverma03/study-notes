@@ -482,7 +482,7 @@ Takes input T, returns output R.
 
 ```java
 Function<String, Integer> length = s -> s.length();
-System.out.println(length.apply("Yash"));   // 4
+System.out.println(length.apply("John"));   // 4
 ```
 
 ### 3. Consumer\<T>
@@ -703,8 +703,8 @@ Vector
 | Remove element by value | `list.remove("Hi");` |
 | Clear list | `list.clear();` |
 | Check size | `list.size();` |
-| Check if contains element | `list.contains("Yash");` |
-| Check index of element | `list.indexOf("Yash");` |
+| Check if contains element | `list.contains("John");` |
+| Check index of element | `list.indexOf("John");` |
 | Sort list | `Collections.sort(list);` |
 | Sort reverse | `Collections.sort(list, Collections.reverseOrder());` |
 | Reverse list | `Collections.reverse(list);` |
@@ -731,8 +731,8 @@ Vector
 | Remove last | `list.removeLast();` |
 | Clear | `list.clear();` |
 | Size | `list.size();` |
-| Contains | `list.contains("Yash");` |
-| Index of | `list.indexOf("Yash");` |
+| Contains | `list.contains("John");` |
+| Index of | `list.indexOf("John");` |
 | Sort | `Collections.sort(list);` |
 | Reverse | `Collections.reverse(list);` |
 
@@ -1163,7 +1163,7 @@ public class AtomicDemo {
         b.compareAndSet(true, false);
 
         // AtomicReference with an object
-        AtomicReference<User> r = new AtomicReference<>(new User("Yash", 25));
+        AtomicReference<User> r = new AtomicReference<>(new User("John", 25));
         r.get();
         r.set(new User("Amit", 30));
         User old = r.get();
