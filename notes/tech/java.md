@@ -58,6 +58,8 @@
 
 # Intro
 
+Version: 27
+
 Java is platform independent
 
 Components

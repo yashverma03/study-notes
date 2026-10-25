@@ -10,6 +10,8 @@
 
 # Intro
 
+Version: 26
+
 - Node.js is an open-source, cross-platform, server-side runtime environment that lets you run JavaScript outside the browser — typically on a server
 - Built on Chrome’s V8 JavaScript engine
 

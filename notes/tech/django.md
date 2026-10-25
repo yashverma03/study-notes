@@ -10,6 +10,8 @@
 
 # Intro
 
+Version: 6
+
 Python framework with build in ORM, templating engine, admin panel
 
 

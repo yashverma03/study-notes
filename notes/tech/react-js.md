@@ -20,6 +20,8 @@
 
 # Intro
 
+Version: 19
+
 - front-end JavaScript library
 - Instead of manipulating the browser's DOM directly, React creates a virtual DOM in memory, where it does all the necessary manipulating, before making the changes in the browser DOM
 - SPA (single page applications)
