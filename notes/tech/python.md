@@ -367,6 +367,7 @@ immutable ordered collection of elements
 | Operation | Syntax |
 | --- | --- |
 | Create a dictionary | `d = {"a": 1, "b": 2}` |
+| Create an empty dictionary | `d = {}` or `d = dict()` |
 | Access value by key | `d["a"]` |
 | Safely get a value from a dictionary without throwing an error | `d.get(“a”, None)` |
 | Check if key exists | `"name" in data` |
@@ -389,10 +390,17 @@ immutable ordered collection of elements
 | Operation | Syntax |
 | --- | --- |
 | Create a set | `s = {1, 2, 3}` |
+| Create an empty set (`{}` creates a dict, not a set) | `s = set()` |
+| Create a set from an iterable (duplicates removed) | `s = set([1, 2, 2, 3])` |
+| Number of elements | `len(s)` |
+| Check membership | `2 in s` |
 | Add an element | `s.add(4)` |
+| Add multiple elements from an iterable | `s.update([4, 5])` |
 | Remove an element (error if not found) | `s.remove(2)` |
 | Remove an element (no error if not found) | `s.discard(2)` |
+| Remove and return an arbitrary element | `s.pop()` |
 | Clear all elements | `s.clear()` |
+| Creates a shallow copy | `s.copy()` |
 
 
 ## Array
