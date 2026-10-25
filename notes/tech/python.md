@@ -1,6 +1,7 @@
 # Index
 
 - [Intro](#intro)
+  - [Running a Python file](#running-a-python-file)
   - [Input/ output](#input-output)
   - [Operators](#operators)
   - [Data types](#data-types)
@@ -14,6 +15,7 @@
   - [reduce()](#reduce)
   - [filter()](#filter)
 - [Decorators](#decorators)
+  - [Custom decorators](#custom-decorators)
   - [@staticmethod](#staticmethod)
   - [@classmethod](#classmethod)
   - [@property](#property)
@@ -32,9 +34,43 @@
   - [Polymorphism](#polymorphism)
 - [Exception Handling](#exception-handling)
 - [File Handling](#file-handling)
+- [Modules and Packages](#modules-and-packages)
+  - [\_\_init\_\_.py](#__init__py)
 
 
 # Intro
+
+
+## Running a Python file
+
+Python runs a file top to bottom with the interpreter.
+
+```bash
+python3 main.py
+```
+
+The `if __name__ == "__main__":` guard decides whether code runs on direct execution or on import.
+
+- Run directly: `__name__` is `"__main__"`, so the block runs.
+- Imported: `__name__` is the module name, so the block is skipped.
+- Keeps `main()` from running when a test or another file imports the module.
+
+```python
+# add.py
+def add(a, b):
+    return a + b
+
+
+def main():
+    print(add(3, 5))
+
+
+if __name__ == "__main__":
+    main()
+```
+
+- `python3 add.py` prints `8`.
+- `import add` in another file prints nothing, and `add.add(3, 5)` is still usable.
 
 
 ## Input/ output
@@ -202,20 +238,57 @@ print(list(res))
 a function that takes another function as an argument and returns a new function with enhanced functionality
 
 ```python
-def decorator_name(func):
+def log(func):
     def wrapper(*args, **kwargs):
-        print("Before execution")
-        result = func(*args, **kwargs)
-        print("After execution")
-        return result
+        print(f"Calling {func.__name__}")
+        return func(*args, **kwargs)
     return wrapper
 
-@decorator_name
+
+@log
 def add(a, b):
     return a + b
 
-print(add(5, 3))
+
+print(add(2, 3))  # Calling add, then 5
 ```
+
+Typical backend use cases:
+
+- Authentication and role checks on endpoints, e.g. `@login_required`.
+- Logging and timing of function calls.
+- Caching expensive results, e.g. `@lru_cache`.
+- Route registration, e.g. `@app.get("/users")`.
+
+
+## Custom decorators
+
+A decorator that takes its own arguments needs one more nested function. Use `functools.wraps` to keep the original function's name and docstring.
+
+```python
+import functools
+
+
+def repeat(times):
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            for _ in range(times):
+                func(*args, **kwargs)
+        return wrapper
+    return decorator
+
+
+@repeat(3)
+def say_hi():
+    print("Hi")
+
+
+say_hi()  # prints Hi 3 times
+```
+
+- Practical use: `@require_role("admin")` allows only admins to call an endpoint.
+- `@a` above `@b` means `a(b(func))`: the bottom decorator is applied first.
 
 
 ## @staticmethod
@@ -623,3 +696,30 @@ with open(file_name, "a") as f:  # 'a' mode for append
     f.write("This line is appended.\n")
 print("\nLine appended successfully!")
 ```
+
+
+# Modules and Packages
+
+A module is a single `.py` file; a package is a folder of modules that can be imported together.
+
+
+## \_\_init\_\_.py
+
+`__init__.py` makes a folder a package.
+
+- Runs once on first import.
+- Can re-export names to shorten imports.
+
+```python
+# shapes/__init__.py
+from .circle import Circle
+
+# usage: from shapes import Circle
+```
+
+If missing (Python 3.3+):
+
+- Imports still work (namespace package).
+- Re-exports and init code are lost.
+- Some tools skip the folder, e.g. `setuptools.find_packages()`.
+- Add an empty one to be safe.

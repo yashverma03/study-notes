@@ -3,6 +3,8 @@
 - [Intro](#intro)
   - [MVT (Model-View-Template)](#mvt-model-view-template)
   - [Signals](#signals)
+  - [Middleware](#middleware)
+    - [Custom middleware](#custom-middleware)
   - [Example](#example)
 
 
@@ -23,6 +25,56 @@ Python framework with build in ORM, templating engine, admin panel
 - Signals allow certain senders to notify a set of receivers when specific actions occur.
 - They are used to trigger custom behavior in response to events such as creating, updating, or deleting a database entry.
 - Similar to triggers in db
+
+
+## Middleware
+
+Middleware is a layer of components that process every request and response globally, between the web server and the view. Each one runs before the view on the request path and after it on the response path.
+
+Typical backend use cases:
+
+- Authentication
+- Logging
+- CORS headers and rate limiting.
+- Attaching a request ID for tracing
+- Error handling
+
+```mermaid
+flowchart LR
+    Client --> M1[Middleware 1] --> M2[Middleware 2] --> Handler[View / Handler]
+    Handler --> M2 --> M1 --> Client
+```
+
+### Custom middleware
+
+A class with `__init__(self, get_response)` and `__call__(self, request)`. This one adds a response-time header.
+
+```python
+# myapp/middleware.py
+import time
+
+
+class RequestTimingMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        start = time.perf_counter()  # before the view runs
+        response = self.get_response(request)
+        duration = time.perf_counter() - start  # after the view runs
+        response["X-Process-Time"] = f"{duration:.4f}"
+        return response
+```
+
+Register it in `settings.py`. Order is top to bottom on the request, bottom to top on the response.
+
+```python
+MIDDLEWARE = [
+    "django.middleware.security.SecurityMiddleware",
+    # ... other built-in middleware
+    "myapp.middleware.RequestTimingMiddleware",
+]
+```
 
 
 ## Example
