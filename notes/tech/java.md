@@ -6,6 +6,7 @@
   - [Data types](#data-types)
   - [Operators](#operators)
   - [Varargs](#varargs)
+  - [var keyword](#var-keyword)
 - [Array](#array)
 - [String](#string)
   - [String](#string-1)
@@ -148,12 +149,34 @@ int sum(int... numbers) {
 ```
 
 
+## var keyword
+
+`var` lets the compiler infer the type of a local variable from the right-hand side. It is still statically typed, not dynamic.
+
+```java
+var list = new ArrayList<String>();   // ArrayList<String>
+var map = new HashMap<String, Integer>();
+var arr = new int[]{1, 2, 3};         // int[]
+
+for (var x : list) { }                // loop variable
+for (var e : map.entrySet()) {        // e is Map.Entry<String, Integer>
+    System.out.println(e.getKey() + " " + e.getValue());
+}
+for (var i = 0; i < 5; i++) { }
+```
+
+
 # Array
 
 | Operation | Syntax |
 | --- | --- |
 | Declare | `int[] arr;`<br>`int arr[];`<br>`int[] arr = new int[5];` |
-| Declare + initialize values | `int[] arr = {1, 2, 3};` |
+| Declare + initialize values | `int[] arr = {1, 2, 3};` (only at declaration) |
+| Initialize values (anywhere) | `int[] arr = new int[]{1, 2, 3};`<br>`arr = new int[]{4, 5, 6};` |
+| Fill with one value | `Arrays.fill(arr, -1);` |
+| Copy | `int[] copy = Arrays.copyOf(arr, arr.length);`<br>`int[] part = Arrays.copyOfRange(arr, 1, 3);` |
+| Print | `System.out.println(Arrays.toString(arr));` |
+| Array → ArrayList (object arrays only) | `Integer[] boxed = {1, 2, 3};`<br>`List<Integer> list = new ArrayList<>(Arrays.asList(boxed));` |
 | Length | `arr.length` |
 | Sort array | `Arrays.sort(arr);` |
 | Reverse array (manual) | `Collections.reverse(Arrays.asList(arr));` |
@@ -753,6 +776,11 @@ Vector
 | Operation | Syntax |
 | --- | --- |
 | Create | `ArrayList<String> list = new ArrayList<>();` |
+| Create + initialize with items | `List<String> list = new ArrayList<>(List.of("a", "b", "c"));`<br>`List<String> list = new ArrayList<>(Arrays.asList("a", "b", "c"));` |
+| Create with N copies of a value | `List<Integer> zeros = new ArrayList<>(Collections.nCopies(5, 0));` |
+| Copy from another collection | `List<String> copy = new ArrayList<>(otherList);` |
+| Immutable list (cannot add/remove) | `List<String> fixed = List.of("a", "b", "c");` |
+| ArrayList → array | `Integer[] arr = list.toArray(new Integer[0]);` |
 | Add element | `list.add("Hello");` |
 | Add at index | `list.add(1, "Hi");` |
 | Add all elements from another collection | `list.addAll(otherList);` |
