@@ -390,6 +390,8 @@ Immutable
 
 | Operation | Syntax |
 | --- | --- |
+| Create an empty list | `l = []` or `l = list()` |
+| Create a list with values | `l = [1, 2, 3]` |
 | Access an element by index | `l[index]` |
 | Access a sublist or range (slicing) | `l[start:end:step]` |
 | Returns the number of elements | `len(l)` |
@@ -410,6 +412,8 @@ Immutable
 
 | Operation | Syntax |
 | --- | --- |
+| Create an empty 2D list | `l = []` or `l = list()` |
+| Create a 2D list with values | `l = [[1, 2, 3], [4, 5, 6]]` |
 | Access element at row i, column j | `l[i][j]` |
 | Number of rows | `len(l)` |
 | Number of columns in row i | `len(l[i])` |
@@ -482,7 +486,10 @@ immutable ordered collection of elements
 
 | Operation | Syntax |
 | --- | --- |
-| Create an array | `a = [1, "Hello", [3.14, "world"]]` |
+| Create an empty array | `a = []` or `a = list()` |
+| Create an array with values | `a = [1, "Hello", [3.14, "world"]]` |
+| Create an empty 2D array | `a = []` or `a = list()` |
+| Create a 2D array with values | `a = [[1, 2], [3, 4]]` |
 | Access element by index | `a[index]` |
 | Update element by index | `a[index] = value` |
 | Append an element | `a.append(value)` |
