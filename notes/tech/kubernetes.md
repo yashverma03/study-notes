@@ -4,6 +4,8 @@
   - [Architecture](#architecture)
     - [Control Plane Components](#control-plane-components)
     - [Node Components](#node-components)
+  - [Probes and Health Checks](#probes-and-health-checks)
+  - [Graceful Shutdown](#graceful-shutdown)
   - [Helm Chart](#helm-chart)
   - [Example Code](#example-code)
 
@@ -81,6 +83,34 @@ nodes where the actual work happens. Each Node can have multiple pods and pods h
 3\. kube-proxy- forwarding the request from Services to the pods
 
 ![](../../assets/tech/kubernetes/control-plane-and-node-components.png)
+
+
+## Probes and Health Checks
+
+Probes are health checks run by the kubelet against a container to decide whether it has started, can receive traffic, or needs a restart. There are 3 types:
+
+| Probe | Description |
+| --- | --- |
+| Startup probe | Checks if the app has finished booting; other probes wait until it passes |
+| Readiness probe | Checks if the app can serve traffic; on failure the pod is removed from the Service (no restart) |
+| Liveness probe | Checks if the app is stuck; on failure the container is restarted |
+
+
+## Graceful Shutdown
+
+When a pod is terminated (rolling update, scale-down, node drain, liveness restart), Kubernetes uses signals to let the app finish in-flight requests before it exits.
+
+- SIGTERM (signal 15)
+  - Polite request to shut down; sent first to the container's main process.
+  - Can be caught, so the app handles it: stop accepting new connections, finish in-flight requests, close DB/resources, exit with code 0.
+- SIGKILL (signal 9)
+  - Forced kill, sent if the process is still alive after `terminationGracePeriodSeconds` (default 30s).
+  - Cannot be caught or handled; in-flight requests are dropped.
+- Termination flow
+  1. Pod is marked `Terminating` and removed from the Service endpoints.
+  2. `preStop` hook runs (e.g. a short sleep so routing catches up).
+  3. SIGTERM is sent.
+  4. After the grace period, SIGKILL is sent.
 
 
 ## Helm Chart

@@ -29,14 +29,17 @@
 - [Transaction](#transaction)
   - [ACID Properties](#acid-properties)
   - [Concurrency problems](#concurrency-problems)
+  - [Isolation Levels](#isolation-levels)
   - [Timestamp Ordering Protocol](#timestamp-ordering-protocol)
   - [Locking](#locking)
     - [Types](#types-1)
     - [Lock-Based Protocols](#lock-based-protocols)
+    - [Gap Lock](#gap-lock)
   - [Schedules](#schedules)
   - [Indexing](#indexing)
   - [B-Tree](#b-tree)
   - [B+ Tree](#b-tree-1)
+  - [B-Tree vs B+ Tree](#b-tree-vs-b-tree)
 - [Structured Query Language (SQL)](#structured-query-language-sql)
   - [Transaction](#transaction-1)
   - [Views](#views)
@@ -471,6 +474,40 @@ Prevention
 2. timestamp ordering
 
 
+## Isolation Levels
+
+Isolation levels (SQL standard) decide how much one transaction can see of the concurrent changes made by other transactions. A higher level gives more safety but less concurrency (more locking, waiting or aborts). There are 4 levels:
+
+1\. Read Uncommitted
+
+- lowest level; a transaction can read data that other transactions have changed but not yet committed
+- allows dirty reads, non-repeatable reads and phantom reads
+- fastest, but rarely used since it can read data that is later rolled back
+
+2\. Read Committed
+
+- a transaction reads only committed data; each statement sees the latest committed data as of when that statement starts
+- prevents dirty reads; but a repeated read can return a different value (non-repeatable read) and new rows can appear (phantom read)
+
+3\. Repeatable Read
+
+- the whole transaction sees the data as it was at its first read, so reading the same row twice gives the same value even if another transaction commits a change in between
+- prevents dirty reads and non-repeatable reads; phantom reads are possible as per the standard
+
+4\. Serializable
+
+- highest level; transactions behave as if they ran one after another
+- prevents dirty reads, non-repeatable reads and phantom reads
+- safest, but slowest due to the most locking and aborts; the application must retry failed transactions
+
+| Level | Dirty read | Non-repeatable read | Phantom read |
+| --- | --- | --- | --- |
+| Read Uncommitted | Possible | Possible | Possible |
+| Read Committed | Prevented | Possible | Possible |
+| Repeatable Read | Prevented | Prevented | Possible |
+| Serializable | Prevented | Prevented | Prevented |
+
+
 ## Timestamp Ordering Protocol
 
 - ordering transactions based on their timestamps
@@ -525,6 +562,24 @@ Lock- It is a variable associated with a data item that indicates whether it is 
 - Before granting a lock on a data item, the system checks for cycles in the graph. If a cycle is detected, one of the transactions is rolled back to prevent deadlock and ensure smooth execution.
 - It is deadlock free, but no guarantee of recoverability.
 
+### Gap Lock
+
+A gap lock is a lock used by MySQL InnoDB (at Repeatable Read) on the empty space between index records, taken by range queries and locking reads like `SELECT ... FOR UPDATE`. It stops other transactions from inserting into that gap, which prevents phantom reads.
+
+- Record lock- locks a single index record
+- Gap lock- locks the gap between index records (blocks inserts into it, even though no row exists there yet)
+- Next-key lock- record lock + the gap before it; default for range scans
+- Gap locks do not conflict with each other, so two transactions can hold the same gap and then both wait on each other's insert, causing a deadlock
+- A filter column with no index locks a huge range (close to a table lock)
+
+Ways to avoid
+
+- Lock by exact match on a primary/unique key (existing row gets only a record lock, no gap)
+- Add an index on the filter column to narrow the locked range
+- Use Read Committed, which disables gap locking for normal searches (phantoms become possible)
+- Avoid check-then-insert; rely on a unique constraint instead
+- Keep transactions short, and retry on deadlock or lock wait timeout
+
 
 ## Schedules
 
@@ -567,6 +622,20 @@ Types
 - used by modern relational database
 
 ![](../../assets/core/dbms/b-plus-tree-leaf-data-pointers.png)
+
+
+## B-Tree vs B+ Tree
+
+
+| | B-Tree | B+ Tree |
+| --- | --- | --- |
+| Data pointers | In all nodes (internal and leaf) | Only in leaf nodes |
+| Internal nodes | Keys + data pointers | Only keys (for routing), so more keys fit per node |
+| Key duplication | Each key appears once | Keys in internal nodes are repeated in leaves |
+| Leaf nodes | Not linked | Linked in a sorted list |
+| Tree height | Taller (lower fan-out) | Shallower (higher fan-out) |
+| Point lookup | Can end at an internal node | Always reaches a leaf (predictable cost) |
+| Range scan | Slow (repeated tree traversals) | Fast (follow leaf links) |
 
 
 # Structured Query Language (SQL)
@@ -825,7 +894,7 @@ INSERT INTO Student (ROLL_NO, NAME, ADDRESS, PHONE, AGE) VALUES
 ```
 
 ```sql
-INSERT INTO Student 
+INSERT INTO Student
 VALUES ('5','HARSH','WEST BENGAL', 'XXXXXXXXXX','19');
 ```
 
@@ -839,8 +908,8 @@ FROM OldStudents;
 ## UPDATE Statement
 
 ```sql
-UPDATE Customer 
-SET CustomerName = 'Satyam', Country = 'USA' 
+UPDATE Customer
+SET CustomerName = 'Satyam', Country = 'USA'
 WHERE CustomerID = 1;
 ```
 
@@ -848,8 +917,8 @@ WHERE CustomerID = 1;
 ## DELETE Statement
 
 ```sql
-DELETE 
-FROM GFG_Employees 
+DELETE
+FROM GFG_Employees
 WHERE department = 'Development';
 ```
 
@@ -898,8 +967,8 @@ WITH temporaryTable (averageValue) AS (
     FROM Employee
 )
 
-SELECT EmployeeID,Name, Salary 
-FROM Employee, temporaryTable 
+SELECT EmployeeID,Name, Salary
+FROM Employee, temporaryTable
 WHERE Employee.Salary > temporaryTable.averageValue;
 ```
 
@@ -940,27 +1009,27 @@ ON Student.ROLL_NO = StudentCourse.ROLL_NO;
 Left join- returns all rows from the left table, along with matching rows from the right table
 
 ```sql
-SELECT Student.NAME,StudentCourse.COURSE_ID 
+SELECT Student.NAME,StudentCourse.COURSE_ID
 FROM Student
-LEFT JOIN StudentCourse 
+LEFT JOIN StudentCourse
 ON StudentCourse.ROLL_NO = Student.ROLL_NO;
 ```
 
 Right join- returns all rows from the right table, along with matching rows from the left table
 
 ```sql
-SELECT Student.NAME,StudentCourse.COURSE_ID 
+SELECT Student.NAME,StudentCourse.COURSE_ID
 FROM Student
-RIGHT JOIN StudentCourse 
+RIGHT JOIN StudentCourse
 ON StudentCourse.ROLL_NO = Student.ROLL_NO;
 ```
 
 Full join- combines the results of both LEFT JOIN and RIGHT JOIN
 
 ```sql
-SELECT Student.NAME,StudentCourse.COURSE_ID 
+SELECT Student.NAME,StudentCourse.COURSE_ID
 FROM Student
-FULL JOIN StudentCourse 
+FULL JOIN StudentCourse
 ON StudentCourse.ROLL_NO = Student.ROLL_NO;
 ```
 
@@ -1054,7 +1123,7 @@ SELECT * FROM students ORDER BY age DESC , name ASC;
 control the number of rows returned in a query result
 
 ```sql
-SELECT * FROM student 
+SELECT * FROM student
 LIMIT 3;
 ```
 
@@ -1081,13 +1150,13 @@ LIMIT 3, 2;  -- LIMIT offset, count
 combine the results of two or more SELECT statements into a single result set
 
 ```sql
-SELECT column_name(s) FROM table1  
+SELECT column_name(s) FROM table1
 UNION -- no duplicates
 SELECT column_name(s) FROM table2;
 ```
 
 ```sql
-SELECT column_name(s) FROM table1 
+SELECT column_name(s) FROM table1
 UNION ALL -- has duplicates
 SELECT column_name(s) FROM table2;
 ```
@@ -1098,13 +1167,13 @@ SELECT column_name(s) FROM table2;
 provide the result of the intersection of two select statements
 
 ```sql
-SELECT column-1, column-2 ...... 
+SELECT column-1, column-2 ......
 FROM table 1
 WHERE.....
 
 INTERSECT
 
-SELECT column-1, column-2 ...... 
+SELECT column-1, column-2 ......
 FROM table 2
 WHERE.....
 ```
@@ -1112,13 +1181,13 @@ WHERE.....
 EXCEPT clause contains all the rows that are returned by the first SELECT operation, and not returned by the second SELECT operation
 
 ```sql
-SELECT column-1, column-2 ...... 
+SELECT column-1, column-2 ......
 FROM table 1
 WHERE.....
 
 EXCEPT
 
-SELECT column-1, column-2 ...... 
+SELECT column-1, column-2 ......
 FROM table 2
 WHERE.....
 ```
@@ -1146,7 +1215,7 @@ WHERE condition;
 - DISTINCT keyword treats NULL as a unique value
 
 ```sql
-SELECT DISTINCT column1, column2 
+SELECT DISTINCT column1, column2
 FROM table_name
 ```
 
@@ -1156,7 +1225,7 @@ FROM table_name
 negate or reverse the result of a condition
 
 ```sql
-SELECT column1, column2, ... 
+SELECT column1, column2, ...
 FROM table_name WHERE NOT condition;
 ```
 
@@ -1333,7 +1402,7 @@ SELECT CURTIME();
 Extract the Date Part from a DATETIME Value
 
 ```sql
-SELECT Name, DATE(BirthTime) 
+SELECT Name, DATE(BirthTime)
 AS BirthDate FROM Test;
 ```
 
@@ -1476,7 +1545,7 @@ SELECT TO_DATE('2025-06-16', 'YYYY-MM-DD') FROM dual;
 ```sql
 SELECT column_name
 FROM table_name
-WHERE column_name expression operator 
+WHERE column_name expression operator
     (SELECT column_name FROM table_name WHERE ...);
 ```
 
@@ -1488,7 +1557,7 @@ Correlated subquery- subquery that references columns from the outer query. It i
 list of expressions in a specified order and returns the first non-null value encountered
 
 ```sql
-SELECT COALESCE (NULL, 'X', 'Y') 
+SELECT COALESCE (NULL, 'X', 'Y')
 AS RESULT ;
 ```
 
