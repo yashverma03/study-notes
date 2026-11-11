@@ -8,6 +8,7 @@
   - [Varargs](#varargs)
   - [var keyword](#var-keyword)
 - [Array](#array)
+- [Math](#math)
 - [String](#string)
   - [String](#string-1)
   - [StringBuilder](#stringbuilder)
@@ -180,8 +181,40 @@ for (var i = 0; i < 5; i++) { }
 | Length | `arr.length` |
 | Sort array | `Arrays.sort(arr);` |
 | Reverse array (manual) | `Collections.reverse(Arrays.asList(arr));` |
-| Search (binary search) | `int idx = Arrays.binarySearch(arr, key);` |
+| Sort in range | `Arrays.sort(arr, 1, 4);` (indices 1 to 3) |
+| Sort descending (object arrays only) | `Integer[] boxed = {3, 1, 2};`<br>`Arrays.sort(boxed, Collections.reverseOrder());` |
+| Search (binary search, array must be sorted) | `int idx = Arrays.binarySearch(arr, key);`<br>`int idx = Arrays.binarySearch(arr, 1, 4, key);` (range) |
+| Binary search return value | Index if found; otherwise `-(insertionPoint) - 1`, so `idx < 0` means not found and `-idx - 1` is where it would be inserted. With duplicates, which index is returned is not guaranteed |
+| Equal contents | `Arrays.equals(a, b);`<br>`Arrays.deepEquals(a2d, b2d);` (nested arrays) |
+| Sum / min / max | `int sum = Arrays.stream(arr).sum();`<br>`int max = Arrays.stream(arr).max().getAsInt();`<br>`int min = Arrays.stream(arr).min().getAsInt();` |
 | Declare 2D array | `int[][] matrix;`<br>`int[][] matrix = new int[3][4];` |
+| 2D: initialize with values | `int[][] matrix = {{1, 2, 3}, {4, 5, 6}};` |
+| 2D: fill with one value (per row) | `for (int[] row : matrix) Arrays.fill(row, -1);` |
+| 2D: size | `matrix.length` (rows)<br>`matrix[0].length` (columns of row 0) |
+| 2D: print | `System.out.println(Arrays.deepToString(matrix));` |
+| Declare 3D array | `int[][][] cube = new int[2][3][4];` |
+| 3D: initialize with values | `int[][][] cube = {{{1, 2}, {3, 4}}, {{5, 6}, {7, 8}}};` |
+| 3D: size | `cube.length` (depth)<br>`cube[0].length` (rows)<br>`cube[0][0].length` (columns) |
+| 3D: print | `System.out.println(Arrays.deepToString(cube));` |
+
+
+# Math
+
+| Operation | Syntax |
+| --- | --- |
+| Absolute value | `Math.abs(-5)` |
+| Max / min | `Math.max(3, 7)`<br>`Math.min(3, 7)` |
+| Power | `Math.pow(2, 10)` |
+| Square root | `Math.sqrt(16)` |
+| Cube root | `Math.cbrt(27)` |
+| Round up (ceiling) | `Math.ceil(4.1)` |
+| Round down (floor) | `Math.floor(4.9)` |
+| Round to nearest | `Math.round(4.5)`<br>`Math.round(-2.5)` |
+| Natural log / log base 10 | `Math.log(Math.E)`<br>`Math.log10(1000)` |
+| Log base 2 (manual) | `Math.log(8) / Math.log(2)` |
+| `e` to the power x | `Math.exp(1)` |
+| Random in `[0.0, 1.0)` | `Math.random()` |
+| Constants | `Math.PI`, `Math.E`<br>`Integer.MAX_VALUE`, `Integer.MIN_VALUE`<br>`Long.MAX_VALUE`, `Long.MIN_VALUE` |
 
 
 # String
@@ -796,7 +829,19 @@ Vector
 | Sort list | `Collections.sort(list);` |
 | Sort reverse | `Collections.sort(list, Collections.reverseOrder());` |
 | Reverse list | `Collections.reverse(list);` |
+| Binary search (list must be sorted) | `int idx = Collections.binarySearch(list, key);` (same return value as `Arrays.binarySearch`: index, or `-(insertionPoint) - 1` if not found) |
+| Min / max | `Collections.min(list);`<br>`Collections.max(list);` |
+| Swap two elements | `Collections.swap(list, 0, 2);` |
+| Count occurrences | `Collections.frequency(list, "a");` |
 | Get sublist | `list.subList(0, 3);` |
+| 2D: create (empty) | `List<List<Integer>> grid = new ArrayList<>();` |
+| 2D: add a row | `grid.add(new ArrayList<>());`<br>`grid.add(new ArrayList<>(List.of(1, 2, 3)));` |
+| 2D: initialize with values | `List<List<Integer>> grid = new ArrayList<>(List.of(new ArrayList<>(List.of(1, 2)), new ArrayList<>(List.of(3, 4))));` |
+| 2D: get / set element | `grid.get(0).get(1);`<br>`grid.get(0).set(1, 9);` |
+| 2D: size | `grid.size()` (rows)<br>`grid.get(0).size()` (columns of row 0) |
+| 3D: create | `List<List<List<Integer>>> cube = new ArrayList<>();` |
+| 3D: initialize with values | `List<List<List<Integer>>> cube = new ArrayList<>(List.of(`<br>`new ArrayList<>(List.of(new ArrayList<>(List.of(1, 2)), new ArrayList<>(List.of(3, 4)))),`<br>`new ArrayList<>(List.of(new ArrayList<>(List.of(5, 6)), new ArrayList<>(List.of(7, 8))))));` |
+| 3D: get element / size | `cube.get(0).get(1).get(2);`<br>`cube.size()`, `cube.get(0).size()`, `cube.get(0).get(0).size()` |
 
 
 ## LinkedList
