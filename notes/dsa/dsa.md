@@ -289,7 +289,9 @@ Modular Division
 
 Modular Exponentiation
 
-![](../../assets/dsa/dsa/modular-exponentiation-recursive-formula.png)
+- x<sup>n</sup> = 1, if n = 0
+- x<sup>n</sup> = x<sup>n/2</sup> · x<sup>n/2</sup>, if n is even
+- x<sup>n</sup> = x<sup>n-1</sup> · x, if n is odd
 
 
 ## GCD (Greatest Common Divisor)
@@ -1920,27 +1922,83 @@ Properties
 
 Complete Binary Tree- all the levels are completely filled except possibly the last level and the last level has all keys as left as possible
 
-![](../../assets/dsa/dsa/complete-binary-tree-example.png)
+```mermaid
+flowchart TD
+    A((12)) --> B((8))
+    A --> C((18))
+    B --> D((5))
+    B --> E((11))
+```
 
 Perfect Binary Tree- all the internal nodes have two children and all leaf nodes are at the same level.
 
-![](../../assets/dsa/dsa/perfect-binary-tree-example.png)
+```mermaid
+flowchart TD
+    A((18)) --> B((15))
+    A --> C((30))
+    B --> D((40))
+    B --> E((50))
+    C --> F((100))
+    C --> G((40))
+```
 
 Balanced Binary Tree- difference between the height of the left and the right subtree for each node is either 0 or 1. Height will be O(log n)
 
-![](../../assets/dsa/dsa/balanced-vs-unbalanced-binary-tree.png)
+Depth of a node (d) = \|height of left child - height of right child\|
+
+```mermaid
+flowchart TD
+    subgraph BAL["Balanced Binary Tree with depth at each level indicated"]
+        B0(("0<br>d=1")) --> B1(("1<br>d=0"))
+        B0 --> B2(("2<br>d=0"))
+        B1 --> B3(("3<br>d=0"))
+        B1 --> B4(("4<br>d=0"))
+    end
+    subgraph UNBAL["Unbalanced Binary Tree with depth at each level indicated"]
+        U0(("0<br>d=2")) --> U1(("1<br>d=1"))
+        U0 --> U2(("2<br>d=0"))
+        U1 --> U3(("3<br>d=1"))
+        U1 --> U4(("4<br>d=0"))
+        U3 --> U5(("5<br>d=0"))
+    end
+```
 
 Full Binary Tree- binary tree with either zero or two child nodes for each node
 
-![](../../assets/dsa/dsa/full-binary-tree-example.png)
+```mermaid
+flowchart TD
+    A((12)) --> B((8))
+    A --> C((18))
+    B --> D((5))
+    B --> E((11))
+```
 
 Degenerate Binary Tree/ Skewed Binary Tree- Every non-leaf node has just one child. They are either left or right skewed
 
-![](../../assets/dsa/dsa/left-and-right-skewed-binary-trees.png)
+```text
+Left Skewed        Right Skewed
+
+    1             1
+   /               \
+  2                 2
+ /                   \
+3                     3
+```
 
 N-ary Tree- each node can have at most N children
 
-![](../../assets/dsa/dsa/n-ary-tree-printed-graphically.png)
+```mermaid
+flowchart TD
+    N0((0)) --> N1((1))
+    N0 --> N2((2))
+    N0 --> N3((3))
+    N1 --> N4((4))
+    N1 --> N5((5))
+    N3 --> N6((6))
+    N3 --> N7((7))
+    N3 --> N8((8))
+    N7 --> N9((9))
+```
 
 
 ## Traversals
@@ -2880,44 +2938,153 @@ Null Graph- no edges in the graph
 
 Trivial Graph- only a single vertex, it is also the smallest graph possible
 
-![](../../assets/dsa/dsa/null-and-trivial-graph.png)
+```mermaid
+flowchart LR
+    subgraph NG["Null Graph"]
+        N1((1))
+        N3((3))
+        N4((4))
+        N5((5))
+    end
+    subgraph TG["Trivial Graph"]
+        T2((2))
+    end
+```
 
 Undirected Graph- edges do not have any direction
 
 Directed Graph- edge has direction
 
-![](../../assets/dsa/dsa/undirected-and-directed-graph.png)
+```mermaid
+flowchart LR
+    subgraph UG["Undirected Graph"]
+        U5((5)) --- U3((3))
+        U3 --- U1((1))
+        U5 --- U4((4))
+        U4 --- U1
+    end
+    subgraph DG["Directed Graph"]
+        D5((5)) --> D3((3))
+        D5 --> D4((4))
+        D3 --> D1((1))
+        D4 --> D1
+    end
+```
 
 Connected Graph- in which from one node we can visit any other node in the graph
 
 Disconnected Graph- at least one node is not reachable from a node
 
-![](../../assets/dsa/dsa/connected-and-disconnected-graph.png)
+```mermaid
+flowchart LR
+    subgraph CG["Connected Graph"]
+        C5((5)) --- C3((3))
+        C3 --- C1((1))
+        C5 --- C4((4))
+        C4 --- C1
+    end
+    subgraph DC["Disconnected Graph"]
+        X5((5)) --- X3((3))
+        X4((4)) --- X1((1))
+    end
+```
 
 Regular Graph- degree of every vertex is equal to K is called K regular graph
 
 Complete Graph- The graph in which from each node there is an edge to each other node
 
-![](../../assets/dsa/dsa/regular-and-complete-graph.png)
+```mermaid
+flowchart LR
+    subgraph RG["2-Regular"]
+        R5((5)) --- R3((3))
+        R3 --- R1((1))
+        R5 --- R4((4))
+        R4 --- R1
+    end
+    subgraph KG["Complete Graph"]
+        K5((5)) --- K3((3))
+        K3 --- K1((1))
+        K5 --- K4((4))
+        K4 --- K1
+        K3 --- K4
+        K5 --- K1
+    end
+```
 
 Cycle Graph- The graph in which the graph is a cycle in itself, the minimum value of degree of each vertex is 2
 
 Cyclic Graph- graph containing at least one cycle
 
-![](../../assets/dsa/dsa/cycle-and-cyclic-graph.png)
+```mermaid
+flowchart LR
+    subgraph CY["Cycle Graph"]
+        Y5((5)) --- Y3((3))
+        Y3 --- Y1((1))
+        Y5 --- Y4((4))
+        Y4 --- Y1
+    end
+    subgraph CC["Cyclic Graph"]
+        Z5((5)) --- Z3((3))
+        Z3 --- Z1((1))
+        Z3 --- Z4((4))
+        Z4 --- Z1
+    end
+```
 
 Directed Acyclic Graph- A Directed Graph that does not contain any cycle
 
+```mermaid
+flowchart TD
+    D3((3)) --> D5((5))
+    D3 --> D1((1))
+    D5 --> D4((4))
+    D1 --> D4
+```
+
 Bipartite Graph- A graph in which vertex can be divided into two sets such that vertex in each set does not contain any edge between them
 
-![](../../assets/dsa/dsa/directed-acyclic-and-bipartite-graph.png)
+```mermaid
+flowchart LR
+    subgraph SU["Set U"]
+        direction TB
+        U1((U1))
+        U2((U2))
+        U3((U3))
+        U4((U4))
+    end
+    subgraph SV["Set V"]
+        direction TB
+        V1((V1))
+        V2((V2))
+        V3((V3))
+    end
+    U1 --- V1
+    U2 --- V1
+    U2 --- V2
+    U3 --- V2
+    U3 --- V3
+    U4 --- V3
+```
 
 
 ## Representation
 
 Adjacency Matrix
 
-![](../../assets/dsa/dsa/graph-adjacency-matrix-representation.png)
+```mermaid
+flowchart LR
+    M0((0)) --- M1((1))
+    M0 --- M2((2))
+    M1 --- M2
+    M2 --- M3((3))
+```
+
+| | 0 | 1 | 2 | 3 |
+| --- | --- | --- | --- | --- |
+| **0** | 0 | 1 | 1 | 0 |
+| **1** | 1 | 0 | 1 | 0 |
+| **2** | 1 | 1 | 0 | 1 |
+| **3** | 0 | 0 | 1 | 0 |
 
 ```java
 void addEdge(int[][] mat, int i, int j)
@@ -2940,7 +3107,21 @@ void displayMatrix(int[][] mat)
 
 Adjacency List
 
-![](../../assets/dsa/dsa/graph-adjacency-list-representation.png)
+```mermaid
+flowchart LR
+    M0((0)) --- M1((1))
+    M0 --- M2((2))
+    M1 --- M2
+    M2 --- M3((3))
+```
+
+```mermaid
+flowchart LR
+    A0[0] --> A01[1] --> A02[2]
+    B1[1] --> B10[0] --> B12[2]
+    C2[2] --> C20[0] --> C21[1] --> C23[3]
+    D3[3] --> D32[2]
+```
 
 ```java
 // Function to add an edge between two vertices
@@ -3467,7 +3648,19 @@ void floydWarshall(int[][] dist) {
 - MST- spanning tree with the smallest possible total edge weight
 - No of edges (E) = V-1
 
-![](../../assets/dsa/dsa/minimum-spanning-tree-directed-graph.png)
+```mermaid
+flowchart LR
+    subgraph G["Directed Graph"]
+        a1((1)) <-->|2| a2((2))
+        a3((3)) -->|10| a1
+        a3 <-->|3| a2
+    end
+    subgraph T["Minimum Spanning Tree"]
+        b1((1)) <-->|2| b2((2))
+        b3((3)) <-->|3| b2
+    end
+    G -->|MST| T
+```
 
 
 ## Prim’s Algorithm
