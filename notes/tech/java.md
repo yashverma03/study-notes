@@ -801,11 +801,6 @@ ArrayList
 - Not sync (not thread safe)
 - Faster
 
-Vector
-
-- Sync
-- Slower
-
 | Operation | Syntax |
 | --- | --- |
 | Create | `ArrayList<String> list = new ArrayList<>();` |
