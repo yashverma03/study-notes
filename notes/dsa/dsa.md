@@ -1,20 +1,13 @@
 # Index
 
 - [Intro](#intro)
-  - [Java Collections Framework](#java-collections-framework)
-  - [Pair](#pair)
-  - [Tuple](#tuple)
-  - [TreeSet and HashSet](#treeset-and-hashset)
-  - [TreeMap and HashMap](#treemap-and-hashmap)
+  - [Pseudocode](#pseudocode)
   - [Time complexity](#time-complexity)
   - [Modular Arithmetic](#modular-arithmetic)
   - [GCD (Greatest Common Divisor)](#gcd-greatest-common-divisor)
-  - [Decimal Precision](#decimal-precision)
   - [Prime Numbers](#prime-numbers)
   - [Sieve of Eratosthenes](#sieve-of-eratosthenes)
-  - [Internal Data Structures and Time Complexity Table of All the Java Collections](#internal-data-structures-and-time-complexity-table-of-all-the-java-collections)
 - [Array](#array)
-  - [ArrayList](#arraylist)
   - [Subarray](#subarray)
   - [Subsequence](#subsequence)
   - [Two Pointer Technique](#two-pointer-technique)
@@ -43,10 +36,25 @@
   - [Floyd's slow and fast pointers/ Tortoise and Hare algorithm](#floyds-slow-and-fast-pointers-tortoise-and-hare-algorithm)
   - [Merge sort in LL](#merge-sort-in-ll)
 - [Stack & Queue](#stack--queue)
+  - [Expression Notations](#expression-notations)
   - [Stack](#stack)
   - [Monotonic Stack](#monotonic-stack)
+  - [Stack Implementations](#stack-implementations)
+    - [Stack Implementation](#stack-implementation)
+    - [Implement Two Stacks in an Array](#implement-two-stacks-in-an-array)
+    - [Implement Stack using Queues](#implement-stack-using-queues)
+    - [Implement k Stacks in an Array](#implement-k-stacks-in-an-array)
+    - [Implement Stack using Priority Queue or Heap](#implement-stack-using-priority-queue-or-heap)
+    - [Design a Stack that supports getMin() in O(1) time](#design-a-stack-that-supports-getmin-in-o1-time)
   - [Queue](#queue)
   - [Monotonic Queues](#monotonic-queues)
+  - [Queue Implementations](#queue-implementations)
+    - [Array Implementation of Queue - Simple](#array-implementation-of-queue---simple)
+    - [Circular Array Implementation of Queue](#circular-array-implementation-of-queue)
+    - [Queue - Linked List Implementation](#queue---linked-list-implementation)
+    - [Implement Stack and Queue using Deque](#implement-stack-and-queue-using-deque)
+    - [Queue using Stacks](#queue-using-stacks)
+    - [Implement k Queues in a Single Array](#implement-k-queues-in-a-single-array)
   - [LRU Cache](#lru-cache)
 - [Greedy](#greedy)
 - [Binary Tree](#binary-tree)
@@ -67,7 +75,7 @@
   - [Heap](#heap)
   - [Heap Sort](#heap-sort)
   - [Priority Queue](#priority-queue)
-  - [Custom Comparator](#custom-comparator)
+    - [Custom Comparator](#custom-comparator)
   - [Hashing](#hashing)
     - [Types of Hash Functions](#types-of-hash-functions)
 - [Graph](#graph)
@@ -105,88 +113,135 @@
 # Intro
 
 
-## Java Collections Framework
-
-| Operation | Syntax |
-| --- | --- |
-| Find the first element which satisfies a specific criterion. | `c.stream().filter(x -> ...).findFirst()` |
-| Counts the number of occurrences of a specific value within a collection. | `Collections.frequency(c, val)` |
-| Find max/min | `Collections.max(c)`<br>`Collections.min(c)` |
-| Find the sum of all elements present inside the container. | `c.stream().mapToInt(Integer::intValue).sum()` |
-| This function is used to reverse the container. | `Collections.reverse(list)` |
-| This function is used to sort the container by default in ascending order. | `Collections.sort(list)` |
+## Pseudocode
 
 
-## Pair
+```pascal
+// This is a single-line comment
 
-```java
-Map.Entry<Integer, String> p = Map.entry(1, "Geeks");
+ALGORITHM Example(arr, n, target)
+    INPUT:  arr -> array of n integers, target -> integer to search for
+    OUTPUT: index of target in arr, or -1 if not found
+
+    // variables and assignment
+    count <- 0
+    sum <- 0
+    isFound <- false
+    name <- "Alice"
+    SET max <- arr[0]
+
+    // input and output
+    READ n
+    PRINT "Value of n is", n
+    DISPLAY sum
+
+    // arithmetic, comparison and logical operators
+    result <- (a + b) * c - d / e
+    remainder <- a MOD b
+    quotient <- a DIV b
+    power <- a ^ 2
+    IF (a > b AND b >= c) OR NOT isFound THEN
+        PRINT "condition met"
+    END IF
+
+    // if / else if / else
+    IF n < 0 THEN
+        PRINT "negative"
+    ELSE IF n = 0 THEN
+        PRINT "zero"
+    ELSE
+        PRINT "positive"
+    END IF
+
+    // for loop (counting)
+    FOR i <- 0 TO n - 1 DO
+        sum <- sum + arr[i]
+    END FOR
+
+    // for loop with step (counting down)
+    FOR i <- n - 1 DOWNTO 0 STEP 1 DO
+        PRINT arr[i]
+    END FOR
+
+    // for-each loop
+    FOR EACH element IN arr DO
+        PRINT element
+    END FOR
+
+    // while loop
+    i <- 0
+    WHILE i < n DO
+        IF arr[i] = target THEN
+            RETURN i
+        END IF
+        i <- i + 1
+    END WHILE
+
+    // do-while / repeat-until loop (runs at least once)
+    REPEAT
+        i <- i - 1
+    UNTIL i <= 0
+
+    // break and continue
+    FOR i <- 0 TO n - 1 DO
+        IF arr[i] < 0 THEN
+            CONTINUE
+        END IF
+        IF arr[i] > 100 THEN
+            BREAK
+        END IF
+    END FOR
+
+    // switch / case
+    CASE day OF
+        1: PRINT "Monday"
+        2: PRINT "Tuesday"
+        DEFAULT: PRINT "Other day"
+    END CASE
+
+    // arrays, 2D arrays and swapping
+    DECLARE temp[n]
+    DECLARE matrix[rows][cols]
+    matrix[0][1] <- 5
+    SWAP arr[i], arr[j]
+    length <- LENGTH(arr)
+
+    // calling a function and using its result
+    maxValue <- FindMax(arr, n)
+    CALL PrintArray(arr, n)
+
+    RETURN -1
+END ALGORITHM
+
+
+// function that returns a value
+FUNCTION FindMax(arr, n)
+    max <- arr[0]
+    FOR i <- 1 TO n - 1 DO
+        IF arr[i] > max THEN
+            max <- arr[i]
+        END IF
+    END FOR
+    RETURN max
+END FUNCTION
+
+
+// procedure that returns nothing
+PROCEDURE PrintArray(arr, n)
+    FOR i <- 0 TO n - 1 DO
+        PRINT arr[i]
+    END FOR
+END PROCEDURE
+
+
+// recursion
+FUNCTION Factorial(n)
+    IF n <= 1 THEN
+        RETURN 1
+    END IF
+    RETURN n * Factorial(n - 1)
+END FUNCTION
 ```
-
-```java
-System.out.print(p.getKey() + " " + p.getValue());
-```
-
-
-## Tuple
-
-```java
-record Triple(int first, String second, float third) {}
-
-Triple t = new Triple(42, "banana", 6.28f);
-```
-
-```java
-System.out.println(t.first());
-System.out.println(t.second());
-System.out.println(t.third());
-```
-
-
-## TreeSet and HashSet
-
-Java
-
-| Operation | Syntax |
-| --- | --- |
-| Insert an element | `add(val)` |
-| Remove element (by value) | `remove(val)` |
-| Returns true if the element is present | `contains(val)` |
-| Returns 1 if present, 0 otherwise | `contains(val) ? 1 : 0` |
-| Removes all elements | `clear()` |
-| Returns number of elements | `size()` |
-| Iteration | `iterator()`<br>`for (int x : set)` |
-
-TC
-
-| Operation | TreeSet | HashSet |
-| --- | --- | --- |
-| Insert | O(log n) | Average: O(1)<br>Worst: O(log n) |
-| Delete | O(log n) | Average: O(1)<br>Worst: O(log n) |
-| Find/ contains | O(log n) | Average: O(1)<br>Worst: O(log n) |
-
-
-## TreeMap and HashMap
-
-Java
-
-| Operation | Syntax |
-| --- | --- |
-| Inserts a key-value pair | `putIfAbsent(key, val)`<br>`put(key, val)` |
-| Removes element by key | `remove(key)` |
-| Returns the value for the key, or null if not found | `get(key)` |
-| Returns true if the key exists, otherwise false | `containsKey(key)` |
-| Removes all elements | `clear()` |
-| Returns number of elements | `size()` |
-| Iteration | `entrySet()`<br>`keySet()` |
-
-TC
-
-| Operation | TreeMap | HashMap |
-| --- | --- | --- |
-| Insert | O(log n) | Average: O(1)<br>Worst: O(log n) |
-| Delete | O(log n) | Average: O(1)<br>Worst: O(log n) |
-| Find/ containsKey | O(log n) | Average: O(1)<br>Worst: O(log n) |
 
 
 ## Time complexity
@@ -210,7 +265,7 @@ Operations in 1 sec = 10<sup>8</sup>
 Quotient Remainder Theorem
 
 ```text
-a = b x q + r 
+a = b x q + r
 where 0 <= r < b
 ```
 
@@ -244,17 +299,6 @@ BigInteger.valueOf(m).gcd(BigInteger.valueOf(n)).intValue()
 ```
 
 returns 0, if both m and n are zero, else gcd of m and n
-
-
-## Decimal Precision
-
-```java
-String.format("%." + n + "f", num)
-```
-
-```java
-System.out.printf("%.5f%n", num);
-```
 
 
 ## Prime Numbers
@@ -313,98 +357,7 @@ O(N * log (log(N)))
 ```
 
 
-## Internal Data Structures and Time Complexity Table of All the Java Collections
-
-| Java Class Name | Internal Data-Structure | Time Complexity |
-| --- | --- | --- |
-| HashSet | Hash Table<br>(backed by a HashMap - a hash function computes the bucket index, and a large bucket is treeified into a red-black tree) | For Insert, Search, Delete:<br>Best: O(1)<br>Avg: O(1)<br>Worst: O(log N) |
-| TreeSet | Red Black Tree<br>(backed by a TreeMap - self-balancing binary search tree, maintains the height of tree log N) | For Insert, Search, Delete:<br>Best: O(log N)<br>Avg: O(log N)<br>Worst: O(log N) |
-| MultiSet (no JDK class - use a `Map<E, Integer>` of counts, or Guava's `Multiset`) | Red Black Tree<br>(e.g. `TreeMap<E, Integer>` of element counts - self-balancing binary search tree, maintains the height of tree log N) | For Insert, Search, Delete:<br>Best: O(log N)<br>Avg: O(log N)<br>Worst: O(log N) |
-| HashMap | Hash Table<br>(a hash function computes the bucket index, and a large bucket is treeified into a red-black tree) | For Insert, Search, Delete:<br>Best: O(1)<br>Avg: O(1)<br>Worst: O(log N) |
-| TreeMap | Red Black Tree<br>(self-balancing binary search tree - maintains the height of tree log N) | For Insert, Search, Delete:<br>Best: O(log N)<br>Avg: O(log N)<br>Worst: O(log N) |
-| MultiMap (no JDK class - use a `Map<K, List<V>>`, or Guava's `Multimap`) | Red Black Tree<br>(e.g. `TreeMap<K, List<V>>` - self-balancing binary search tree, maintains the height of tree log N) | For Insert, Search, Delete:<br>Best: O(log N)<br>Avg: O(log N)<br>Worst: O(log N) |
-| PriorityQueue | Min Heap (binary heap in an array - a MIN-heap by default, not a max-heap; pass a `Comparator` for a max-heap) | Insert/offer: O(log N)<br>Delete/poll: O(log N)<br>Peek: O(1) |
-| ArrayDeque (used as a Stack) | Resizable Circular Array | push: O(1) amortized<br>pop: O(1)<br>peek: O(1) |
-| ArrayDeque (used as a Queue) | Resizable Circular Array | offer/addLast: O(1) amortized<br>poll/pollFirst: O(1)<br>peekFirst: O(1)<br>peekLast: O(1) |
-
-Implementing Sets Without C++ STL Containers- [https://www.geeksforgeeks.org/implementing-sets-without-c-stl-containers/](https://www.geeksforgeeks.org/implementing-sets-without-c-stl-containers/)
-
-C++ Unordered Map Under the Hood- [https://jbseg.medium.com/c-unordered-map-under-the-hood-9540cec4553a](https://jbseg.medium.com/c-unordered-map-under-the-hood-9540cec4553a)
-
-What is PseudoCode: A Complete Tutorial- [https://www.geeksforgeeks.org/what-is-pseudocode-a-complete-tutorial/](https://www.geeksforgeeks.org/what-is-pseudocode-a-complete-tutorial/)
-
-
 # Array
-
-Declaration
-
-```java
-int[] arr = new int[5];
-```
-
-Initialization
-
-```java
-int[] arr = { 1, 2, 3, 4, 5 };
-```
-
-Size
-
-```java
-int size = arr.length;
-```
-
-
-## ArrayList
-
-Declaration
-
-```java
-List<Integer> v1 = new ArrayList<>();
-```
-
-Initialization
-
-```java
-List<Integer> v1 = new ArrayList<>(List.of(1, 4, 2, 3, 5));
-```
-
-```java
-// size 5 with default value of -1
-List<Integer> v1 = new ArrayList<>(Collections.nCopies(5, -1));
-```
-
-Java
-
-| Operation | Syntax |
-| --- | --- |
-| Size | `v.size()` |
-| Insert at end | `v.add(x)` |
-| Remove last element | `v.remove(v.size() - 1)` |
-| Resize to n (no resize in Java - build a list of n defaults) | `new ArrayList<>(Collections.nCopies(n, 0))` |
-| First element | `v.get(0)` |
-| Last element | `v.get(v.size() - 1)` |
-| Iterator to first element | `v.iterator()` |
-| Iterator positioned past the last element | `v.listIterator(v.size())` |
-| backward iteration starting at the last element (Java has no reverse iterator) | `v.listIterator(v.size())`, then `previous()` |
-| end of backward iteration, i.e. before the first element | `!it.hasPrevious()` |
-| Remove all elements | `v.clear()` |
-| Insert at index i | `v.add(i, x)` |
-| Remove element at index i | `v.remove(i)` |
-| Remove range \[i, j) | `v.subList(i, j).clear()` |
-| Remove all elements | `v.clear()` |
-| Sort ascending | `Collections.sort(v)` |
-| Sort descending | `v.sort(Comparator.reverseOrder())` |
-| Reverse list | `Collections.reverse(v)` |
-| Index of first occurrence of x, -1 if absent | `v.indexOf(x)` |
-| Count occurrences of x | `Collections.frequency(v, x)` |
-| Sum of elements | `v.stream().mapToInt(Integer::intValue).sum()` |
-| Distance between 2 positions (Java indexes instead of iterating) | `j - i` |
-| no in-place equivalent - build a new list keeping only the first occurrence of each element, in order | `new ArrayList<>(new LinkedHashSet<>(v))` |
-
-If a vector is passed by reference (&), then it can be modified and this is faster.
-
-Passing by value is slow and does not modify the original vector.
 
 
 ## Subarray
@@ -587,30 +540,6 @@ public class Main {
 | A string is a class that defines objects that are represented as a stream of characters. | A character array is simply an array of characters that can be terminated by a null character. |
 | memory is allocated dynamically | memory is allocated statically |
 
-Java
-
-| Operation | Syntax |
-| --- | --- |
-| Size | `s.length()` |
-| Append a string | `s += "world"` (or `sb.append("world")`) |
-| Insert substring (String is immutable, use a `StringBuilder`) | `sb.insert(pos, "text")` |
-| Erase part of string (use a `StringBuilder`) | `sb.delete(pos, pos + len)` |
-| Replace part of string (use a `StringBuilder`) | `sb.replace(pos, pos + len, "new")` |
-| Substring (2nd argument is the end index, not a length) | `s.substring(pos, pos + len)` |
-| Find substring (first occurrence) | `s.indexOf(substr)`<br>`s.indexOf(substr, pos)` |
-| Compare strings | `s1.compareTo(s2)` |
-| Clear the string | `s = ""` (or `sb.setLength(0)`) |
-| Swap two strings (no swap - Strings are immutable, so reassign) | `String t = s1; s1 = s2; s2 = t;` |
-| Push back a character (use a `StringBuilder`) | `sb.append('a')` |
-| Pop last character (use a `StringBuilder`) | `sb.deleteCharAt(sb.length() - 1)` |
-| Convert int to string | `String.valueOf(num)` |
-| Convert string to int | `Integer.parseInt(s)` |
-| Convert string to long | `Long.parseLong(s)` |
-| Convert string to an integer wider than long (Java has no long long) | `new BigInteger(s)` |
-| Copy contents of str1 into str2 (Strings are immutable, so assigning is enough) | `str2 = str1;` |
-
-string::npos- until the end of the string
-
 
 ## Palindrome string
 
@@ -723,39 +652,15 @@ static List<Integer> search(String pat, String txt) {
 }
 ```
 
-Ref- [https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/](https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/)
-
 
 # Matrix
-
-Declaration
-
-```java
-int[][] arr = new int[rows][cols];
-```
-
-Initialization
-
-```java
-int[][] arr = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-```
-
-Row size
-
-```java
-vec.length
-```
-
-Column size
-
-```java
-vec[0].length
-```
 
 Sort row wise
 
 ```java
-Arrays.sort(mat, (a, b) -> Arrays.compare(a, b));
+for (int[] row : mat) {
+    Arrays.sort(row);
+}
 ```
 
 Transpose of matrix
@@ -807,13 +712,9 @@ int binarySearch(int[] arr, int low, int high, int x)
 }
 ```
 
-Java
-
 | Operation | Syntax |
 | --- | --- |
 | Return true, if value exists (list must be sorted) | `Collections.binarySearch(list, value) >= 0` |
-| First element which is ≥ value (no `lower_bound` - nearest built-in) | `TreeSet.ceiling(value)` / `TreeMap.ceilingKey(key)` |
-| First element which is > value (no `upper_bound` - nearest built-in) | `TreeSet.higher(value)` / `TreeMap.higherKey(key)` |
 
 
 ## Sorting
@@ -1036,7 +937,17 @@ void quickSort(int[] arr, int low, int high) {
 
 ## Time and Space Complexity Comparison Table
 
-![](../../assets/dsa/dsa/sorting-algorithms-complexity-comparison-table.png)
+| Sorting Algorithm | Best Case (Ω) | Average Case (Θ) | Worst Case (O) | Space Complexity |
+| --- | --- | --- | --- | --- |
+| Bubble Sort | Ω(N) | Θ(N<sup>2</sup>) | O(N<sup>2</sup>) | O(1) |
+| Selection Sort | Ω(N<sup>2</sup>) | Θ(N<sup>2</sup>) | O(N<sup>2</sup>) | O(1) |
+| Insertion Sort | Ω(N) | Θ(N<sup>2</sup>) | O(N<sup>2</sup>) | O(1) |
+| Merge Sort | Ω(N log N) | Θ(N log N) | O(N log N) | O(N) |
+| Heap Sort | Ω(N log N) | Θ(N log N) | O(N log N) | O(1) |
+| Quick Sort | Ω(N log N) | Θ(N log N) | O(N<sup>2</sup>) | O(log N) |
+| Radix Sort | Ω(N k) | Θ(N k) | O(N k) | O(N + k) |
+| Count Sort | Ω(N + k) | Θ(N + k) | O(N + k) | O(k) |
+| Bucket Sort | Ω(N + k) | Θ(N + k) | O(N<sup>2</sup>) | O(N) |
 
 
 # Recursion
@@ -1078,7 +989,6 @@ class Node {
     int data;
     Node next;
 
-    // Constructor
     Node(int value) {
         data = value;
         next = null;
@@ -1086,17 +996,9 @@ class Node {
 }
 
 Node newNode = new Node(value);
-```
 
-```java
-class Node {
-    int data;
-    Node next;
-}
-
-Node newNode = new Node();
-newNode.data = value;
-newNode.next = null;
+int val = newNode.data;
+Node nextNode = newNode.next;
 ```
 
 
@@ -1301,23 +1203,22 @@ Node mergeSort(Node head) {
 # Stack & Queue
 
 
+## Expression Notations
+
+The same expression can be written in 3 ways, e.g. `(A + B) * C`
+
+- Infix: operator is placed between the operands, needs brackets and precedence rules
+  - Example: `(A + B) * C`
+- Postfix (Reverse Polish Notation): operator is placed after its operands, no brackets needed
+  - Example: `A B + C *`
+- Prefix (Polish Notation): operator is placed before its operands, no brackets needed
+  - Example: `* + A B C`
+
+
 ## Stack
 
 - LIFO (Last In First Out) Principle
 - All operations are O(1) in TC and SC
-- Infix, Postfix, and Prefix Conversion- [https://www.naukri.com/code360/library/infix-postfix-and-prefix-conversion](https://www.naukri.com/code360/library/infix-postfix-and-prefix-conversion)
-
-Java
-
-| Operation | Syntax |
-| --- | --- |
-| Create | `Deque<Integer> s = new ArrayDeque<>();` |
-| Push element | `s.push(x);` |
-| Pop element | `s.pop();` |
-| Access top element | `s.peek();` |
-| Check size | `s.size();` |
-| Check if empty | `s.isEmpty();` |
-| Swap contents (no swap - swap the references) | `Deque<Integer> t = s1; s1 = s2; s2 = t;` |
 
 
 ## Monotonic Stack
@@ -1358,14 +1259,225 @@ List<Integer> monotonicIncreasing(int[] nums)
 }
 ```
 
-Implementations
 
-- Stack implementation in C++- [https://www.geeksforgeeks.org/stack-implementation-in-cpp/](https://www.geeksforgeeks.org/stack-implementation-in-cpp/)
-- Implement two Stacks in an Array- [https://www.geeksforgeeks.org/implement-two-stacks-in-an-array/](https://www.geeksforgeeks.org/implement-two-stacks-in-an-array/)
-- Implement Stack using Queues- [https://www.geeksforgeeks.org/implement-stack-using-queue/](https://www.geeksforgeeks.org/implement-stack-using-queue/)
-- Implement k stacks in an array- [https://www.geeksforgeeks.org/efficiently-implement-k-stacks-single-array/](https://www.geeksforgeeks.org/efficiently-implement-k-stacks-single-array/)
-- How to implement stack using priority queue or heap?- [https://www.geeksforgeeks.org/implement-stack-using-priority-queue-or-heap/](https://www.geeksforgeeks.org/implement-stack-using-priority-queue-or-heap/)
-- Design a stack that supports getMin() in O(1) time- [https://www.geeksforgeeks.org/design-a-stack-that-supports-getmin-in-o1-time-and-o1-extra-space/](https://www.geeksforgeeks.org/design-a-stack-that-supports-getmin-in-o1-time-and-o1-extra-space/)
+## Stack Implementations
+
+### Stack Implementation
+
+```java
+class ArrayStack {
+    private final int[] arr;
+    private int top = -1;
+
+    ArrayStack(int capacity) {
+        arr = new int[capacity];
+    }
+
+    void push(int x) {
+        if (top == arr.length - 1) throw new RuntimeException("Stack overflow");
+        arr[++top] = x;
+    }
+
+    int pop() {
+        if (isEmpty()) throw new RuntimeException("Stack is empty");
+        return arr[top--];
+    }
+
+    int peek() {
+        if (isEmpty()) throw new RuntimeException("Stack is empty");
+        return arr[top];
+    }
+
+    boolean isEmpty() {
+        return top == -1;
+    }
+}
+```
+
+### Implement Two Stacks in an Array
+
+```java
+class TwoStacks {
+    private final int[] arr;
+    private final int size;
+    private int top1, top2;
+
+    TwoStacks(int n) {
+        size = n;
+        arr = new int[n];
+        top1 = -1;
+        top2 = size;
+    }
+
+    void push1(int x) {
+        if (top1 + 1 == top2) throw new RuntimeException("Stack overflow");
+        arr[++top1] = x;
+    }
+
+    void push2(int x) {
+        if (top1 + 1 == top2) throw new RuntimeException("Stack overflow");
+        arr[--top2] = x;
+    }
+
+    int pop1() {
+        if (top1 == -1) throw new RuntimeException("Stack is empty");
+        return arr[top1--];
+    }
+
+    int pop2() {
+        if (top2 == size) throw new RuntimeException("Stack is empty");
+        return arr[top2++];
+    }
+}
+```
+
+### Implement Stack using Queues
+
+```java
+class StackUsingQueue {
+    private final Queue<Integer> q = new ArrayDeque<>();
+
+    void push(int x) {
+        q.offer(x);
+        for (int i = 0; i < q.size() - 1; i++) {
+            q.offer(q.poll());
+        }
+    }
+
+    int pop() {
+        return q.remove();
+    }
+
+    int top() {
+        if (q.isEmpty()) throw new RuntimeException("Stack is empty");
+        return q.peek();
+    }
+}
+```
+
+### Implement k Stacks in an Array
+
+```java
+class KStacks {
+    private final int[] arr, top, next;
+    private int freeTop = 0;
+
+    KStacks(int k, int n) {
+        arr = new int[n];
+        top = new int[k];
+        next = new int[n];
+        Arrays.fill(top, -1);
+        for (int i = 0; i < n - 1; i++) next[i] = i + 1;
+        next[n - 1] = -1;
+    }
+
+    void push(int x, int stack) {
+        if (freeTop == -1) throw new RuntimeException("Stack overflow");
+        int idx = freeTop;
+        freeTop = next[idx];
+        next[idx] = top[stack];
+        top[stack] = idx;
+        arr[idx] = x;
+    }
+
+    int pop(int stack) {
+        if (top[stack] == -1) throw new RuntimeException("Stack is empty");
+        int idx = top[stack];
+        top[stack] = next[idx];
+        next[idx] = freeTop;
+        freeTop = idx;
+        return arr[idx];
+    }
+}
+```
+
+### Implement Stack using Priority Queue or Heap
+
+```java
+class StackUsingPQ {
+    private int cnt = 0;
+    private final PriorityQueue<int[]> pq =
+        new PriorityQueue<>((a, b) -> Integer.compare(b[0], a[0]));
+
+    void push(int x) {
+        pq.offer(new int[]{cnt++, x});
+    }
+
+    int pop() {
+        return pq.remove()[1];
+    }
+
+    int top() {
+        if (pq.isEmpty()) throw new RuntimeException("Stack is empty");
+        return pq.peek()[1];
+    }
+}
+```
+
+### Design a Stack that supports getMin() in O(1) time
+
+```java
+class MinStack {
+    private final Deque<Integer> st = new ArrayDeque<>();
+    private final Deque<Integer> minSt = new ArrayDeque<>();
+
+    void push(int x) {
+        st.push(x);
+        minSt.push(minSt.isEmpty() ? x : Math.min(x, minSt.peek()));
+    }
+
+    int pop() {
+        minSt.pop();
+        return st.pop();
+    }
+
+    int peek() {
+        return st.peek();
+    }
+
+    int getMin() {
+        return minSt.peek();
+    }
+}
+```
+
+```java
+class MinStackO1Space {
+    private final Deque<Long> st = new ArrayDeque<>();
+    private long minEle;
+
+    void push(int x) {
+        if (st.isEmpty()) {
+            st.push((long) x);
+            minEle = x;
+        } else if (x < minEle) {
+            st.push(2L * x - minEle);
+            minEle = x;
+        } else {
+            st.push((long) x);
+        }
+    }
+
+    int pop() {
+        long top = st.pop();
+        if (top < minEle) {
+            int res = (int) minEle;
+            minEle = 2 * minEle - top;
+            return res;
+        }
+        return (int) top;
+    }
+
+    int peek() {
+        long top = st.peek();
+        return (int) (top < minEle ? minEle : top);
+    }
+
+    int getMin() {
+        return (int) minEle;
+    }
+}
+```
 
 
 ## Queue
@@ -1373,31 +1485,6 @@ Implementations
 - FIFO (First In First Out) Principle
 - All operations are O(1) in TC and SC
 - Dequeue- Double ended queue. Can insert and delete from both sides
-
-Queue STL
-
-| Operation | Syntax |
-| --- | --- |
-| Create | `Queue<Integer> q = new ArrayDeque<>();` |
-| Add element (enqueue) | `q.offer(x);` |
-| Remove element | `q.poll();` |
-| Access front element | `q.peek();` |
-| Access back element (declare it as a `Deque` - `Queue` has no back access) | `dq.peekLast();` |
-| Check size | `q.size();` |
-| Check if empty | `q.isEmpty();` |
-| Swap contents (no swap - swap the references) | `Queue<Integer> t = q1; q1 = q2; q2 = t;` |
-
-Dequeue STL
-
-| Operation | Syntax |
-| --- | --- |
-| Create | `Deque<Integer> dq = new ArrayDeque<>();` |
-| Insert at back | `dq.addLast(x);` |
-| Insert at front | `dq.addFirst(x);` |
-| Remove from back | `dq.pollLast();` |
-| Remove from front | `dq.pollFirst();` |
-| Access front element | `dq.peekFirst();` |
-| Access back element | `dq.peekLast();` |
 
 
 ## Monotonic Queues
@@ -1423,14 +1510,275 @@ Deque<Integer> increasingMonotonicQueue(int[] arr, int n)
 }
 ```
 
-Implementations
 
-- Array implementation of queue - Simple- [https://www.geeksforgeeks.org/array-implementation-of-queue-simple/](https://www.geeksforgeeks.org/array-implementation-of-queue-simple/)
-- Circular Array Implementation of Queue- [https://www.geeksforgeeks.org/introduction-to-circular-queue/](https://www.geeksforgeeks.org/introduction-to-circular-queue/)
-- Queue - Linked List Implementation- [https://www.geeksforgeeks.org/queue-linked-list-implementation/](https://www.geeksforgeeks.org/queue-linked-list-implementation/)
-- Implement Stack and Queue using Deque-  [https://www.geeksforgeeks.org/implement-stack-queue-using-deque/](https://www.geeksforgeeks.org/implement-stack-queue-using-deque/)
-- Queue using Stacks- [https://www.geeksforgeeks.org/queue-using-stacks/](https://www.geeksforgeeks.org/queue-using-stacks/)
-- Implement k Queues in a single array- [https://www.geeksforgeeks.org/efficiently-implement-k-queues-single-array/](https://www.geeksforgeeks.org/efficiently-implement-k-queues-single-array/)
+## Queue Implementations
+
+### Array Implementation of Queue - Simple
+
+```java
+class ArrayQueue {
+    private final int[] arr;
+    private final int capacity;
+    private int size = 0;
+
+    ArrayQueue(int capacity) {
+        this.capacity = capacity;
+        arr = new int[capacity];
+    }
+
+    boolean isEmpty() {
+        return size == 0;
+    }
+
+    boolean isFull() {
+        return size == capacity;
+    }
+
+    void enqueue(int x) {
+        if (isFull()) throw new RuntimeException("Queue is full");
+        arr[size++] = x;
+    }
+
+    void dequeue() {
+        if (isEmpty()) throw new RuntimeException("Queue is empty");
+        for (int i = 1; i < size; i++) {
+            arr[i - 1] = arr[i];
+        }
+        size--;
+    }
+
+    int getFront() {
+        if (isEmpty()) throw new RuntimeException("Queue is empty");
+        return arr[0];
+    }
+
+    int getRear() {
+        if (isEmpty()) throw new RuntimeException("Queue is empty");
+        return arr[size - 1];
+    }
+}
+```
+
+### Circular Array Implementation of Queue
+
+```java
+class CircularQueue {
+    private final int[] arr;
+    private final int capacity;
+    private int front = 0;
+    private int size = 0;
+
+    CircularQueue(int capacity) {
+        this.capacity = capacity;
+        arr = new int[capacity];
+    }
+
+    void enqueue(int x) {
+        if (size == capacity) throw new RuntimeException("Queue is full");
+        int rear = (front + size) % capacity;
+        arr[rear] = x;
+        size++;
+    }
+
+    int dequeue() {
+        if (size == 0) throw new RuntimeException("Queue is empty");
+        int res = arr[front];
+        front = (front + 1) % capacity;
+        size--;
+        return res;
+    }
+
+    int getFront() {
+        if (size == 0) throw new RuntimeException("Queue is empty");
+        return arr[front];
+    }
+
+    int getRear() {
+        if (size == 0) throw new RuntimeException("Queue is empty");
+        return arr[(front + size - 1) % capacity];
+    }
+}
+```
+
+### Queue - Linked List Implementation
+
+```java
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        next = null;
+    }
+}
+```
+
+```java
+class LinkedQueue {
+    private Node front, rear;
+    private int currSize = 0;
+
+    boolean isEmpty() {
+        return front == null;
+    }
+
+    void enqueue(int x) {
+        Node node = new Node(x);
+        if (isEmpty()) {
+            front = rear = node;
+        } else {
+            rear.next = node;
+            rear = node;
+        }
+        currSize++;
+    }
+
+    int dequeue() {
+        if (isEmpty()) throw new RuntimeException("Queue is empty");
+        int res = front.data;
+        front = front.next;
+        if (front == null) rear = null;
+        currSize--;
+        return res;
+    }
+
+    int getFront() {
+        if (isEmpty()) throw new RuntimeException("Queue is empty");
+        return front.data;
+    }
+
+    int size() {
+        return currSize;
+    }
+}
+```
+
+### Implement Stack and Queue using Deque
+
+```java
+class StackUsingDeque {
+    private final Deque<Integer> dq = new ArrayDeque<>();
+
+    void push(int x) {
+        dq.addLast(x);
+    }
+
+    int pop() {
+        return dq.removeLast();
+    }
+
+    int peek() {
+        return dq.getLast();
+    }
+}
+```
+
+```java
+class QueueUsingDeque {
+    private final Deque<Integer> dq = new ArrayDeque<>();
+
+    void enqueue(int x) {
+        dq.addLast(x);
+    }
+
+    int dequeue() {
+        return dq.removeFirst();
+    }
+
+    int front() {
+        return dq.getFirst();
+    }
+}
+```
+
+### Queue using Stacks
+
+```java
+class QueueUsingStacks {
+    private final Deque<Integer> s1 = new ArrayDeque<>();
+    private final Deque<Integer> s2 = new ArrayDeque<>();
+
+    void enqueue(int x) {
+        s1.push(x);
+    }
+
+    int dequeue() {
+        moveToS2();
+        return s2.pop();
+    }
+
+    int front() {
+        moveToS2();
+        return s2.peek();
+    }
+
+    int size() {
+        return s1.size() + s2.size();
+    }
+
+    private void moveToS2() {
+        if (s2.isEmpty()) {
+            while (!s1.isEmpty()) {
+                s2.push(s1.pop());
+            }
+        }
+        if (s2.isEmpty()) throw new RuntimeException("Queue is empty");
+    }
+}
+```
+
+### Implement k Queues in a Single Array
+
+```java
+class KQueues {
+    private final int[] arr, front, rear, next;
+    private int freeIndex = 0;
+
+    KQueues(int n, int k) {
+        arr = new int[n];
+        front = new int[k];
+        rear = new int[k];
+        next = new int[n];
+        Arrays.fill(front, -1);
+        Arrays.fill(rear, -1);
+        for (int i = 0; i < n - 1; i++) next[i] = i + 1;
+        next[n - 1] = -1;
+    }
+
+    boolean isEmpty(int qn) {
+        return front[qn] == -1;
+    }
+
+    boolean isFull() {
+        return freeIndex == -1;
+    }
+
+    void enqueue(int x, int qn) {
+        if (isFull()) throw new RuntimeException("Queue overflow");
+        int i = freeIndex;
+        freeIndex = next[i];
+        if (isEmpty(qn)) {
+            front[qn] = i;
+        } else {
+            next[rear[qn]] = i;
+        }
+        next[i] = -1;
+        rear[qn] = i;
+        arr[i] = x;
+    }
+
+    int dequeue(int qn) {
+        if (isEmpty(qn)) throw new RuntimeException("Queue is empty");
+        int i = front[qn];
+        front[qn] = next[i];
+        if (front[qn] == -1) rear[qn] = -1;
+        next[i] = freeIndex;
+        freeIndex = i;
+        return arr[i];
+    }
+}
+```
 
 
 ## LRU Cache
@@ -1679,9 +2027,73 @@ List<Integer> reverseLevelOrderTraversal(Node root) {
 }
 ```
 
-Diagonal Traversal- [https://www.geeksforgeeks.org/diagonal-traversal-of-binary-tree/](https://www.geeksforgeeks.org/diagonal-traversal-of-binary-tree/)
+Diagonal Traversal
 
-Boundary Traversal- [https://www.geeksforgeeks.org/boundary-traversal-of-binary-tree/](https://www.geeksforgeeks.org/boundary-traversal-of-binary-tree/)
+```java
+List<Integer> diagonalTraversal(Node root) {
+    List<Integer> result = new ArrayList<>();
+    if (root == null) return result;
+
+    Queue<Node> q = new ArrayDeque<>();
+    q.add(root);
+
+    while (!q.isEmpty()) {
+        Node curr = q.poll();
+
+        // Walk along the right chain, which is one diagonal
+        while (curr != null) {
+            result.add(curr.data);
+            if (curr.left != null) q.add(curr.left);
+            curr = curr.right;
+        }
+    }
+
+    return result;
+}
+```
+
+Boundary Traversal
+
+```java
+boolean isLeaf(Node node) {
+    return node.left == null && node.right == null;
+}
+
+void collectLeft(Node node, List<Integer> res) {
+    if (node == null || isLeaf(node)) return;
+    res.add(node.data);
+    if (node.left != null) collectLeft(node.left, res);
+    else collectLeft(node.right, res);
+}
+
+void collectLeaves(Node node, List<Integer> res) {
+    if (node == null) return;
+    if (isLeaf(node)) {
+        res.add(node.data);
+        return;
+    }
+    collectLeaves(node.left, res);
+    collectLeaves(node.right, res);
+}
+
+void collectRight(Node node, List<Integer> res) {
+    if (node == null || isLeaf(node)) return;
+    if (node.right != null) collectRight(node.right, res);
+    else collectRight(node.left, res);
+    res.add(node.data);
+}
+
+List<Integer> boundaryTraversal(Node root) {
+    List<Integer> res = new ArrayList<>();
+    if (root == null) return res;
+    if (!isLeaf(root)) res.add(root.data);
+
+    collectLeft(root.left, res);
+    collectLeaves(root, res);
+    collectRight(root.right, res);
+    return res;
+}
+```
 
 
 ## Maximum Depth/ height of Binary Tree
@@ -1797,9 +2209,133 @@ boolean hasPath(Node root, List<Integer> arr, int x)
   - Left-Right Rotation
   - Right-Left Rotation
 
-Insertion- [https://www.geeksforgeeks.org/insertion-in-an-avl-tree/](https://www.geeksforgeeks.org/insertion-in-an-avl-tree/)
+Insertion
 
-Deletion- [https://www.geeksforgeeks.org/deletion-in-an-avl-tree/](https://www.geeksforgeeks.org/deletion-in-an-avl-tree/)
+```java
+class Node {
+    int key, height;
+    Node left, right;
+
+    Node(int key) {
+        this.key = key;
+        height = 1;
+    }
+}
+
+int height(Node node) {
+    return node == null ? 0 : node.height;
+}
+
+int getBalance(Node node) {
+    return node == null ? 0 : height(node.left) - height(node.right);
+}
+
+Node rightRotate(Node y) {
+    Node x = y.left;
+    Node temp = x.right;
+
+    x.right = y;
+    y.left = temp;
+
+    y.height = 1 + Math.max(height(y.left), height(y.right));
+    x.height = 1 + Math.max(height(x.left), height(x.right));
+    return x;
+}
+
+Node leftRotate(Node x) {
+    Node y = x.right;
+    Node temp = y.left;
+
+    y.left = x;
+    x.right = temp;
+
+    x.height = 1 + Math.max(height(x.left), height(x.right));
+    y.height = 1 + Math.max(height(y.left), height(y.right));
+    return y;
+}
+
+Node insert(Node node, int key) {
+    if (node == null) return new Node(key);
+
+    if (key < node.key) node.left = insert(node.left, key);
+    else if (key > node.key) node.right = insert(node.right, key);
+    else return node;   // duplicates not allowed
+
+    node.height = 1 + Math.max(height(node.left), height(node.right));
+    int balance = getBalance(node);
+
+    // Left Left
+    if (balance > 1 && key < node.left.key) {
+        return rightRotate(node);
+    }
+    // Right Right
+    if (balance < -1 && key > node.right.key) {
+        return leftRotate(node);
+    }
+    // Left Right
+    if (balance > 1 && key > node.left.key) {
+        node.left = leftRotate(node.left);
+        return rightRotate(node);
+    }
+    // Right Left
+    if (balance < -1 && key < node.right.key) {
+        node.right = rightRotate(node.right);
+        return leftRotate(node);
+    }
+    return node;
+}
+```
+
+Deletion
+
+```java
+Node minValueNode(Node node) {
+    while (node.left != null) node = node.left;
+    return node;
+}
+
+Node delete(Node root, int key) {
+    if (root == null) return null;
+
+    if (key < root.key) {
+        root.left = delete(root.left, key);
+    } else if (key > root.key) {
+        root.right = delete(root.right, key);
+    } else {
+        // 0 or 1 child
+        if (root.left == null || root.right == null) {
+            return root.left != null ? root.left : root.right;
+        }
+        // 2 children: replace with inorder successor, then delete it
+        Node temp = minValueNode(root.right);
+        root.key = temp.key;
+        root.right = delete(root.right, temp.key);
+    }
+
+    root.height = 1 + Math.max(height(root.left), height(root.right));
+    int balance = getBalance(root);
+
+    // Left Left
+    if (balance > 1 && getBalance(root.left) >= 0) {
+        return rightRotate(root);
+    }
+    // Left Right
+    if (balance > 1 && getBalance(root.left) < 0) {
+        root.left = leftRotate(root.left);
+        return rightRotate(root);
+    }
+    // Right Right
+    if (balance < -1 && getBalance(root.right) <= 0) {
+        return leftRotate(root);
+    }
+    // Right Left
+    if (balance < -1 && getBalance(root.right) > 0) {
+        root.right = rightRotate(root.right);
+        return leftRotate(root);
+    }
+    return root;
+}
+```
 
 
 # Binary Search Tree
@@ -2260,40 +2796,23 @@ void heapSort(int[] arr){
 
 ## Priority Queue
 
-Java
-
-| Operation | Syntax |
-| --- | --- |
-| Create (max heap - needs an explicit comparator) | `PriorityQueue<Integer> pq = new PriorityQueue<>(Comparator.reverseOrder());` |
-| Create (min heap - the Java default) | `PriorityQueue<Integer> pq = new PriorityQueue<>();` |
-| Insertion | `pq.offer(value)` |
-| Top Element | `pq.peek()` |
-| Removal | `pq.poll()` |
-| Size | `pq.size()` |
-| Check Empty | `pq.isEmpty()` |
-
-
-## Custom Comparator
+### Custom Comparator
 
 ```java
-class Compare implements Comparator<DataType> {
-        public int compare(DataType a, DataType b) {
-                if (cond) {
-                        return 1;
-                }
-                return -1;
-        }
+// compare(a, b): negative -> a comes first, positive -> b comes first
+class Compare implements Comparator<int[]> {
+    public int compare(int[] a, int[] b) {
+        return Integer.compare(a[1], b[1]);
+    }
 }
+
+PriorityQueue<int[]> pq = new PriorityQueue<>(new Compare());
 ```
 
-```java
-PriorityQueue<PII> pq = new PriorityQueue<>(new Compare());
-```
-
-- Operator overloading of () operator
-- Behaviour is reverse of sorting
-- If true, order is NOT correct and swapping of elements takes place
-- If false, order is correct and no swapping of elements takes place
+- Behaviour is same as sorting
+- If negative, `a` comes first, order is correct and no swapping of elements takes place
+- If positive, `b` comes first, order is NOT correct and swapping of elements takes place
+- If zero, both are equal
 
 
 ## Hashing

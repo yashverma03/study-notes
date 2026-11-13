@@ -8,7 +8,10 @@
   - [Varargs](#varargs)
   - [var keyword](#var-keyword)
 - [Array](#array)
+- [Integer](#integer)
+- [Character](#character)
 - [Math](#math)
+- [BigDecimal](#bigdecimal)
 - [String](#string)
   - [String](#string-1)
   - [StringBuilder](#stringbuilder)
@@ -29,6 +32,8 @@
     - [6. BinaryOperator\<T>](#6-binaryoperatort)
     - [7. UnaryOperator\<T>](#7-unaryoperatort)
   - [Marker Interface](#marker-interface)
+- [Enum](#enum)
+- [Record](#record)
 - [Exception Handling](#exception-handling)
 - [Memory Allocation](#memory-allocation)
   - [Stack Memory](#stack-memory)
@@ -39,10 +44,12 @@
   - [LinkedList](#linkedlist)
   - [HashSet](#hashset)
   - [TreeSet](#treeset)
+    - [Time complexity of TreeSet and HashSet](#time-complexity-of-treeset-and-hashset)
   - [ArrayDeque](#arraydeque)
   - [PriorityQueue](#priorityqueue)
   - [HashMap](#hashmap)
   - [TreeMap](#treemap)
+    - [Time complexity of TreeMap and HashMap](#time-complexity-of-treemap-and-hashmap)
   - [Iterator](#iterator)
   - [Comparator Interface](#comparator-interface)
   - [Comparable Interface](#comparable-interface)
@@ -198,6 +205,43 @@ for (var i = 0; i < 5; i++) { }
 | 3D: print | `System.out.println(Arrays.deepToString(cube));` |
 
 
+# Integer
+
+Wrapper class of `int` from `java.lang`. `Long` and `Double` have the same kind of methods.
+
+| Operation | Syntax |
+| --- | --- |
+| Compare two numbers (positive means `x > y`) | `Integer.compare(x, y);`<br>`Long.compare(x, y);`<br>`Double.compare(x, y);` |
+| String to int | `Integer.parseInt("123");` |
+| String to int (with base) | `Integer.parseInt("1010", 2);` |
+| String to `Integer` object | `Integer.valueOf("123");` |
+| int to String | `String.valueOf(123);`<br>`Integer.toString(123);` |
+| int to binary / hex String | `Integer.toBinaryString(10);`<br>`Integer.toHexString(255);` |
+| Count of set bits | `Integer.bitCount(7);` |
+| Sign of a number (-1, 0, 1) | `Integer.signum(x);` |
+
+
+# Character
+
+Wrapper class of `char` from `java.lang`. A `char` is a number (its Unicode value), so it supports arithmetic like `c - 'a'`.
+
+| Operation | Syntax |
+| --- | --- |
+| Is digit | `Character.isDigit(c);` |
+| Is letter | `Character.isLetter(c);` |
+| Is letter or digit | `Character.isLetterOrDigit(c);` |
+| Is uppercase / lowercase | `Character.isUpperCase(c);`<br>`Character.isLowerCase(c);` |
+| Is whitespace | `Character.isWhitespace(c);` |
+| To uppercase / lowercase | `Character.toUpperCase(c);`<br>`Character.toLowerCase(c);` |
+| Digit char to int | `c - '0';`<br>`Character.getNumericValue(c);` |
+| int digit to char | `(char) ('0' + d);` |
+| Letter to index (0 for 'a') | `c - 'a';` |
+| Index to letter | `(char) ('a' + i);` |
+| char to String | `String.valueOf(c);` |
+| String to char array | `s.toCharArray();` |
+| Compare two chars (negative, 0 or positive) | `Character.compare(a, b);` |
+
+
 # Math
 
 | Operation | Syntax |
@@ -215,6 +259,41 @@ for (var i = 0; i < 5; i++) { }
 | `e` to the power x | `Math.exp(1)` |
 | Random in `[0.0, 1.0)` | `Math.random()` |
 | Constants | `Math.PI`, `Math.E`<br>`Integer.MAX_VALUE`, `Integer.MIN_VALUE`<br>`Long.MAX_VALUE`, `Long.MIN_VALUE` |
+
+
+# BigDecimal
+
+| Operation | Syntax |
+| --- | --- |
+| Create (from String, exact) | `BigDecimal a = new BigDecimal("0.1");` |
+| Create (from double) | `BigDecimal a = BigDecimal.valueOf(0.1);`<br>Avoid `new BigDecimal(0.1)`, it keeps the binary error of the double |
+| Constants | `BigDecimal.ZERO`, `BigDecimal.ONE`, `BigDecimal.TEN` |
+| Add / subtract | `a.add(b)`<br>`a.subtract(b)` |
+| Multiply | `a.multiply(b)` |
+| Divide (fixed scale) | `a.divide(b, 2, RoundingMode.HALF_UP)` |
+| Divide (fixed significant digits) | `a.divide(b, MathContext.DECIMAL128)` |
+| Divide (exact only) | `a.divide(b)` |
+| Remainder | `a.remainder(b)` |
+| Power (int exponent) | `a.pow(3)` |
+| Absolute value | `a.abs()` |
+| Max / min | `a.max(b)`<br>`a.min(b)` |
+| Compare | `a.compareTo(b)` (returns -1, 0, 1; ignores scale, so 2.0 and 2.00 are equal) |
+| Equality | `a.equals(b)` (also compares scale, so 2.0 and 2.00 are not equal) |
+| Round to fixed decimal places | `a.setScale(2, RoundingMode.HALF_UP)` |
+| Remove trailing zeros | `a.stripTrailingZeros()` |
+| Convert to primitive | `a.intValue()`<br>`a.longValue()`<br>`a.doubleValue()` |
+| Convert to String | `a.toString()` (may use scientific notation)<br>`a.toPlainString()` (never uses it) |
+
+Common `RoundingMode` values:
+
+| Mode | Behaviour |
+| --- | --- |
+| `HALF_UP` | Round to nearest, ties go away from zero (2.5 becomes 3) |
+| `HALF_EVEN` | Round to nearest, ties go to the even neighbour (banker's rounding) |
+| `UP` | Round away from zero |
+| `DOWN` | Round towards zero (truncate) |
+| `CEILING` | Round towards positive infinity |
+| `FLOOR` | Round towards negative infinity |
 
 
 # String
@@ -235,6 +314,7 @@ for (var i = 0; i < 5; i++) { }
 | Get substring | `s.substring(i, j);` |
 | Compare strings | `s.equals("Hello");` |
 | Compare ignoring case | `s.equalsIgnoreCase("hello");` |
+| Compare alphabetically (positive means `s1 > s2`) | `s1.compareTo(s2);` |
 | Convert to uppercase | `s.toUpperCase();` |
 | Convert to lowercase | `s.toLowerCase();` |
 | Check contains | `s.contains("ell");` |
@@ -662,6 +742,70 @@ System.out.println(square.apply(5));    // 25
   - Remote
 
 
+# Enum
+
+Fixed set of named constants. Constants are compared with `==`, and an enum can also have fields, a constructor and methods.
+
+```java
+enum Day { MON, TUE, WED }
+
+Day d = Day.TUE;
+```
+
+| Operation | Syntax |
+| --- | --- |
+| Name as String | `d.name();` |
+| Position (starts from 0) | `d.ordinal();` |
+| All constants as an array | `Day.values();` |
+| String to constant (throws `IllegalArgumentException` if not found) | `Day.valueOf("WED");` |
+| Compare | `d == Day.TUE;`<br>`d.compareTo(Day.WED);` (order of declaration) |
+
+Use in a `switch`
+
+```java
+switch (d) {
+    case MON -> System.out.println("Monday");
+    case TUE -> System.out.println("Tuesday");
+    default -> System.out.println("Other");
+}
+```
+
+Enum with a field
+
+```java
+enum Level {
+    LOW(1), MEDIUM(5), HIGH(10);
+
+    private final int value;
+
+    Level(int value) {
+        this.value = value;
+    }
+
+    int getValue() {
+        return value;
+    }
+}
+
+Level.HIGH.getValue();   // 10
+```
+
+
+# Record
+
+Short way to write an immutable data class. The compiler generates the constructor, the fields (all `final`), accessors named after the field (`x()`, not `getX()`), `equals`, `hashCode` and `toString`. Often used as a simple pair or tuple, and as a `HashMap` key.
+
+```java
+record Point(int x, int y) {}
+
+Point p = new Point(1, 2);
+p.x();                        // 1
+p.y();                        // 2
+p.equals(new Point(1, 2));    // true (compares values)
+p.toString();                 // Point[x=1, y=2]
+```
+
+
 # Exception Handling
 
 - throw- It is used to explicitly throw an exception.
@@ -895,6 +1039,16 @@ Sorted set
 | Ceiling (>= element) | `set.ceiling(e);` |
 | Floor (\<= element) | `set.floor(e);` |
 
+### Time complexity of TreeSet and HashSet
+
+Time complexity of the main operations on `TreeSet` and `HashSet`.
+
+| Operation | TreeSet | HashSet |
+| --- | --- | --- |
+| Insert | O(log n) | Average: O(1)<br>Worst: O(log n) |
+| Delete | O(log n) | Average: O(1)<br>Worst: O(log n) |
+| Find / contains | O(log n) | Average: O(1)<br>Worst: O(log n) |
+
 
 ## ArrayDeque
 
@@ -902,13 +1056,14 @@ Can be used for stack, queue and deque
 
 | Operation | Syntax |
 | --- | --- |
-| Create | `ArrayDeque<Integer> dq = new ArrayDeque<>();` |
+| Create | `Deque<Integer> dq = new ArrayDeque<>();` |
 | Enqueue (add at end) | `dq.offer(e);` |
 | Dequeue (remove from front) | `dq.poll();` |
 | Peek front | `dq.peek();` |
 | Push (insert at top) | `dq.push(e);` |
 | Pop (remove top) | `dq.pop();` |
 | Check size | `dq.size();` |
+| Check if empty | `dq.isEmpty();` |
 | Clear deque | `dq.clear();` |
 | Iterate (for-each) | `for (Integer x : dq) {}` |
 
@@ -963,6 +1118,16 @@ Sorted by key
 | Smallest key ≥ k | `tm.ceilingKey(k)` |
 | Greatest key \< k | `tm.lowerKey(k)` |
 | Smallest key > k | `tm.higherKey(k)` |
+
+### Time complexity of TreeMap and HashMap
+
+Time complexity of the main operations on `TreeMap` and `HashMap`.
+
+| Operation | TreeMap | HashMap |
+| --- | --- | --- |
+| Insert | O(log n) | Average: O(1)<br>Worst: O(log n) |
+| Delete | O(log n) | Average: O(1)<br>Worst: O(log n) |
+| Find / containsKey | O(log n) | Average: O(1)<br>Worst: O(log n) |
 
 
 ## Iterator
