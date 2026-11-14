@@ -41,6 +41,7 @@
   - [Method Area](#method-area)
 - [Collections](#collections)
   - [ArrayList](#arraylist)
+  - [Collections Class Methods](#collections-class-methods)
   - [LinkedList](#linkedlist)
   - [HashSet](#hashset)
   - [TreeSet](#treeset)
@@ -187,12 +188,15 @@ for (var i = 0; i < 5; i++) { }
 | Array → ArrayList (object arrays only) | `Integer[] boxed = {1, 2, 3};`<br>`List<Integer> list = new ArrayList<>(Arrays.asList(boxed));` |
 | Length | `arr.length` |
 | Sort array | `Arrays.sort(arr);` |
-| Reverse array (manual) | `Collections.reverse(Arrays.asList(arr));` |
-| Sort in range | `Arrays.sort(arr, 1, 4);` (indices 1 to 3) |
-| Sort descending (object arrays only) | `Integer[] boxed = {3, 1, 2};`<br>`Arrays.sort(boxed, Collections.reverseOrder());` |
+| Sort with comparator | `Arrays.sort(boxed, (a, b) -> b - a);`<br>`Arrays.sort(pairs, (a, b) -> Integer.compare(a[0], b[0]));` |
+| Sort descending | `Arrays.sort(boxed, Collections.reverseOrder());` |
+| Sort in range | `Arrays.sort(arr, 1, 4);` |
+| Sort in range with comparator | `Arrays.sort(boxed, 1, 4, Collections.reverseOrder());` |
+| Reverse array | `Collections.reverse(Arrays.asList(boxed));` |
+| Reverse in range | `Collections.reverse(Arrays.asList(boxed).subList(1, 4));` |
 | Search (binary search, array must be sorted) | `int idx = Arrays.binarySearch(arr, key);`<br>`int idx = Arrays.binarySearch(arr, 1, 4, key);` (range) |
 | Binary search return value | Index if found; otherwise `-(insertionPoint) - 1`, so `idx < 0` means not found and `-idx - 1` is where it would be inserted. With duplicates, which index is returned is not guaranteed |
-| Equal contents | `Arrays.equals(a, b);`<br>`Arrays.deepEquals(a2d, b2d);` (nested arrays) |
+| Equal contents | `Arrays.equals(a, b);`<br>`Arrays.deepEquals(a2d, b2d);` (nested arrays)<br>(`a == b` and `a.equals(b)` only compare references) |
 | Sum / min / max | `int sum = Arrays.stream(arr).sum();`<br>`int max = Arrays.stream(arr).max().getAsInt();`<br>`int min = Arrays.stream(arr).min().getAsInt();` |
 | Declare 2D array | `int[][] matrix;`<br>`int[][] matrix = new int[3][4];` |
 | 2D: initialize with values | `int[][] matrix = {{1, 2, 3}, {4, 5, 6}};` |
@@ -952,7 +956,8 @@ ArrayList
 | Create with N copies of a value | `List<Integer> zeros = new ArrayList<>(Collections.nCopies(5, 0));` |
 | Copy from another collection | `List<String> copy = new ArrayList<>(otherList);` |
 | Immutable list (cannot add/remove) | `List<String> fixed = List.of("a", "b", "c");` |
-| ArrayList → array | `Integer[] arr = list.toArray(new Integer[0]);` |
+| Array → ArrayList | `List<Integer> list = new ArrayList<>(Arrays.asList(boxed));` |
+| ArrayList → array | `Integer[] boxed = list.toArray(new Integer[0]);` |
 | Add element | `list.add("Hello");` |
 | Add at index | `list.add(1, "Hi");` |
 | Add all elements from another collection | `list.addAll(otherList);` |
@@ -965,9 +970,13 @@ ArrayList
 | Check size | `list.size();` |
 | Check if contains element | `list.contains("John");` |
 | Check index of element | `list.indexOf("John");` |
-| Sort list | `Collections.sort(list);` |
-| Sort reverse | `Collections.sort(list, Collections.reverseOrder());` |
-| Reverse list | `Collections.reverse(list);` |
+| Sort list | `Collections.sort(list);`<br>`list.sort(null);` (natural order) |
+| Sort reverse | `Collections.sort(list, Collections.reverseOrder());`<br>`list.sort(Collections.reverseOrder());` |
+| Sort with comparator | `list.sort((a, b) -> b - a);`<br>`list.sort(Comparator.comparing(String::length));`<br>`Collections.sort(list, comparator);` |
+| Sort in range | `Collections.sort(list.subList(1, 4));`<br>`list.subList(1, 4).sort(comparator);` |
+| Reverse list | `Collections.reverse(list);`<br>`list.reversed();` |
+| Reverse in range | `Collections.reverse(list.subList(1, 4));` |
+| Check if two lists are equal | `list1.equals(list2);` |
 | Binary search (list must be sorted) | `int idx = Collections.binarySearch(list, key);` (same return value as `Arrays.binarySearch`: index, or `-(insertionPoint) - 1` if not found) |
 | Min / max | `Collections.min(list);`<br>`Collections.max(list);` |
 | Swap two elements | `Collections.swap(list, 0, 2);` |
@@ -981,6 +990,24 @@ ArrayList
 | 3D: create | `List<List<List<Integer>>> cube = new ArrayList<>();` |
 | 3D: initialize with values | `List<List<List<Integer>>> cube = new ArrayList<>(List.of(`<br>`new ArrayList<>(List.of(new ArrayList<>(List.of(1, 2)), new ArrayList<>(List.of(3, 4)))),`<br>`new ArrayList<>(List.of(new ArrayList<>(List.of(5, 6)), new ArrayList<>(List.of(7, 8))))));` |
 | 3D: get element / size | `cube.get(0).get(1).get(2);`<br>`cube.size()`, `cube.get(0).size()`, `cube.get(0).get(0).size()` |
+
+
+## Collections Class Methods
+
+`java.util.Collections` is a utility class of static methods that operate on collections (mostly `List`).
+| Method | Purpose |
+| --- | --- |
+| `Collections.sort(list)`<br>`Collections.sort(list, cmp)` | Sort a list in place (stable, natural order or comparator) |
+| `Collections.reverseOrder()`<br>`Collections.reverseOrder(cmp)` | Comparator for reverse natural order, or reverse of a given comparator |
+| `Collections.reverse(list)` | Reverse a list in place |
+| `Collections.shuffle(list)` | Randomly permute a list |
+| `Collections.swap(list, i, j)` | Swap two elements |
+| `Collections.rotate(list, k)` | Rotate elements right by `k` (negative `k` rotates left) |
+| `Collections.binarySearch(list, key)` | Binary search on a sorted list; same return value as `Arrays.binarySearch` |
+| `Collections.min(c)`<br>`Collections.max(c)` | Smallest / largest element (optionally with a comparator) |
+| `Collections.frequency(c, x)` | Count occurrences of `x` |
+| `Collections.fill(list, x)` | Replace every element with `x` |
+| `Collections.nCopies(n, x)` | Immutable list of `n` copies of `x` |
 
 
 ## LinkedList
