@@ -3031,7 +3031,7 @@ flowchart LR
     end
 ```
 
-Directed Acyclic Graph- A Directed Graph that does not contain any cycle
+Directed Acyclic Graph (DAG)- A Directed Graph that does not contain any cycle
 
 ```mermaid
 flowchart TD
@@ -3092,17 +3092,6 @@ void addEdge(int[][] mat, int i, int j)
     mat[i][j] = 1;
     mat[j][i] = 1; // Since the graph is undirected
 }
-
-void displayMatrix(int[][] mat)
-{
-    int V = mat.length;
-    for (int i = 0; i < V; i++)
-    {
-        for (int j = 0; j < V; j++)
-            System.out.print(mat[i][j] + " ");
-        System.out.println();
-    }
-}
 ```
 
 Adjacency List
@@ -3128,17 +3117,6 @@ flowchart LR
 void addEdge(List<List<Integer>> adj, int i, int j) {
     adj.get(i).add(j);
     adj.get(j).add(i); // Undirected
-}
-
-// Function to display the adjacency list
-void displayAdjList(List<List<Integer>> adj) {
-    for (int i = 0; i < adj.size(); i++) {
-        System.out.print(i + ": "); // Print the vertex
-        for (int j : adj.get(i)) {
-            System.out.print(j + " "); // Print its adjacent
-        }
-        System.out.println();
-    }
 }
 ```
 
@@ -3194,11 +3172,6 @@ void findInOutDegrees(List<List<Integer>> adj, int V) {
         for (int v : adj.get(u)) {
             inDegree[v]++;            // in-degree of v increases for each edge (u -> v)
         }
-    }
-
-    System.out.println("Vertex\tIn-Degree\tOut-Degree");
-    for (int i = 0; i < V; ++i) {
-        System.out.println(i + "\t" + inDegree[i] + "\t\t" + outDegree[i]);
     }
 }
 ```
@@ -3443,7 +3416,7 @@ int[] dijkstra(int V, int[][] edges, int src) {
 
     // Create a priority queue to store vertices that
     // are being preprocessed.
-    PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));
+    PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> Integer.compare(a[0], b[0]));
 
     // Create an array for distances and initialize all
     // distances as infinite
@@ -3678,7 +3651,7 @@ Steps
 // Returns {totalWeight, mstEdges} where each edge is {u, v, weight}
 int primMST(List<List<int[]>> adj, int V) {
     // Min-heap: {weight, node, parent}
-    PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));
+    PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> Integer.compare(a[0], b[0]));
 
     boolean[] visited = new boolean[V];
     List<int[]> mstEdges = new ArrayList<>(); // {u, v, weight}
@@ -3987,7 +3960,8 @@ ans = A + (2's complement of B)
 | XOR | ^ | Bit is 1 if bits are different (exclusive OR) |
 | NOT | \~<br>! | Inverts all bits |
 | Left shift | \<\< | Shifts bits to the left, adds 0s on right |
-| Right shift | >> | Shifts bits to the right, drops right bits |
+| Right shift (signed) | >> | Shifts bits to the right, drops right bits, fills left with the sign bit (leftmost bit) |
+| Unsigned right shift | >>> | Shifts bits to the right, drops right bits, always fills left with 0s |
 
 
 ## XOR properties
@@ -4160,8 +4134,6 @@ BitSet bs1 = BitSet.valueOf(new long[] { 18 });
 BitSet bs2 = BitSet.valueOf(new long[] { Long.parseLong("10010", 2) });
 ```
 
-Java
-
 | Operation | Syntax |
 | --- | --- |
 | Set all bits (no set-all - give an explicit range) | `b.set(0, n);` |
@@ -4173,8 +4145,6 @@ Java
 | Flip bit at index i | `b.flip(i);` |
 | Test bit at index i | `b.get(i)` |
 | Check if any bit is 1 | `!b.isEmpty()` |
-| Check if all n bits are 1 (no built-in) | `b.cardinality() == n` |
-| Count number of 1s | `b.cardinality()` |
 | Convert to string (set-index form such as `{1, 4}`, not a bit string) | `b.toString()` |
 | Convert to a long (Java has no unsigned types) | `b.toLongArray()[0]` |
 | Convert to longs when wider than 64 bits (Java has no long long) | `b.toLongArray()` |
