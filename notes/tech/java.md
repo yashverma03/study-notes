@@ -12,6 +12,10 @@
 - [Character](#character)
 - [Math](#math)
 - [BigDecimal](#bigdecimal)
+- [Date and Time](#date-and-time)
+  - [LocalDate, LocalTime and LocalDateTime](#localdate-localtime-and-localdatetime)
+  - [Instant](#instant)
+  - [Duration](#duration)
 - [String](#string)
   - [String](#string-1)
   - [StringBuilder](#stringbuilder)
@@ -298,6 +302,58 @@ Common `RoundingMode` values:
 | `DOWN` | Round towards zero (truncate) |
 | `CEILING` | Round towards positive infinity |
 | `FLOOR` | Round towards negative infinity |
+
+
+# Date and Time
+
+| Class | Represents | Example |
+| --- | --- | --- |
+| `LocalDate` | Date only, no time or zone | `2024-01-15` |
+| `LocalTime` | Time only, no date or zone | `10:30:00` |
+| `LocalDateTime` | Date + time, no zone | `2024-01-15T10:30:00` |
+| `ZonedDateTime` | Date + time + time zone | `2024-01-15T10:30+05:30[Asia/Kolkata]` |
+| `Instant` | A point on the UTC timeline (machine time) | `2024-01-15T05:00:00Z` |
+| `Duration` | Time-based amount (seconds, nanos) | `PT2H30M` |
+| `Period` | Date-based amount (years, months, days) | `P1Y2M3D` |
+
+## LocalDate, LocalTime and LocalDateTime
+
+| Operation | Syntax |
+| --- | --- |
+| Create (specific) | `LocalDate.of(2024, 1, 15)`<br>`LocalTime.of(10, 30)`<br>`LocalDateTime.of(date, time)` |
+| Current | `LocalDate.now()`<br>`LocalTime.now()`<br>`LocalDateTime.now()` |
+| Add / subtract | `date.plusDays(7)`<br>`date.minusMonths(1)`<br>`time.plusHours(2)` |
+| Get fields | `date.getYear()`<br>`date.getMonthValue()`<br>`date.getDayOfMonth()`<br>`date.getDayOfWeek()` |
+| Compare | `a.isBefore(b)`<br>`a.isAfter(b)`<br>`a.isEqual(b)`<br>`a.compareTo(b)` |
+| Parse (ISO format) | `LocalDate.parse("2024-01-15")` |
+| Format | `dt.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))` |
+
+## Instant
+
+`Instant` is the class for machine timestamps.
+
+- A single instant on the UTC timeline, stored as seconds + nanoseconds since the epoch (`1970-01-01T00:00:00Z`)
+
+| Operation | Syntax |
+| --- | --- |
+| Current (always UTC) | `Instant.now()` |
+| Parse (must end with `Z`) | `Instant.parse("2024-01-15T05:00:00Z")` |
+| To epoch | `i.toEpochMilli()`<br>`i.getEpochSecond()` |
+| Add / subtract | `i.plus(2, ChronoUnit.HOURS)`<br>`i.minusSeconds(30)`<br>Units up to `DAYS` only, `MONTHS`/`YEARS` throw an exception |
+| Compare | `a.isBefore(b)`<br>`a.isAfter(b)` |
+| To zoned date-time | `i.atZone(ZoneId.of("Asia/Kolkata"))` |
+
+## Duration
+
+`Duration` measures an exact amount of elapsed time.
+
+| Operation | Syntax |
+| --- | --- |
+| Create | `Duration.ofHours(2)`<br>`Duration.ofMinutes(90)`<br>`Duration.ofSeconds(45)` |
+| Between two points | `Duration.between(startInstant, endInstant)` |
+| Add / subtract | `d.plus(other)`<br>`d.minus(other)` |
+| Total in a unit | `d.toHours()`<br>`d.toMinutes()`<br>`d.toSeconds()`<br>`d.toMillis()` |
+| Compare | `d1.compareTo(d2)` |
 
 
 # String

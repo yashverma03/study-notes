@@ -2676,7 +2676,8 @@ class Main {
 
 ```text
 +---------------------------+
-|         Vehicle          |<--<<abstract>>
+|       <<abstract>>        |
+|          Vehicle          |
 +---------------------------+
 | - plate: String           |
 +---------------------------+
@@ -2709,7 +2710,8 @@ class Main {
 +------------------------+
 
 +-----------------------------+
-|       FeeStrategy           |<--<<abstract>>
+|        <<abstract>>         |
+|        FeeStrategy          |
 +-----------------------------+
 | +calculateFee(entry: Date, exit: Date): number (abstract) |
 +-----------------------------+
@@ -3547,7 +3549,8 @@ final class Main {
 
 ```text
 +------------------------+
-|       IAccount         |  <<interface>>
+|     <<interface>>      |
+|        IAccount        |
 +------------------------+
 | +authenticate(pin)     |
 | +getBalance()          |
@@ -3604,7 +3607,8 @@ final class Main {
 +------------------------+
 
 +---------------------------+
-|       Transaction         |  <<abstract>>
+|        <<abstract>>       |
+|        Transaction        |
 +---------------------------+
 | +execute(account)         |
 +---------------------------+
@@ -3900,7 +3904,8 @@ final class Main {
 +---------------------------+
 
 +------------------------------+
-|         Expense              |  <<abstract>>
+|        <<abstract>>          |
+|          Expense             |
 +------------------------------+
 | - payer: String              |
 | - participants: List         |
@@ -4110,7 +4115,8 @@ final class Main {
         ▲
         |
 +-------------------------------+
-| DriverMatchingStrategy        | <<interface>>
+|         <<interface>>         |
+|    DriverMatchingStrategy     |
 +-------------------------------+
 | +match(source, drivers):Driver|
 +-------------------------------+
@@ -5047,8 +5053,9 @@ final class Main {
 | - color          |
 +------------------+
 
-+--------------------------+     <<interface>>
-|       Piece              |<-------------------------+
++--------------------------+
+|      <<interface>>       |
+|          Piece           |<-------------------------+
 +--------------------------+                          |
 | - color: Color           |                          |
 | - position: Cell         |                          |
@@ -5346,15 +5353,16 @@ final class Main {
 +-------------------------------+
 
 +------------------------------+
-|   <<enum class>>             |
-|   OrderStatus { PENDING,     |
-|       CONFIRMED, SHIPPED,    |
-|       DELIVERED, CANCELED }  |
+|        <<enum class>>        |
+|         OrderStatus          |
++------------------------------+
+| PENDING, CONFIRMED, SHIPPED, |
+| DELIVERED, CANCELED          |
 +------------------------------+
 
 +-------------------------------+
-| <<interface>>                 |
-| CheckoutStrategy              |
+|        <<interface>>          |
+|       CheckoutStrategy        |
 +-------------------------------+
 | +checkout(Order): boolean     |
 +-------------------------------+
@@ -5367,7 +5375,7 @@ final class Main {
 +------------------+     +-------------------+
 
 +-------------------------------+
-|   <<Singleton>>               |
+|        <<Singleton>>          |
 |       ECommercePlatform       |
 +-------------------------------+
 | - users: List<User>           |
