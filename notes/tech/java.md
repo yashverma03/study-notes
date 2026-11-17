@@ -127,16 +127,6 @@ java Main.java arg1 arg2
   - Interface
   - Array
 
-Values
-
-```java
-Integer.MIN_VALUE  // -2147483648  (-2^31)
-Integer.MAX_VALUE  //  2147483647  (2^31 - 1)
-
-Long.MIN_VALUE  // -9223372036854775808  (-2^63)
-Long.MAX_VALUE  //  9223372036854775807  (2^63 - 1)
-```
-
 
 ## Operators
 
@@ -184,7 +174,7 @@ for (var i = 0; i < 5; i++) { }
 | Operation | Syntax |
 | --- | --- |
 | Declare | `int[] arr;`<br>`int arr[];`<br>`int[] arr = new int[5];` |
-| Declare + initialize values | `int[] arr = {1, 2, 3};` (only at declaration) |
+| Declare + initialize values | `int[] arr = {1, 2, 3};` |
 | Initialize values (anywhere) | `int[] arr = new int[]{1, 2, 3};`<br>`arr = new int[]{4, 5, 6};` |
 | Fill with one value | `Arrays.fill(arr, -1);` |
 | Copy | `int[] copy = Arrays.copyOf(arr, arr.length);`<br>`int[] part = Arrays.copyOfRange(arr, 1, 3);` |
@@ -219,6 +209,8 @@ Wrapper class of `int` from `java.lang`. `Long` and `Double` have the same kind 
 
 | Operation | Syntax |
 | --- | --- |
+| `int` min / max value | `Integer.MIN_VALUE;` // -2147483648 (-2^31)<br>`Integer.MAX_VALUE;` // 2147483647 (2^31 - 1) |
+| `long` min / max value | `Long.MIN_VALUE;` // -9223372036854775808 (-2^63)<br>`Long.MAX_VALUE;` // 9223372036854775807 (2^63 - 1) |
 | Compare two numbers (positive means `x > y`) | `Integer.compare(x, y);`<br>`Long.compare(x, y);`<br>`Double.compare(x, y);` |
 | String to int | `Integer.parseInt("123");` |
 | String to int (with base) | `Integer.parseInt("1010", 2);` |
@@ -226,7 +218,6 @@ Wrapper class of `int` from `java.lang`. `Long` and `Double` have the same kind 
 | int to String | `String.valueOf(123);`<br>`Integer.toString(123);` |
 | int to binary / hex String | `Integer.toBinaryString(10);`<br>`Integer.toHexString(255);` |
 | Count of set bits | `Integer.bitCount(7);` |
-| Sign of a number (-1, 0, 1) | `Integer.signum(x);` |
 
 
 # Character
@@ -266,7 +257,7 @@ Wrapper class of `char` from `java.lang`. A `char` is a number (its Unicode valu
 | Log base 2 (manual) | `Math.log(8) / Math.log(2)` |
 | `e` to the power x | `Math.exp(1)` |
 | Random in `[0.0, 1.0)` | `Math.random()` |
-| Constants | `Math.PI`, `Math.E`<br>`Integer.MAX_VALUE`, `Integer.MIN_VALUE`<br>`Long.MAX_VALUE`, `Long.MIN_VALUE` |
+| Constants | `Math.PI`, `Math.E` |
 
 
 # BigDecimal
