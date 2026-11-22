@@ -60,6 +60,21 @@ Whenever a heading is added, removed, or renamed, update the Index section in th
 
 - Prefer Mermaid diagrams (fenced ```mermaid blocks) over static images for flowcharts, sequence diagrams, class diagrams, etc.
 - Use the `assets/` folder only for images that can't reasonably be expressed as a Mermaid diagram.
+
+### UML class diagrams
+
+Class diagrams (Mermaid `classDiagram` or ASCII boxes in a `text` block) must read like the Java they describe, not like TypeScript/UML-standard `name: Type`.
+
+- Member syntax is Java-style, with visibility (`+`, `-`, `#`, `~`) as the very first character:
+  - Field: `-String name`, `-List<Item> items`
+  - Method: `+ReturnType method(Type param)`, e.g. `+double getTotal()`, `+void addItem(Item item, int quantity)`
+  - Constructor: same as a method but with no return type and the class name as the name, e.g. `+Order(int id, User user)`
+  - `abstract` / `static` go after the visibility, like in Java: `+abstract double calculateFee(Instant entry, Instant exit)`, `+static Game getInstance()`
+- Always write the full signature: every parameter as `Type name` (never only the type, never only the name) and an explicit return type (`void` if none). This applies to constructors too.
+- Data types must be Java types: `int`, `long`, `double`, `boolean`, `char`, `String`, `BigDecimal`, `Instant`, `List<T>`, `Map<K, V>`, `Set<T>`, arrays as `int[]`. Never JavaScript/TypeScript ones (`number`, `string`, `any`, `Date`, `T | null`, `{ ... }`).
+- Generics: in Mermaid `classDiagram` write them with tildes (`List~OrderItem~`, since `<>` breaks parsing); in ASCII boxes use normal angle brackets (`List<OrderItem>`).
+- Keep signatures consistent with the Java code that follows the diagram in the same note (same names, parameter types and return types).
+- Class stereotypes as in Java: `<<interface>>`, `<<abstract>>`, `<<enumeration>>`.
 - Reference images from `assets/` using a relative path into that note's own subfolder under the matching category (e.g. from `notes/tech/load-balancer-architecture.md`: `![Load balancer architecture](../../assets/tech/load-balancer-architecture/round-robin-diagram.png)`), never an absolute path.
 
 ## Keeping README.md in sync

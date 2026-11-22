@@ -1353,19 +1353,19 @@ Shows classes, attributes, methods, and relationships (inheritance, composition,
 Focus on Inheritance, Association and Interface implementation
 
 ```text
-+-----------------------------+
-|         BankAccount         |
-+-----------------------------+
-| - accountNumber: String     |
-| - accountHolder: String     |
-| - balance: double           |
-+-----------------------------+
-| + BankAccount(String, String, double) |
-| + deposit(amount: double): void       |
-| + withdraw(amount: double): boolean   |
-| + getBalance(): double                |
-| + printDetails(): void                |
-+-----------------------------+
++---------------------------------------------------------------------------+
+|                                BankAccount                                |
++---------------------------------------------------------------------------+
+| - String accountNumber                                                    |
+| - String accountHolder                                                    |
+| - double balance                                                          |
++---------------------------------------------------------------------------+
+| + BankAccount(String accountNumber, String accountHolder, double balance) |
+| + void deposit(double amount)                                             |
+| + boolean withdraw(double amount)                                         |
+| + double getBalance()                                                     |
+| + void printDetails()                                                     |
++---------------------------------------------------------------------------+
 ```
 
 Visibility Notation
@@ -2675,82 +2675,82 @@ class Main {
 ## Parking Lot
 
 ```text
-+---------------------------+
-|       <<abstract>>        |
-|          Vehicle          |
-+---------------------------+
-| - plate: String           |
-+---------------------------+
-| +constructor(plate: String)         |
-| +getType(): VehicleType (abstract)  |
-| +getPlate(): String                 |
-+---------------------------+
++---------------------------------+
+|           <<abstract>>          |
+|             Vehicle             |
++---------------------------------+
+| -String plate                   |
++---------------------------------+
+| +Vehicle(String plate)          |
+| +abstract VehicleType getType() |
+| +String getPlate()              |
++---------------------------------+
         ▲
    +----+----+
    |         |
 +--------+ +-------+
 |  Bike  | |  Car  |
 +--------+ +-------+
-| +getType(): VehicleType |
-+-------------------------+
-
-+------------------------+
-|        Slot            |
-+------------------------+
-| - id: number           |
-| - status: SlotStatus   |
-| - vehicle: Vehicle | null |
-+------------------------+
-| +constructor(id: number) |
-| +isFree(): boolean       |
-| +park(v: Vehicle): void  |
-| +unpark(): void          |
-| +getId(): number         |
-| +getVehicle(): Vehicle | null |
+| +VehicleType getType() |
 +------------------------+
 
-+-----------------------------+
-|        <<abstract>>         |
-|        FeeStrategy          |
-+-----------------------------+
-| +calculateFee(entry: Date, exit: Date): number (abstract) |
-+-----------------------------+
++-----------------------+
+|          Slot         |
++-----------------------+
+| -int id               |
+| -SlotStatus status    |
+| -Vehicle vehicle      |
++-----------------------+
+| +Slot(int id)         |
+| +boolean isFree()     |
+| +void park(Vehicle v) |
+| +void unpark()        |
+| +int getId()          |
+| +Vehicle getVehicle() |
++-----------------------+
+
++----------------------------------------------------------------+
+|                          <<abstract>>                          |
+|                          FeeStrategy                           |
++----------------------------------------------------------------+
+| +abstract BigDecimal calculateFee(Instant entry, Instant exit) |
++----------------------------------------------------------------+
         ▲
    +----+----+
    |         |
 +----------+ +----------+
 |  BikeFee | |  CarFee  |
 +----------+ +----------+
-| +calculateFee(entry: Date, exit: Date): number |
-+-------------------------------------------------+
+| +BigDecimal calculateFee(Instant entry, Instant exit) |
++-------------------------------------------------------+
 
-+-----------------------------+
-|          Ticket             |
-+-----------------------------+
-| - id: number                |
-| - plate: String             |
-| - slotId: number            |
-| - entryTime: Date           |
-+-----------------------------+
-| +constructor(plate: String, slotId: number) |
-| +getId(): number            |
-| +getPlate(): String         |
-| +getSlotId(): number        |
-| +getEntryTime(): Date       |
-+-----------------------------+
++-----------------------------------+
+|               Ticket              |
++-----------------------------------+
+| -int id                           |
+| -String plate                     |
+| -int slotId                       |
+| -Instant entryTime                |
++-----------------------------------+
+| +Ticket(String plate, int slotId) |
+| +int getId()                      |
+| +String getPlate()                |
+| +int getSlotId()                  |
+| +Instant getEntryTime()           |
++-----------------------------------+
 
-+---------------------------------------------------------+
-|                     ParkingLot                          |
-+---------------------------------------------------------+
-| - slots: Slot[]                                          |
-| - tickets: Map<number, { ticket: Ticket; strategy: FeeStrategy }> |
-+---------------------------------------------------------+
-| +constructor(numSlots: number)                           |
-| +park(v: Vehicle): Ticket                                |
-| +unpark(ticketId: number): void                          |
-| +showAvailableSlots(): void                               |
-| -getStrategy(type: VehicleType): FeeStrategy             |
-+---------------------------------------------------------+
++--------------------------------------------+
+|                 ParkingLot                 |
++--------------------------------------------+
+| -List<Slot> slots                          |
+| -Map<Integer, TicketEntry> tickets         |
++--------------------------------------------+
+| +ParkingLot(int numSlots)                  |
+| +Ticket park(Vehicle v)                    |
+| +void unpark(int ticketId)                 |
+| +void showAvailableSlots()                 |
+| -FeeStrategy getStrategy(VehicleType type) |
++--------------------------------------------+
 ```
 
 ```java
@@ -3031,54 +3031,54 @@ class Main {
 ## Vending Machine
 
 ```text
-+---------------------+
-|       Item          |
-+---------------------+
-| - name: String      |
-| - price: int        |
-| - quantity: int     |
-+---------------------+
-| +Item(name, price, quantity) |
-+---------------------+
++---------------------------------------------+
+|                     Item                    |
++---------------------------------------------+
+| - String name                               |
+| - int price                                 |
+| - int quantity                              |
++---------------------------------------------+
+| +Item(String name, int price, int quantity) |
++---------------------------------------------+
 
         ▲
         | used in
         |
-+---------------------+
-|     Inventory       |
-+---------------------+
-| - items: HashMap<String, Item>       |
-+---------------------+
-| +addItem(code, Item): void           |
-| +isAvailable(code): boolean          |
-| +getPrice(code): int                 |
-| +getName(code): String               |
-| +dispenseItem(code): void            |
-| +showInventory(): void               |
-+---------------------+
++---------------------------------------+
+|               Inventory               |
++---------------------------------------+
+| - HashMap<String, Item> items         |
++---------------------------------------+
+| +void addItem(String code, Item item) |
+| +boolean isAvailable(String code)     |
+| +int getPrice(String code)            |
+| +String getName(String code)          |
+| +void dispenseItem(String code)       |
+| +void showInventory()                 |
++---------------------------------------+
+
++-----------------------------------+
+|          PaymentProcessor         |
++-----------------------------------+
+| - int currentBalance              |
++-----------------------------------+
+| +void insertCash(int amount)      |
+| +boolean verifyPayment(int price) |
+| +void deductAmount(int amount)    |
+| +void refund()                    |
+| +int getBalance()                 |
++-----------------------------------+
 
 +-------------------------------+
-|       PaymentProcessor        |
+|         VendingMachine        |
 +-------------------------------+
-| - currentBalance: int         |
+| - Inventory inventory         |
+| - PaymentProcessor payment    |
 +-------------------------------+
-| +insertCash(amount): void     |
-| +verifyPayment(price): boolean|
-| +deductAmount(amount): void   |
-| +refund(): void               |
-| +getBalance(): int            |
+| +void displayItems()          |
+| +void insertCash(int amount)  |
+| +void selectItem(String code) |
 +-------------------------------+
-
-+----------------------------+
-|      VendingMachine        |
-+----------------------------+
-| - inventory: Inventory     |
-| - payment: PaymentProcessor|
-+----------------------------+
-| +displayItems(): void      |
-| +insertCash(amount): void  |
-| +selectItem(code): void    |
-+----------------------------+
 ```
 
 ```java
@@ -3265,7 +3265,7 @@ final class Main {
 
 ```text
 +---------------------+
-|      Person         |
+|        Person       |
 +---------------------+
 | - destinationFloor  |
 | - weight            |
@@ -3274,62 +3274,64 @@ final class Main {
 +-----------------------+
 |     ExternalPanel     |
 +-----------------------+
-| - upPressed: boolean  |
-| - downPressed: boolean|
+| - boolean upPressed   |
+| - boolean downPressed |
 +-----------------------+
-| +pressUp()            |
-| +pressDown()          |
-| +reset()              |
+| +void pressUp()       |
+| +void pressDown()     |
+| +void reset()         |
 +-----------------------+
 
 +------------------------------+
 |        InternalPanel         |
 +------------------------------+
-| - floorButtons: Set<Integer> |
+| - Set<Integer> floorButtons  |
 +------------------------------+
-| +pressFloor(int)             |
-| +resetFloor(int)             |
-| +hasRequests(): boolean      |
+| +void pressFloor(int floor)  |
+| +void resetFloor(int floor)  |
+| +boolean hasRequests()       |
 +------------------------------+
 
-+----------------------+
-|      Display         |
-+----------------------+
-| +showStatus(floor, dir) |
-+----------------------+
++--------------------------------------------------+
+|                     Display                      |
++--------------------------------------------------+
+| +void showStatus(int floor, Direction direction) |
++--------------------------------------------------+
 
-+-------------------------------+
-|         Elevator              |
-+-------------------------------+
-| - id: int                     |
-| - currentFloor: int           |
-| - direction: Direction        |
-| - door: DoorStatus            |
-| - currentWeight: int          |
-| - passengers: List<Person>    |
-| - internalPanel: InternalPanel|
-| - display: Display            |
-+-------------------------------+
-| +step()                       |
-| +addRequest(floor)            |
-| +boardPassenger(Person)       |
-| +isFull(weight): boolean      |
-| +openDoor() / closeDoor()     |
-| +unloadPassengers()           |
-| +getCurrentFloor(), getId()   |
-| +canServiceRequest(floor, dir)|
-+-------------------------------+
++------------------------------------------------------+
+|                       Elevator                       |
++------------------------------------------------------+
+| - int id                                             |
+| - int currentFloor                                   |
+| - Direction direction                                |
+| - DoorStatus door                                    |
+| - int currentWeight                                  |
+| - List<Person> passengers                            |
+| - InternalPanel internalPanel                        |
+| - Display display                                    |
++------------------------------------------------------+
+| +void step()                                         |
+| +void addRequest(int floor)                          |
+| +void boardPassenger(Person p)                       |
+| +boolean isFull(int weight)                          |
+| +void openDoor()                                     |
+| +void closeDoor()                                    |
+| +void unloadPassengers()                             |
+| +int getCurrentFloor()                               |
+| +int getId()                                         |
+| +boolean canServiceRequest(int floor, Direction dir) |
++------------------------------------------------------+
 
-+--------------------------------+
-|       ElevatorSystem           |
-+--------------------------------+
-| - elevators: List<Elevator>    |
-| - floorPanels: List<ExternalPanel>   |
-+--------------------------------+
-| +callElevator(floor, dir)      |
-| +step()                        |
-| +findBestElevator(floor, dir)  |
-+--------------------------------+
++-------------------------------------------------+
+|                  ElevatorSystem                 |
++-------------------------------------------------+
+| - List<Elevator> elevators                      |
+| - List<ExternalPanel> floorPanels               |
++-------------------------------------------------+
+| +void callElevator(int floor, Direction dir)    |
+| +void step()                                    |
+| +int findBestElevator(int floor, Direction dir) |
++-------------------------------------------------+
 ```
 
 ```java
@@ -3548,90 +3550,90 @@ final class Main {
 ## ATM
 
 ```text
-+------------------------+
-|     <<interface>>      |
-|        IAccount        |
-+------------------------+
-| +authenticate(pin)     |
-| +getBalance()          |
-| +withdraw(amount)      |
-| +deposit(amount)       |
-| +getCardNumber()       |
-+------------------------+
++-----------------------------------+
+|           <<interface>>           |
+|              IAccount             |
++-----------------------------------+
+| +boolean authenticate(String pin) |
+| +double getBalance()              |
+| +boolean withdraw(double amount)  |
+| +void deposit(double amount)      |
+| +String getCardNumber()           |
++-----------------------------------+
            ▲
            |
++-----------------------------------+
+|              Account              |
++-----------------------------------+
+| -String cardNumber                |
+| -String pin                       |
+| -double balance                   |
++-----------------------------------+
+| +boolean authenticate(String pin) |
+| +double getBalance()              |
+| +boolean withdraw(double amount)  |
+| +void deposit(double amount)      |
+| +String getCardNumber()           |
++-----------------------------------+
+
 +------------------------+
-|       Account          |
+|       CardReader       |
 +------------------------+
-| -cardNumber: String    |
-| -pin: String           |
-| -balance: double       |
-+------------------------+
-| +authenticate(pin)     |
-| +getBalance()          |
-| +withdraw(amount)      |
-| +deposit(amount)       |
-| +getCardNumber()       |
+| +String readCard()     |
 +------------------------+
 
 +------------------------+
-|      CardReader        |
+|         Keypad         |
 +------------------------+
-| +readCard(): String    |
-+------------------------+
-
-+------------------------+
-|        Keypad          |
-+------------------------+
-| +getPIN(): String      |
-| +getMenuChoice(): int  |
-| +getAmount(): double   |
+| +String getPIN()       |
+| +int getMenuChoice()   |
+| +double getAmount()    |
 +------------------------+
 
-+------------------------+
-|        Display         |
-+------------------------+
-| +showMessage(msg)      |
-+------------------------+
++-------------------------------+
+|            Display            |
++-------------------------------+
+| +void showMessage(String msg) |
++-------------------------------+
 
-+------------------------+
-|     CashDispenser      |
-+------------------------+
-| +dispense(amount)      |
-+------------------------+
++-------------------------------+
+|         CashDispenser         |
++-------------------------------+
+| +void dispense(double amount) |
++-------------------------------+
 
-+------------------------+
-|      DepositSlot       |
-+------------------------+
-| +acceptEnvelope(amount)|
-+------------------------+
++-------------------------------------+
+|             DepositSlot             |
++-------------------------------------+
+| +void acceptEnvelope(double amount) |
++-------------------------------------+
 
-+---------------------------+
-|        <<abstract>>       |
-|        Transaction        |
-+---------------------------+
-| +execute(account)         |
-+---------------------------+
++---------------------------------+
+|           <<abstract>>          |
+|           Transaction           |
++---------------------------------+
+| +void execute(IAccount account) |
++---------------------------------+
            ▲
     +------+------+
     |      |      |
-+--------+ +--------+ +------------------+
-|Withdraw| |Deposit | | BalanceInquiry   |
-+--------+ +--------+ +------------------+
-| -amount| | -amount| | -display         |
-| -disp. | | -slot  | +------------------+
-+--------+ +--------+ | +execute(acc)    |
-| +exec  | | +exec  | +------------------+
++--------+ +--------+ +---------------------------------+
+|Withdraw| |Deposit | | BalanceInquiry                  |
++--------+ +--------+ +---------------------------------+
+| -amount| | -amount| | -display                        |
+| -disp. | | -slot  | +---------------------------------+
++--------+ +--------+ | +void execute(IAccount account) |
+| +exec  | | +exec  | +---------------------------------+
 
-+----------------------------+
-|           ATM              |
-+----------------------------+
-| -accounts: Map<String, IAccount>   |
-| -cardReader, keypad, display       |
-| -dispenser, depositSlot            |
-+----------------------------+
-| +run()                             |
-+----------------------------+
++---------------------------------+
+|               ATM               |
++---------------------------------+
+| -Map<String, IAccount> accounts |
+| -cardReader, keypad, display    |
+| -dispenser, depositSlot         |
++---------------------------------+
+| +void run()                     |
++---------------------------------+
 ```
 
 ```java
@@ -3883,56 +3885,56 @@ final class Main {
 ## Splitwise
 
 ```text
-+------------------+
-|      User        |
-+------------------+
-| - name: String   |
-| - email: String  |
-+------------------+
-| +getName()       |
-| +getEmail()      |
-+------------------+
++--------------------+
+|        User        |
++--------------------+
+| - String name      |
+| - String email     |
++--------------------+
+| +String getName()  |
+| +String getEmail() |
++--------------------+
 
-+---------------------------+
-|     BalanceService        |
-+---------------------------+
-| - balances: Map<Map>      |
-+---------------------------+
-| +addTransaction()         |
-| +showBalances()           |
-| +showUserBalance()        |
-+---------------------------+
++------------------------------------------------------------------------------+
+|                                BalanceService                                |
++------------------------------------------------------------------------------+
+| - Map<Map> balances                                                          |
++------------------------------------------------------------------------------+
+| +void addTransaction(String payer, List<String> participants, double amount) |
+| +void showBalances()                                                         |
+| +void showUserBalance(String user)                                           |
++------------------------------------------------------------------------------+
 
-+------------------------------+
-|        <<abstract>>          |
-|          Expense             |
-+------------------------------+
-| - payer: String              |
-| - participants: List         |
-| - amount: double             |
-+------------------------------+
-| +apply(BalanceService&)      |
-+------------------------------+
++----------------------------------------------+
+|                 <<abstract>>                 |
+|                   Expense                    |
++----------------------------------------------+
+| - String payer                               |
+| - List<String> participants                  |
+| - double amount                              |
++----------------------------------------------+
+| +abstract void apply(BalanceService service) |
++----------------------------------------------+
            ▲
            |
-+------------------------------+
-|        EqualExpense          |
-+------------------------------+
-| +apply(BalanceService&)      |
-+------------------------------+
++-------------------------------------+
+|             EqualExpense            |
++-------------------------------------+
+| +void apply(BalanceService service) |
++-------------------------------------+
 
-+-------------------------------+
-|       ExpenseManager          |
-+-------------------------------+
-| - users: Map<String, User>    |
-| - expenses: List<Expense>     |
-| - balanceService              |
-+-------------------------------+
-| +addUser()                    |
-| +addEqualExpense()            |
-| +showBalances()               |
-| +showUserBalance()            |
-+-------------------------------+
++-------------------------------------------------------------------------------+
+|                                 ExpenseManager                                |
++-------------------------------------------------------------------------------+
+| - Map<String, User> users                                                     |
+| - List<Expense> expenses                                                      |
+| - balanceService                                                              |
++-------------------------------------------------------------------------------+
+| +void addUser(String name, String email)                                      |
+| +void addEqualExpense(String payer, List<String> participants, double amount) |
+| +void showBalances()                                                          |
+| +void showUserBalance(String user)                                            |
++-------------------------------------------------------------------------------+
 ```
 
 ```java
@@ -4077,69 +4079,69 @@ final class Main {
 ## Cab Booking System (Uber/ Ola)
 
 ```text
-+-------------------------+
-|        Location         |
-+-------------------------+
-| +x: double              |
-| +y: double              |
-+-------------------------+
-| +distanceTo(other):double|
-+-------------------------+
++------------------------------------+
+|              Location              |
++------------------------------------+
+| +double x                          |
+| +double y                          |
++------------------------------------+
+| +double distanceTo(Location other) |
++------------------------------------+
 
-+-------------------------+         +------------------------+
-|         Rider           |         |        Driver          |
-+-------------------------+         +------------------------+
-| -name: String           |         | -name: String          |
-| -phone: String          |         | -vehicleNumber: String |
-+-------------------------+         | -location: Location    |
-| +getName(): String      |         | -status: CabStatus     |
-+-------------------------+         +------------------------+
-                                    | +isAvailable(): boolean|
-                                    | +assignTrip()          |
-                                    | +endTrip(Location)     |
-                                    | +getDistance(Location) |
-+-------------------------+         | +getName(): String     |
-|          Trip           |         +------------------------+
-+-------------------------+
-| -rider: Rider           |
-| -driver: Driver         |
-| -from: Location         |
-| -to: Location           |
-| -fare: double           |
-+-------------------------+
-| +calculateFare(): double|
-| +endTrip()              |
-| +printTripDetails()     |
-+-------------------------+
-
-        ▲
-        |
-+-------------------------------+
-|         <<interface>>         |
-|    DriverMatchingStrategy     |
-+-------------------------------+
-| +match(source, drivers):Driver|
-+-------------------------------+
++--------------------------+        +-----------------------------------+
+|          Rider           |        |               Driver              |
++--------------------------+        +-----------------------------------+
+| -String name             |        | -String name                      |
+| -String phone            |        | -String vehicleNumber             |
++--------------------------+        | -Location location                |
+| +String getName()        |        | -CabStatus status                 |
++--------------------------+        +-----------------------------------+
+                                    | +boolean isAvailable()            |
+                                    | +void assignTrip()                |
+                                    | +void endTrip(Location newLoc)    |
+                                    | +double getDistance(Location loc) |
++--------------------------+        | +String getName()                 |
+|           Trip           |        +-----------------------------------+
++--------------------------+
+| -Rider rider             |
+| -Driver driver           |
+| -Location from           |
+| -Location to             |
+| -double fare             |
++--------------------------+
+| +double calculateFare()  |
+| +void endTrip()          |
+| +void printTripDetails() |
++--------------------------+
 
         ▲
         |
-+-----------------------------+
-| NearestDriverStrategy       |
-+-----------------------------+
-| +match(...)                 |
-+-----------------------------+
++------------------------------------------------------+
+|                    <<interface>>                     |
+|                DriverMatchingStrategy                |
++------------------------------------------------------+
+| +Driver match(Location source, List<Driver> drivers) |
++------------------------------------------------------+
 
-+-------------------------------+
-|     CabBookingService         |
-+-------------------------------+
-| -riders: List<Rider>          |
-| -drivers: List<Driver>        |
-| -strategy: DriverMatching...  |
-+-------------------------------+
-| +registerRider(Rider)         |
-| +registerDriver(Driver)       |
-| +bookTrip(Rider, from, to)    |
-+-------------------------------+
+        ▲
+        |
++------------------------------------------------------+
+|                NearestDriverStrategy                 |
++------------------------------------------------------+
+| +Driver match(Location source, List<Driver> drivers) |
++------------------------------------------------------+
+
++---------------------------------------------------------+
+|                    CabBookingService                    |
++---------------------------------------------------------+
+| -List<Rider> riders                                     |
+| -List<Driver> drivers                                   |
+| -DriverMatchingStrategy strategy                        |
++---------------------------------------------------------+
+| +void registerRider(Rider rider)                        |
+| +void registerDriver(Driver driver)                     |
+| +Trip bookTrip(Rider rider, Location from, Location to) |
++---------------------------------------------------------+
 ```
 
 ```java
@@ -4330,27 +4332,27 @@ final class Main {
               +---------------+       +----------------+
 
 +--------------------+
-|  DeliveryAgent     |
+|   DeliveryAgent    |
 +--------------------+
 | - id               |
 | - name             |
 | - availability     |
 +--------------------+
 
-+--------------------+
-|   RestaurantManager|
-+--------------------+
-| +addRestaurant()   |
-| +removeRestaurant()|
-+--------------------+
++-----------------------------------------+
+|            RestaurantManager            |
++-----------------------------------------+
+| +void addRestaurant(Restaurant rest)    |
+| +void removeRestaurant(Restaurant rest) |
++-----------------------------------------+
 
-+--------------------+
-|    OrderService    |
-+--------------------+
-| +placeOrder()      |
-| +assignAgent()     |
-| +trackOrder()      |
-+--------------------+
++---------------------------------------------------------------------------------+
+|                                   OrderService                                  |
++---------------------------------------------------------------------------------+
+| +Order placeOrder(Customer customer, Restaurant restaurant, List<String> items) |
+| +DeliveryAgent assignAgent()                                                    |
+| +void trackOrder(Order order)                                                   |
++---------------------------------------------------------------------------------+
 ```
 
 ```java
@@ -4631,7 +4633,7 @@ final class Main {
 +----------------+
 
 +----------------+
-| City           |
+|      City      |
 +----------------+
 | - name         |
 | - theaters     |
@@ -4888,29 +4890,31 @@ final class Main {
 ## Notification System
 
 ```text
-+------------------------+               +-----------------------------+
-|        User            |               |   NotificationSender        |  <-- Singleton
-+------------------------+               +-----------------------------+
-| - id, name, email, ... |               | - channels: List<...>       |
-| +getEmail(), etc.      |               | +addChannel()               |
-+------------------------+               | +notify(User, String)       |
-                                         +-----------------------------+
-                                                   /_\
-                                                    |
-                                       +------------+--------------+
-                                       |                           |
-                        +--------------------------+     +--------------------------+
-                        | INotificationChannel      |     | NotificationFactory      |
-                        +--------------------------+     +--------------------------+
-                        | +send(User, String)      |     | +createChannel(type):... |
-                        +--------------------------+     +--------------------------+
-                                /    |    \
-                               /     |     \
-               +-------------+  +-------------+  +-------------+
-               | EmailChannel|  | SMSChannel  |  | PushChannel |
-               +-------------+  +-------------+  +-------------+
-               | +send()     |  | +send()     |  | +send()     |
-               +-------------+  +-------------+  +-------------+
++------------------------+                                       +------------------------------------------------+
+|          User          |                                       |               NotificationSender               |  <-- Singleton
++------------------------+                                       +------------------------------------------------+
+| - id, name, email, ... |                                       | - List<INotificationChannel> channels          |
++------------------------+                                       +------------------------------------------------+
+| +String getEmail()     |                                       | +void addChannel(INotificationChannel channel) |
+| +String getName()      |                                       | +void notify(User user, String message)        |
++------------------------+                                       +------------------------------------------------+
+                                                                                         /_\
+                                                                                          |
+                                                               +--------------------------+---------------------------+
+                                                               |                                                      |
+                                           +---------------------------------------+     +---------------------------------------------------------+
+                                           |          INotificationChannel         |     |                   NotificationFactory                   |
+                                           +---------------------------------------+     +---------------------------------------------------------+
+                                           | +void send(User user, String message) |     | +static INotificationChannel createChannel(String type) |
+                                           +---------------------------------------+     +---------------------------------------------------------+
+                                                               ▲
+                    +------------------------------------------+------------------------------------------+
+                    |                                          |                                          |
++---------------------------------------+  +---------------------------------------+  +---------------------------------------+
+|              EmailChannel             |  |               SMSChannel              |  |              PushChannel              |
++---------------------------------------+  +---------------------------------------+  +---------------------------------------+
+| +void send(User user, String message) |  | +void send(User user, String message) |  | +void send(User user, String message) |
++---------------------------------------+  +---------------------------------------+  +---------------------------------------+
 ```
 
 ```java
@@ -5038,51 +5042,53 @@ final class Main {
 ## Chess Game
 
 ```text
-+------------------+        +----------------+
-|     Game         |<>------|     Board      |<-- contains --> [Cell]
-+------------------+        +----------------+
-| - currentPlayer  |        | - cells[8][8]  |
-| - board          |        +----------------+
-| +start()         |        | +getCell()     |
-+------------------+        +----------------+
++------------------+        +---------------------------------+
+|       Game       |<>------|              Board              |<-- contains --> [Cell]
++------------------+        +---------------------------------+
+| - currentPlayer  |        | - cells[8][8]                   |
+| - board          |        +---------------------------------+
++------------------+        | +Cell getCell(int row, int col) |
+| +void start()    |        +---------------------------------+
++------------------+
 
 +------------------+
-|    Player        |
+|      Player      |
 +------------------+
 | - name           |
 | - color          |
 +------------------+
 
-+--------------------------+
-|      <<interface>>       |
-|          Piece           |<-------------------------+
-+--------------------------+                          |
-| - color: Color           |                          |
-| - position: Cell         |                          |
-| +canMove(Board, src, dst)|                          |
-+--------------------------+                          |
-         ^       ^       ^                            |
-         |       |       |                            |
-+--------+ +-----+----+ +--------+      etc.          |
-|  Pawn  | | Knight   | | Bishop |                    |
-+--------+ +----------+ +--------+                    |
-| +canMove()          |                              |
-+---------------------+                              |
-                                                     |
-+----------------------------+                       |
-|     PieceFactory           |  <-- Factory          |
-+----------------------------+                       |
-| +createPiece(type, color)  |                       |
-+----------------------------+                       |
-                                                     |
-+---------------------------+                        |
-|        Cell               |<------------------------+
-+---------------------------+
-| - row, col               |
-| - piece: Piece           |
-+---------------------------+
-| +getPiece(), setPiece()  |
-+---------------------------+
++----------------------------------------------------+
+|                   <<interface>>                    |
+|                       Piece                        |<-------------------------+
++----------------------------------------------------+                          |
+| - Color color                                      |                          |
+| - Cell position                                    |                          |
+| +boolean canMove(Board board, Cell src, Cell dest) |                          |
++----------------------------------------------------+                          |
+         ^       ^       ^                                                      |
+         |       |       |                                                      |
++--------+ +-----+----+ +--------+      etc.                                    |
+|  Pawn  | | Knight   | | Bishop |                                              |
++--------+ +----------+ +--------+                                              |
+| +boolean canMove(Board board, Cell src, Cell dest) |                          |
++----------------------------------------------------+                          |
+                                                                                |
++--------------------------------------------------------------+                |
+|                         PieceFactory                         |  <-- Factory   |
++--------------------------------------------------------------+                |
+| +static Piece createPiece(char type, Color color, Cell cell) |                |
++--------------------------------------------------------------+                |
+                                                                                |
++-------------------------+                                                     |
+|           Cell          |<----------------------------------------------------+
++-------------------------+
+| - row, col              |
+| - Piece piece           |
++-------------------------+
+| +Piece getPiece()       |
+| +void setPiece(Piece p) |
++-------------------------+
 ```
 
 ```java
@@ -5322,35 +5328,35 @@ final class Main {
 ## Ecommerce (Amazon)
 
 ```text
-+-------------------------------+     +------------------------------+
-|           User                |◄───|        ShoppingCart          |
-+-------------------------------+     +------------------------------+
-| - id: int                     |     | - items: List<CartItem>      |
-| - name: String                |     +------------------------------+
-| +viewProducts(): void         |     | +addProduct(Product, int)    |
-| +addToCart(Product,int)       |     | +removeProduct(pid)          |
-+-------------------------------+     | +getTotal(): double          |
-                                      +------------------------------+
++------------------------------------------------+     +-------------------------------------------------+
+|                      User                      |◄────|                   ShoppingCart                  |
++------------------------------------------------+     +-------------------------------------------------+
+| - int id                                       |     | - List<CartItem> items                          |
+| - String name                                  |     +-------------------------------------------------+
++------------------------------------------------+     | +void addProduct(Product product, int quantity) |
+| +void viewProducts(List<Product> products)     |     | +void removeProduct(int productId)              |
+| +void addToCart(Product product, int quantity) |     | +double getTotal()                              |
++------------------------------------------------+     +-------------------------------------------------+
 
 +-------------------------------+     +-------------------------------+
 |        CartItem               |     |         Product               |
 +-------------------------------+     +-------------------------------+
-| - product: Product            |     | - id: int                     |
-| - quantity: int               |     | - name: String                |
-+-------------------------------+     | - price: double               |
-| +getSubtotal(): double        |     +-------------------------------+
+| - Product product             |     | - int id                      |
+| - int quantity                |     | - String name                 |
++-------------------------------+     | - double price                |
+| +double getSubtotal()         |     +-------------------------------+
 
-+-------------------------------+
-|         Order                 |◄─── CheckoutStrategy
-+-------------------------------+
-| - id: int                     |
-| - user: User                  |
-| - items: List<CartItem>       |
-| - status: OrderStatus         |
-+-------------------------------+
-| +placeOrder(): void           |
-| +cancelOrder(): void          |
-+-------------------------------+
++---------------------------------------------+
+|                    Order                    |◄─── CheckoutStrategy
++---------------------------------------------+
+| - int id                                    |
+| - User user                                 |
+| - List<CartItem> items                      |
+| - OrderStatus status                        |
++---------------------------------------------+
+| +void placeOrder(CheckoutStrategy strategy) |
+| +void cancelOrder()                         |
++---------------------------------------------+
 
 +------------------------------+
 |        <<enum class>>        |
@@ -5360,32 +5366,32 @@ final class Main {
 | DELIVERED, CANCELED          |
 +------------------------------+
 
-+-------------------------------+
-|        <<interface>>          |
-|       CheckoutStrategy        |
-+-------------------------------+
-| +checkout(Order): boolean     |
-+-------------------------------+
++--------------------------------+
+|         <<interface>>          |
+|        CheckoutStrategy        |
++--------------------------------+
+| +boolean checkout(Order order) |
++--------------------------------+
        ▲           ▲
        |           |
-+------------------+     +-------------------+
-| PaymentGateway   |     | MockGateway       |
-+------------------+     +-------------------+
-| +checkout(Order) |     | +checkout(Order)  |
-+------------------+     +-------------------+
++---------------------------------+     +---------------------------------+
+|          PaymentGateway         |     |           MockGateway           |
++---------------------------------+     +---------------------------------+
+| +boolean checkout(Order order)  |     | +boolean checkout(Order order)  |
++---------------------------------+     +---------------------------------+
 
-+-------------------------------+
-|        <<Singleton>>          |
-|       ECommercePlatform       |
-+-------------------------------+
-| - users: List<User>           |
-| - products: List<Product>     |
-| - platform: ECommercePlatform |
-+-------------------------------+
-| +registerUser()               |
-| +addProduct()                 |
-| +getInstance(): ECommercePlatform |
-+-------------------------------+
++-----------------------------------+
+|           <<Singleton>>           |
+|         ECommercePlatform         |
++-----------------------------------+
+| - List<User> users                |
+| - List<Product> products          |
+| - ECommercePlatform platform      |
++-----------------------------------+
+| +void registerUser(User user)     |
+| +void addProduct(Product product) |
+| +ECommercePlatform getInstance()  |
++-----------------------------------+
 ```
 
 ```java
