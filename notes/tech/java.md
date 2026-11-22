@@ -2,6 +2,7 @@
 
 - [Intro](#intro)
   - [CLI commands](#cli-commands)
+  - [Taking input](#taking-input)
   - [Code working](#code-working)
   - [Data types](#data-types)
   - [Operators](#operators)
@@ -101,6 +102,79 @@ java Main.java < input.txt
 java Main.java arg1 arg2
 ```
 
+
+## Taking input
+
+```java
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();                 // count of items
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        String word = sc.next();              // one word ("John")
+        sc.nextLine();                        // consume the leftover newline
+        String line = sc.nextLine();          // whole line ("Jane Smith")
+
+        // unknown number of items: read until input ends
+        List<Integer> list = new ArrayList<>();
+        while (sc.hasNextInt()) {
+            list.add(sc.nextInt());
+        }
+
+        System.out.println(Arrays.toString(arr));
+        System.out.println(word + " | " + line);
+        System.out.println(list);
+    }
+}
+```
+
+`input.txt`
+
+```text
+3
+10 20 30
+John
+Jane Smith
+1 2 3 4 5
+```
+
+```bash
+java Main.java < input.txt
+```
+
+Scanner read methods
+
+| Method | Reads | Returns |
+| --- | --- | --- |
+| `nextInt()`, `nextLong()`, `nextDouble()`, `nextBoolean()` | Next token (word separated by whitespace) parsed as that type | `int`, `long`, `double`, `boolean` |
+| `next()` | Next token, stops at whitespace (there is no `nextString()`) | `String` (one word) |
+| `nextLine()` | Rest of the current line, including spaces, up to the newline | `String` (whole line, may be empty) |
+
+Command-line arguments are passed to `main` as a `String[]`, so convert them to other types yourself.
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        int count = args.length;                    // number of arguments
+        String name = args[0];                      // "John"
+        int age = Integer.parseInt(args[1]);        // 25
+        double score = Double.parseDouble(args[2]); // 88.5
+
+        System.out.println(name + " " + age + " " + score);
+    }
+}
+```
+
+```bash
+java Main.java John 25 88.5
+```
 
 ## Code working
 
